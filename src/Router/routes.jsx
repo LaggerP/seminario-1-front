@@ -18,6 +18,7 @@ const routes = [
   {
     path: "/",
     component:"Dashboard",
+    private:true,
   },
   {
     path: "/login",
@@ -26,18 +27,22 @@ const routes = [
   {
     path: "/consejos",
     component:"Consejos",
+    private:true,
   },
   {
-    path: "/Ejercicios",
+    path: "/ejercicios",
     component:"Ejercicios",
+    private:true,
   },
   {
     path: "/seguimiento",
     component:"Seguimiento",
+    private:true,
   },
   {
     path: "/calendario",
     component:"Calendario",
+    private:true,
   },
   {
     path: "404", // 404 fallback
