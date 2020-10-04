@@ -12,7 +12,6 @@ const Login = () => {
    return (
       <div>
          <button type="button" onClick={fakeLogin}>Go dashboard</button>
-         <h1>hola</h1>
       </div>
    );
 };
