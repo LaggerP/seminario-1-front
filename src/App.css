@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
 .App {
   text-align: center;
 }
@@ -35,4 +37,91 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#icon {
+  border: 2px solid #F05965;
+  border-radius: 45px;
+}
+
+#icon:hover {
+  box-shadow: 0 0 2px 1px #F05965;
+}
+
+.iconStyle{
+  margin-right: auto;
+  margin-left: auto;
+  height: 2em;
+  width: 2em;
+}
+
+#iconExit{
+  fill: #ffffff;
+}
+
+
+/* Button Animation Text */
+
+button {
+  outline: none;
+  position: relative;
+  border: none;
+  overflow: hidden;
+  margin-top: 30px;
+  color: white;
+  width: 88px;
+  height: 87px;
+  background: rgba(0, 94, 125, 0.48);
+  border-radius: 0px 20px 20px 0px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+button:hover{cursor: pointer; background: #0091C0;}
+
+/*button:before (attr data-hover)*/
+button:hover:before{opacity: 1; transform: translate(0,0);}
+button:before{
+  content: attr(data-hover);
+  position: absolute;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transform: translate(-100%,0);
+  transition: all .3s ease-in-out;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*button div (button text before hover)*/
+button:hover div{opacity: 0; transform: translate(100%,0)}
+button div{
+  transition: all .3s ease-in-out;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Button Animation */
+button:hover{
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+}
+
+button:focus{
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
+  background: #0091C0;
+  border: solid 1px #ffffff;
+}
+
+button:active{
+  transform: scale(.999);
+}
+
+.button-text{
+  font-family: 'Lato', sans-serif;
 }
