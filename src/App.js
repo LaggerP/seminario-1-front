@@ -1,83 +1,106 @@
 import React from 'react';
 import { Link, Redirect } from "react-router-dom";
 import './App.css';
+import Auth from './Api/Auth/fakeAuth';
 import RouterComponents from './Router/routes'
 import styled from 'styled-components'
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
-import Button from 'react-bootstrap/Button'
-
 import fakeAuth from './Api/Auth/fakeAuth'
+import { AiOutlineHome, AiOutlineCheckCircle } from "react-icons/ai";
+import { BsBoxArrowRight, BsCalendar } from "react-icons/bs";
+import { BiMessageRoundedError } from "react-icons/bi";
+import { GiPerspectiveDiceSixFacesOne } from "react-icons/gi";
+import { useHistory } from 'react-router-dom';
 
 
 const SideBar = styled.div`
   padding: 20px 20px 20px 0;
-  width: 114px;
-  height: 95.9vh;
-  background: #F05965;
+  width: 110 px;
+  height: 100%;
+  background: rgba(252, 109, 120, 0.9);
 `;
 
 const Component = styled.div`
   margin-left: 30px;
 `
 
-const MenuItem = styled.div` 
-  margin-top: 30px;
-  color: white;
-  width: 86px;
-  height: 87px;
-  background: rgba(0, 94, 125, 0.48);
-  border-radius: 0px 20px 20px 0px;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
+const UserIcon = styled.div`
+  margin: 5px auto 75px 15px;
+  text-align: center;
 `
+
+const Exit = styled.div`
+  height: 50px;
+  width: auto;
+  padding-top: 20px;
+  text-align: center;
+  background: #F05965;
+`
+
 
 function App() {
 
   // This variable determines if the menu should be displayed
-  const userLogged = fakeAuth.isConnected(); 
+  const userLogged = fakeAuth.isConnected();
+
+  let history = useHistory();
+
+  const fakeLogOut = () => {
+    Auth.signOut(history.push("/"))
+    window.location.reload(false);
+ }
 
   return (
 
     <div style={{ display: "flex" }}>
       {
-        userLogged ? <SideBar>
-          {/* <div>
-          <img src="https://www.pngkit.com/png/full/115-1150342_user-avatar-icon-iconos-de-mujeres-a-color.png" alt=""/>
-        </div> */}
+        userLogged ? <div>
+        
+        <SideBar>
+
+          <UserIcon>
+            <img src="https://www.pngkit.com/png/full/115-1150342_user-avatar-icon-iconos-de-mujeres-a-color.png" alt="userPhoto" height="75px" width="auto" id="icon" />
+          </UserIcon>
 
           <ul style={{ listStyleType: "none", padding: 0 }}>
-            <ButtonGroup vertical>
-              <Button><Link to="/">Dashboard</Link></Button>
-              <Button><Link to="/ejercicios">Ejercicios</Link></Button>
-              <Button><Link to="/calendario">Calendario</Link></Button>
-              <Button><Link to="/consejos">Consejos</Link></Button>
-            </ButtonGroup>
-
-
-            <Link to="/" style={{ textDecoration: 'none' }}>
-              <MenuItem style={{ marginTop: 0 }}>
-                Dashboard
-              </MenuItem>
+            <Link to="/" style={{ textDecoration: 'none' }} >
+              <button className="button-text" data-hover="Dashboard"><div><AiOutlineHome className="iconStyle"/></div></button>
             </Link>
-            <Link to="/ejercicios" style={{ textDecoration: 'none' }}>
-              <MenuItem>
-                Ejercicios
-              </MenuItem>
-            </Link>
-            <Link to="/calendario" style={{ textDecoration: 'none' }}>
-              <MenuItem>
-                Calendario
-              </MenuItem>
-            </Link>
-            <Link to="/consejos" style={{ textDecoration: 'none' }}>
-              <MenuItem>
-                Consejos
-              </MenuItem>
-            </Link>
-
           </ul>
-        </SideBar> : <Redirect to={{ pathname: '/login' }} />
+
+          <ul style={{ listStyleType: "none", padding: 0 }}>
+            <Link to="/ejercicios" style={{ textDecoration: 'none' }}>
+                <button className="button-text" data-hover="Ejercicios"><div><GiPerspectiveDiceSixFacesOne className="iconStyle" /></div></button>
+            </Link>
+          </ul>
+
+          <ul style={{ listStyleType: "none", padding: 0 }}>
+            <Link to="/seguimiento" style={{ textDecoration: 'none' }}>
+                <button className="button-text" data-hover="Seguimiento"><div><AiOutlineCheckCircle className="iconStyle"/></div></button>
+            </Link>
+          </ul>
+
+          <ul style={{ listStyleType: "none", padding: 0 }}>
+            <Link to="/calendario" style={{ textDecoration: 'none' }}>
+              <button className="button-text" data-hover="Calendario"><div><BsCalendar className="iconStyle"/></div></button>
+            </Link>
+          </ul>
+
+          <ul style={{ listStyleType: "none", padding: 0 }}>
+            <Link to="/consejos" style={{ textDecoration: 'none' }}>
+              <button className="button-text" data-hover="Consejos"><div><BiMessageRoundedError className="iconStyle" /></div></button>
+            </Link>
+          </ul>
+
+        </SideBar>
+
+        <Exit>
+            <ul style={{ listStyleType: "none", padding: 0 }}>
+              <button onClick={fakeLogOut}><BsBoxArrowRight className="iconStyle" id="iconExit"/></button>
+            </ul>
+            
+        </Exit>
+
+        </div>: <Redirect to={{ pathname: '/login' }} />
       }
       <Component>
         <RouterComponents />
