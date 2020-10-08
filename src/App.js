@@ -15,7 +15,8 @@ import { useHistory } from 'react-router-dom';
 const SideBar = styled.div`
   padding: 20px 20px 20px 0;
   width: 110 px;
-  height: 100%;
+  height: 100vh
+  ;
   background: rgba(252, 109, 120, 0.9);
 `;
 
