@@ -1,54 +1,40 @@
 import React from 'react';
-import Card from 'react-bootstrap/Card'
-import CardDeck from 'react-bootstrap/CardDeck'
-
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import EjercicioCard from './EjercicioCard'
+import './Ejercicios.scss'
+import laptopImage from '../../assets/images/ejercicioLaptop.png'
 import { getExercises } from '../../Api/services/exerciseServices'
 
 const Ejercicios = () => {
    return (
-      <div>
-         <CardDeck>
-            <Card>
-               <Card.Img variant="top" src="../../assets/images/converstationExercise.png" />
-               <Card.Body>
-                  <Card.Title>Card title</Card.Title>
-                  <Card.Text>
-                     This is a wider card with supporting text below as a natural lead-in to
-                     additional content. This content is a little bit longer.
-      </Card.Text>
-               </Card.Body>
-               <Card.Footer>
-                  <small className="text-muted">Last updated 3 mins ago</small>
-               </Card.Footer>
-            </Card>
-            <Card>
-               <Card.Img variant="top" src="../../assets/images/converstationExercise.png" />
-               <Card.Body>
-                  <Card.Title>Card title</Card.Title>
-                  <Card.Text>
-                     This card has supporting text below as a natural lead-in to additional
-        content.{' '}
-                  </Card.Text>
-               </Card.Body>
-               <Card.Footer>
-                  <small className="text-muted">Last updated 3 mins ago</small>
-               </Card.Footer>
-            </Card>
-            <Card>
-               <Card.Img variant="top" src="../../assets/images/converstationExercise.png" />
-               <Card.Body>
-                  <Card.Title>Card title</Card.Title>
-                  <Card.Text>
-                     This is a wider card with supporting text below as a natural lead-in to
-                     additional content. This card has even longer content than the first to
-                     show that equal height action.
-      </Card.Text>
-               </Card.Body>
-               <Card.Footer>
-                  <small className="text-muted">Last updated 3 mins ago</small>
-               </Card.Footer>
-            </Card>
-         </CardDeck>
+      <div className="EjerciciosContainer">
+
+         <Container>
+            <Row>
+               <div className="EjerciciosContainer-Bienvenida">
+                  <div className="EjerciciosContainer-Bienvenida-Imagen">
+                     <img src={laptopImage} alt=""/>
+                  </div>
+                  <div className="EjerciciosContainer-Bienvenida-Texto">
+                     <h3>UserName, estos son tus ejercicios</h3>
+                  </div>
+
+               </div>
+            </Row>
+            <br/>
+            <Row>
+               <Col xs={12} md={4}><EjercicioCard /></Col>
+               <Col xs={12} md={4}> <EjercicioCard /></Col>
+               <Col xs={12} md={4}><EjercicioCard /></Col>
+               <Col xs={12} md={4}><EjercicioCard /></Col>
+
+
+            </Row>
+         </Container>
+
+
       </div>
    );
 };
