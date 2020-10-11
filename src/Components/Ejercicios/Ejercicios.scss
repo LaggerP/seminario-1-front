@@ -1,3 +1,7 @@
+body{
+   background-color: rgba(255, 255, 255, 0.678);
+}
+
 .EjerciciosContainer {
    margin-right: 50px;
    display: flex;
@@ -19,7 +23,12 @@
          right: 17px;
       }
       &-Texto {
+         
       }
    }
 }
 
+
+.form-group {
+   margin-top: 50px;
+}
