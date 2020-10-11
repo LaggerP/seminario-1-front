@@ -1,8 +1,6 @@
 export const fakeGames = [
-   {
-      label: "Módulo 1",
-      data: [
          {
+            id: 1,
             name: "juego 1",
             description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque, aspernatur?",
             exercise: 2,
@@ -10,6 +8,7 @@ export const fakeGames = [
             status: true,
          },
          {
+            id: 2,
             name: "juego 2",
             description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque, aspernatur?",
             exercise: 1,
@@ -17,30 +16,23 @@ export const fakeGames = [
             status: false,
          },
          {
+            id: 3,
             name: "juego 3",
             description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque, aspernatur?",
             exercise: 6,
             module: 1,
             status: true,
          },
-      ]
-   },
-   {
-      label: "Módulo 2",
-      data: [
          {
+            id: 4,
             name: "juego 1",
             description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque, aspernatur?",
             exercise: 3,
             module: 2,
             status: false,
          },
-      ]
-   },
-   {
-      label: "Módulo 3",
-      data: [
          {
+            id: 5,
             name: "juego 1",
             description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque, aspernatur?",
             exercise: 3,
@@ -48,12 +40,11 @@ export const fakeGames = [
             status: false,
          },
          {
+            id: 6,
             name: "juego 2",
             description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque, aspernatur?",
             exercise: 2,
             module: 3,
             status: false,
          }
-      ]
-   }
 ]

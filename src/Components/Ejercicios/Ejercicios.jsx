@@ -10,7 +10,7 @@ import EjercicioCard from './EjercicioCard'
 import './Ejercicios.scss'
 import laptopImage from '../../assets/images/ejercicioLaptop.png'
 import Ejercicio from './Ejercicio/Ejercicio'
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { BiInfoCircle } from "react-icons/bi";
 
 import { fakeGames } from './fakeGames'
@@ -27,7 +27,7 @@ const popover = (
    <Popover id="popover-basic">
       <Popover.Title as="h4">Información importante</Popover.Title>
       <Popover.Content>
-         ¡Hola, Pablo 😄! si necesita <strong>ayuda</strong> con un ejercicio, puedes ir a la sección de <Link to="/consejos">consejos</Link> o consultarle a su médico/a.
+         ¡Hola, Pablo <span role="img" aria-label="SmileFace">😄</span>! si necesita <strong>ayuda</strong> con un ejercicio, puedes ir a la sección de <Link to="/consejos">consejos</Link> o consultarle a su médico/a.
      </Popover.Content>
    </Popover>
 );
@@ -37,6 +37,7 @@ const Ejercicios = () => {
    const [showExercise, setShowExercise] = useState(true);
    const [selectedOption, setSelectedOption] = useState(null);
    const [exercises, setExercises] = useState([]);
+   const [dataExercise, setDataExercise] = useState();
 
    async function getExercisesData() {
       try {
@@ -53,8 +54,19 @@ const Ejercicios = () => {
 
 
    const goToExercise = () => {
-      console.log(showExercise)
       showExercise ? setShowExercise(false) : window.location.reload(false);
+   }
+
+   const getGameData = async (e) => {
+      console.log(e.id)
+      await setDataExercise(e)
+      if (dataExercise === undefined){
+         console.log("hola")
+         await setDataExercise(e)
+      }
+
+      
+
    }
 
    if (exercises.length > 0) {
@@ -92,42 +104,26 @@ const Ejercicios = () => {
 
                   </Row>
                   <Row style={{ paddingTop: '2.5%' }}>
-                     <Col xs={12} md={4} >
-                        <EjercicioCard
-                           goToExercise={goToExercise}
-                           status={false}
-                        />
-                     </Col>
-                     <Col xs={12} md={4} >
-                        <EjercicioCard
-                           goToExercise={goToExercise}
-                           status={true}
-                        />
-                     </Col>
-                     <Col xs={12} md={4} >
-                        <EjercicioCard
-                           goToExercise={goToExercise}
-                           status={false}
-                        />
-                     </Col>
-                     <Col xs={12} md={4} >
-                        <EjercicioCard
-                           goToExercise={goToExercise}
-                           status={true}
-                        />
-                     </Col>
-                     <Col xs={12} md={4} >
-                        <EjercicioCard
-                           goToExercise={goToExercise}
-                           status={true}
-                        />
-                     </Col>
-                     <Col xs={12} md={4} >
-                        <EjercicioCard
-                           goToExercise={goToExercise}
-                           status={false}
-                        />
-                     </Col>
+
+                     {
+                        exercises.map((data, index) => {
+                           const { id, name, description, exercise, module, status } = data
+                           return (
+                              <Col xs={12} md={4} key={data.id} value={data} onClick={() => {getGameData(data)}}>
+                                    <EjercicioCard
+                                       name={name}
+                                       description={description}
+                                       exercise={exercise}
+                                       module={module}
+                                       status={status}
+                                       id={id}
+                                    />
+
+                              </Col>
+
+                           )
+                        })
+                     }
                   </Row>
                </Container>
             </div>
@@ -136,7 +132,6 @@ const Ejercicios = () => {
          return (
             <div className="EjerciciosContainer">
                <Container>
-
                   <Row>
                      <Ejercicio goToExercise={goToExercise}></Ejercicio>
                   </Row>
