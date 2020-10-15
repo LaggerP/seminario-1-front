@@ -35,7 +35,7 @@ const routes = [
     private:true,
   },
   {
-    path: "/seguimiento",
+    path: "/Seguimiento",
     component:"Seguimiento",
     private:true,
   },

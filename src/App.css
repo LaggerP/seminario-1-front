@@ -104,19 +104,9 @@ button div{
 }
 
 /* Button Animation */
-button:hover{
-  -webkit-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  transform: scale(1.2);
-}
 
-button:focus{
-  -webkit-transform: scale(1.2);
-  -ms-transform: scale(1.2);
-  transform: scale(1.2);
-  background: #0091C0;
-  border: solid 1px #ffffff;
-}
+
+
 
 button:active{
   transform: scale(.999);
