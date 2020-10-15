@@ -14,13 +14,15 @@ import { useHistory } from 'react-router-dom';
 
 const SideBar = styled.div`
   padding: 20px 20px 20px 0;
-  width: 110 px;
-  height: 100%;
+  width: 110px;
+  height: 100vh;
   background: rgba(252, 109, 120, 0.9);
 `;
 
 const Component = styled.div`
   margin-left: 30px;
+  padding:30px;
+  width: -webkit-fill-available;
 `
 
 const UserIcon = styled.div`
