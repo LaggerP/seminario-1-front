@@ -47,6 +47,11 @@ const routes = [
     private: true,
   },
   {
+    path: "/administrar",
+    component:"Administrar",
+    private:true,
+  },
+  {
     path: "/beneficios",
     component: "Beneficios",
     private: true,
