@@ -14,7 +14,7 @@ const Login = () => {
    
    return (
       <div>
-         <button type="button" onClick={fakeLogin}>Go dashboard</button>
+         <button type="button" onClick={fakeLogin}>Go dashboard!</button>
       </div>
    );
 };
