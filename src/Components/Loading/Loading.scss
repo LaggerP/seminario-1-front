@@ -1,16 +1,18 @@
 .container_loading {
-   height: 650px;
-   width: 100%;
-   background-color: #ffffff;
-   align-items: center;
-   display: flex;
- }
+  height: 100vh;
+  width: -webkit-fill-available;
+  background-color: #ffffff;
+  align-items: center;
+  display: flex;
+}
  
- .spinner {
-   display: block;
-   height: 100px;
-   width: 100px;
-   margin-right: auto;
-   margin-left: auto;
- }
- 
+.spinner {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.spinner-border {
+  width: 4rem !important;
+  height: 4rem !important;
+}
