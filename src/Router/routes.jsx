@@ -47,6 +47,11 @@ const routes = [
     private: true,
   },
   {
+    path: "/beneficios",
+    component: "Beneficios",
+    private: true,
+  },
+  {
     path: "404", // 404 fallback
     noExact: true, // all route "exact" by default
     component: "PageNotFound",
