@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
-
 .App {
   text-align: center;
 }
@@ -40,6 +39,72 @@
   }
 }
 
+/* Fixed Sidebar */
+.vertical-nav {
+  background: rgba(252, 109, 120, 0.9);
+  min-width: 10rem;
+  width: 10rem;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s;
+}
+
+.page-content {
+  width: calc(100% - 10rem);
+  margin-left: 10rem;
+  transition: all 0.4s;
+}
+
+/* for toggle behavior */
+
+#sidebar.active {
+  margin-left: -10rem;
+}
+
+#content.active {
+  width: 100%;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  #sidebar {
+    margin-left: -10rem;
+  }
+  #sidebar.active {
+    margin-left: 0;
+  }
+  #content {
+    width: 100%;
+    margin: 0;
+  }
+  #content.active {
+    margin-left: 10rem;
+    width: calc(100% - 10rem);
+  }
+}
+
+.scroller {
+  overflow-y:   scroll;
+}
+.scroller::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+.component{
+  font-family: lato, sans-serif;
+  width: calc(100% - 10rem);
+  margin-left: 10rem;
+  transition: all 0.4s;
+}
+
+.userIcon{
+  text-align: center;
+}
+
 #icon {
   border: 2px solid #F05965;
   border-radius: 45px;
@@ -50,25 +115,61 @@
 }
 
 .iconStyle{
-  margin-right: auto;
-  margin-left: auto;
+  height: 2.5em;
+  width: 2.5em;
+}
+
+#iconExit{
+  margin-top: 5px;
+  fill: #ffffff;
   height: 2em;
   width: 2em;
 }
 
-#iconExit{
-  fill: #ffffff;
+#iconExit:hover{
+  cursor: pointer;
+}
+
+.exit{
+  height: 90px;
+  padding: 20px;
+  text-align: center;
+  background: #F05965;
+  padding: .25rem;
+  bottom: 0;
+  width: 100%;
+  position: absolute;
+  padding-top: 20px;
+}
+
+.size{
+  width: 88px;
+}
+
+@media (max-height: 850px) {
+  .exit{
+    position: relative;
+    margin-top: 30px;
+  }
 }
 
 
-/* Button Animation Text */
+.menuItemSelected{
+  border-top: solid 2px #ffffff !important;
+  border-right: solid 2px #ffffff !important;
+  border-bottom: solid 2px #ffffff !important;
+}
 
-button {
+
+
+/* Menu Button Animation Text */
+
+.menu-button {
   outline: none;
   position: relative;
   border: none;
   overflow: hidden;
-  margin-top: 30px;
+  margin-top: 18px;
   color: white;
   width: 88px;
   height: 87px;
@@ -80,11 +181,11 @@ button {
   text-align: center;
 }
 
-button:hover{cursor: pointer; background: #0091C0;}
+.menu-button:hover{cursor: pointer; background: #0091C0;}
 
 /*button:before (attr data-hover)*/
-button:hover:before{opacity: 1; transform: translate(0,0);}
-button:before{
+.menu-button:hover:before{opacity: 1; transform: translate(0,0);}
+.menu-button:before{
   content: attr(data-hover);
   position: absolute;
   left: 0;
@@ -97,21 +198,21 @@ button:before{
 }
 
 /*button div (button text before hover)*/
-button:hover div{opacity: 0; transform: translate(100%,0)}
-button div{
+.menu-button:hover div{opacity: 0; transform: translate(100%,0)}
+.menu-button div{
   transition: all .3s ease-in-out;
   margin-left: auto;
   margin-right: auto;
 }
 
 /* Button Animation */
-button:hover{
+.menu-button:hover{
   -webkit-transform: scale(1.2);
   -ms-transform: scale(1.2);
   transform: scale(1.2);
 }
 
-button:focus{
+.menu-button:focus{
   -webkit-transform: scale(1.2);
   -ms-transform: scale(1.2);
   transform: scale(1.2);
@@ -119,10 +220,11 @@ button:focus{
   border: solid 1px #ffffff;
 }
 
-button:active{
+.menu-button:active{
   transform: scale(.999);
 }
 
 .button-text{
   font-family: 'Lato', sans-serif;
+  font-size: 80%;
 }
