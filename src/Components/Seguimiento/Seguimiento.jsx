@@ -1,8 +1,12 @@
 import React from 'react';
-import { Card } from 'react-bootstrap';
-import "./Seguimiento.css" 
+import "./Seguimiento.scss" 
 import BootstrapTable from 'react-bootstrap-table-next';
 import ToolkitProvider, { Search } from 'react-bootstrap-table2-toolkit';
+import {
+   Container,
+   Row,
+} from 'react-bootstrap';
+import Seguimientoimagee from '../../assets/images/Seguimientoimagee.png'
 
  
 
@@ -72,26 +76,49 @@ const products = [{
     price4: '18/10/2020'
      },{
     id: 36360943, 
-    name: 'Jeffrey',
-    price: '2',
-    price2: '3',
+    name: 'Pablo Lagger',
+    price: '1', 
+    price2: '2,1,7',
     price3: 'Tratamiento agudo',
     price4: '14/10/2020'
    },{
+      id: 36360943, 
+      name: 'Pablo Lagger',
+      price: '2', 
+      price2: '2,8',
+      price3: 'Tratamiento agudo',
+      price4: '24/10/2020'
+     },{
     id: 22511669,
-    name: 'Alice',
-    price: '3',
-    price2: '4', 
+    name: 'Matias Cardozo',
+    price: '1', 
+    price2: '2,1,7',
     price3: 'Tratamiento severo',
     price4: '11/10/2020'
 
    },{
-    id: 30362481,
-    name: 'Alice',
-    price: '1',
-    price2: '5,6',
+    id: 22511669,
+    name: 'Matias Cardozo',
+    price: '2', 
+    price2: '2,8',
     price3: 'Tratamiento grave',
     price4: '09/10/2020'
+   },{
+    id: 24551515,
+    name: 'Matias Cardozo',
+    price: '1', 
+    price2: '2,1,7',
+    price3: 'Tratamiento severo',
+    price4: '11/10/2020'
+   },{
+      id: 24551515,
+      name: 'Matias Cardozo',
+      price: '2', 
+      price2: '2,8',
+      price3: 'Tratamiento severo',
+      price4: '11/10/2020'
+
+   
 }];
 
 
@@ -100,23 +127,21 @@ const products = [{
 
 const Seguimiento = () => {
    return (
-      <div>    
-         <Card className='nico'>
-         Hisotrial del paciente:
-         </Card>
+      <div>   
+         <Container>
+            <Row> 
+          <div className="SeguimientoContainer-Bienvenida">
+          <div className="SeguimientoContainer-Bienvenida-Texto">
+        <h1>Hisotrial del paciente:</h1>
+         </div>
    
-         <br/>
-         <br/>
-         <br/>
-         <br/>
-         <br/>
-         <br/>
-         <br/>
-         <br/>
-         <br/>
-         <br/>
 
-                  
+         <div className="SeguimientoContainer-Bienvenida-Imagen">
+         <img src={Seguimientoimagee} height='340px' alt="Seguimientoimagee" />
+         </div> 
+         </div>
+         </Row>      
+         <div className='cardsContainer'>   
             <ToolkitProvider
             keyField="id"
             columns={ columns }
@@ -141,6 +166,8 @@ const Seguimiento = () => {
                )
             }
          </ToolkitProvider>
+         </div>
+         </Container>
    
             
       
