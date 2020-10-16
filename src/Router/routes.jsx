@@ -8,6 +8,8 @@ import { ProtectedRoute } from "./ProtectedRoute"
 // Preloading component
 import Loading from "../Components/Loading/Loading";
 
+import Ejercicio from '../Components/Ejercicios/Ejercicio/Ejercicio'
+
 // Import helper func
 const views = (path) => {
   return lazy(() => import(`../Components/${path}/${path}`));
@@ -17,32 +19,32 @@ const views = (path) => {
 const routes = [
   {
     path: "/",
-    component:"Dashboard",
-    private:true,
+    component: "Dashboard",
+    private: true,
   },
   {
     path: "/login",
-    component:"Login",
+    component: "Login",
   },
   {
     path: "/consejos",
-    component:"Consejos",
-    private:true,
+    component: "Consejos",
+    private: true,
   },
   {
     path: "/ejercicios",
-    component:"Ejercicios",
-    private:true,
+    component: "Ejercicios",
+    private: true,
   },
   {
     path: "/seguimiento",
-    component:"Seguimiento",
-    private:true,
+    component: "Seguimiento",
+    private: true,
   },
   {
     path: "/calendario",
-    component:"Calendario",
-    private:true,
+    component: "Calendario",
+    private: true,
   },
   {
     path: "/administrar",
@@ -52,13 +54,14 @@ const routes = [
   {
     path: "404", // 404 fallback
     noExact: true, // all route "exact" by default
-    component:"PageNotFound",
+    component: "PageNotFound",
   },
 ];
 
 const router = () => (
   <Suspense fallback={<Loading />}>
     <Switch>
+    <ProtectedRoute path="/ejercicio" component={Ejercicio} />
       {routes.map((route, index) => {
         if (route.path !== "404") {
           if (route.private) {
@@ -69,13 +72,13 @@ const router = () => (
                 component={views(route.component)}
               />
             ) : (
-              <ProtectedRoute
-                key={index}
-                exact
-                path={route.path}
-                component={views(route.component)}
-              />
-            );
+                <ProtectedRoute
+                  key={index}
+                  exact
+                  path={route.path}
+                  component={views(route.component)}
+                />
+              );
           } else {
             return route.noExact ? (
               <Route
@@ -84,13 +87,13 @@ const router = () => (
                 component={views(route.component)}
               />
             ) : (
-              <Route
-                key={index}
-                exact
-                path={route.path}
-                component={views(route.component)}
-              />
-            );
+                <Route
+                  key={index}
+                  exact
+                  path={route.path}
+                  component={views(route.component)}
+                />
+              );
           }
         } else {
           return <Route key={index} component={views(route.component)} />;
