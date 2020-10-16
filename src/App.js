@@ -20,7 +20,7 @@ const SideBar = styled.div`
 `;
 
 const Component = styled.div`
-  margin-left: 30px;
+  margin-left: 0px;
 `
 
 const UserIcon = styled.div`
