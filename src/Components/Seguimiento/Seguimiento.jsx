@@ -154,7 +154,6 @@ const Seguimiento = () => {
                   <div>
                   <h3>Buscar pacientes:</h3>
                   <SearchBar { ...props.searchProps } 
-                  className="custome-search-field"
                   placeholder = 'Ingrese nombre del paciente...'
                   />
                   <hr />
