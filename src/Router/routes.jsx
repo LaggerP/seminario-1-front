@@ -45,6 +45,11 @@ const routes = [
     private:true,
   },
   {
+    path: "/administrar",
+    component:"Administrar",
+    private:true,
+  },
+  {
     path: "404", // 404 fallback
     noExact: true, // all route "exact" by default
     component:"PageNotFound",
