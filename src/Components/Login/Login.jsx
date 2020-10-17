@@ -3,8 +3,8 @@ import { useHistory } from 'react-router-dom';
 import fakeAuth from '../../Api/Auth/fakeAuth';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.scss';
-import doctor from '../../Components/Login/doctor.png'
-import niños from '../../Components/Login/niños.png'
+import doctor from '../../assets/images/doctor.png'
+import niños from '../../assets/images/niños.png'
 import { Container, Row, Col, Image, Form, Button, Modal } from 'react-bootstrap';
 
 function Login (props) {
@@ -161,14 +161,7 @@ function Login (props) {
                </Form>
             </Container>
       </Container>
-
-   
-   return (
-      <div>
-         <button type="button" onClick={fakeLogin}>Go dashboard!</button>
-      </div>
-
-   );
+   )
 };
 
 export default Login;
