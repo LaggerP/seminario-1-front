@@ -29,6 +29,8 @@ function Login (props) {
 
    let history = useHistory();
 
+
+
    const fakeLogin = () => {
       fakeAuth.authenticate(history.push("/"))
       window.location.reload(false);
@@ -159,7 +161,13 @@ function Login (props) {
                </Form>
             </Container>
       </Container>
+
    
+   return (
+      <div>
+         <button type="button" onClick={fakeLogin}>Go dashboard!</button>
+      </div>
+
    );
 };
 
