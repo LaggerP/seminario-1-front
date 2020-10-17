@@ -102,8 +102,9 @@
 }
 
 .userNav{
+  padding: 3rem;
   text-align: center;
-}
+
 
 #icon {
   border: 2px solid #F05965;
@@ -161,7 +162,23 @@
   border-bottom: solid 2px #ffffff !important;
 }
 
+.size{
+  width: 88px;
+}
 
+@media (max-height: 850px) {
+  .exit{
+    position: relative;
+    margin-top: 30px;
+  }
+}
+
+
+.menuItemSelected{
+  border-top: solid 2px #ffffff !important;
+  border-right: solid 2px #ffffff !important;
+  border-bottom: solid 2px #ffffff !important;
+}
 
 /* Menu Button Animation Text */
 
@@ -211,6 +228,9 @@
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
   transform: scale(1.1);
+  -webkit-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  transform: scale(1.2);
 }
 
 .menu-button:focus{
