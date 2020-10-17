@@ -5,13 +5,21 @@
 .login{
     height: 100vh;
     width: 100vw;
-    background: rgba(252, 109, 120, 0.9);
+    background-color: rgba(252, 109, 120, 0.9);
     margin: 0;
+    padding: 0rem; 
 
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+.component{
+    width: 0rem;
+    margin-left: 0rem;
+    padding: 0rem;
+}
+
 
 .contenedor{
     background: #ffffff;

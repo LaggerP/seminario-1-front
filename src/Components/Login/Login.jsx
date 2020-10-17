@@ -82,8 +82,7 @@ function Login (props) {
    }
 
    return (
-
-      <Container className="login" fluid>
+      <Container className="login" fluid >
             <Container className="contenedor">
                <p className="titulo">Elegir Tipo de Cuenta</p>
                <Form noValidate validated={validated} onSubmit={handleSubmit}>
