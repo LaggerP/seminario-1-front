@@ -94,7 +94,7 @@ function App() {
         </div> : <Redirect to={{ pathname: '/login' }} />
       }
 
-      <div className='component p-5' id="content">
+      <div className='component' id="content">
         <RouterComponents />
       </div>
 

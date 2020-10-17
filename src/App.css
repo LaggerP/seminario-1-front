@@ -98,7 +98,8 @@
   font-family: lato, sans-serif;
   width: calc(100% - 10rem);
   margin-left: 10rem;
-  transition: all 0.4s;
+  transition: all 0s;
+  padding: 3rem;
 }
 
 .userNav{
