@@ -6,6 +6,7 @@ import './Login.scss';
 import doctor from '../../assets/images/doctor.png'
 import niños from '../../assets/images/niños.png'
 import { Container, Row, Col, Image, Form, Button, Modal } from 'react-bootstrap';
+import { AiFillCheckCircle } from "react-icons/ai";
 
 function Login (props) {
 
@@ -99,6 +100,7 @@ function Login (props) {
                      />
                      <Form.Label for="doctor">
                         <Image src={doctor} className={menuItem === "Doctor" ? "imagenesDesp": "imagenes"} onClick={() => setSelected("Doctor")} data-hover="Doctor"/> 
+                        <AiFillCheckCircle className={menuItem === "Doctor" ? "check" : "checkAntes"}/>
                      </Form.Label>
                      <p className="subtitulo">Doctor</p>
                      
@@ -114,7 +116,8 @@ function Login (props) {
                         onChange={handleChange}
                      />
                      <Form.Label for="paciente">
-                      <Image src={niños} className={menuItem === "Paciente" ? "imagenesDesp": "imagenes"} onClick={() => setSelected("Paciente")} data-hover="Paciente"/> 
+                      <Image src={niños} className={menuItem === "Paciente" ? "imagenesDesp": "imagenes"} onClick={() => setSelected("Paciente")} data-hover="Paciente"/>
+                      <AiFillCheckCircle className={menuItem === "Paciente" ? "check" : "checkAntes"}/>
                      </Form.Label>
                      <p className="subtitulo">Paciente</p>
                   </Col>
