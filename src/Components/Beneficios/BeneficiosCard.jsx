@@ -1,20 +1,30 @@
 import React from 'react';
 import './BeneficiosCard.scss'
 import Badge from 'react-bootstrap/Badge'
-import { BiJoystick, BiCheckDouble } from "react-icons/bi";
-const image = "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ_XDJ9l6LT0aN4yB4qU2vM0YIiHjlU7oNRMw&usqp=CAU"
+import Button from 'react-bootstrap/Button'
 
-const BeneficiosCard = ({}) => {
+const BeneficiosCard = ({ localData, myPoints }) => {
+   const { id, local, description, image_shop, type_shop, necessary_points } = localData
+   const canSwap = necessary_points <= myPoints
+   console.log(canSwap)
+   console.log(localData)
    return (
       <div className="CardContainer">
-         <div className="CardContainer-Center" style={{ backgroundImage: `url(${image})` }}>
+         <div className="CardContainer-Center" style={{ backgroundImage: `url(${image_shop})` }}>
          </div>
          <div className="CardContainer-Badges">
-            <Badge variant="info">Jugueteria</Badge>{' '}
-            <Badge variant="success" >Jugueteria</Badge>{' '}
+            <Badge variant="info">{type_shop}</Badge>{' '}
+            <Badge variant="success">Puntos necesarios {necessary_points}</Badge>{' '}
          </div>
          <div className="CardContainer-Bottom" >
-         Info tienda
+            {description}
+          
+
+            { canSwap ? <Button className="mt-4" variant="primary" size="md" block>
+               Canjear premio
+            </Button> : <Button className="mt-4" variant="primary" size="md" block disabled>
+               Le faltan {necessary_points - myPoints} puntos para este premio
+            </Button> }
          </div>
       </div>
    )

@@ -2,21 +2,26 @@ import React, { Component } from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 import BeneficiosCard from './BeneficiosCard'
 import './Beneficios.scss'
+import { getAllBenefits } from '../../Api/services/benefitsServices'
+
 
 class Benefits extends Component {
    constructor(props) {
       super(props);
       this.state = {
          points: 0,
-         shops: {}
+         shops: []
       }
    }
 
-   componentDidMount() {
-      this.setState({ points: 2 })
+   async componentDidMount() {
+      this.setState({ points: 20 })
+      this.setState({ shops: await getAllBenefits() })
    }
 
    render() {
+
+      const { shops, points } = this.state
       return (
          <div className="BeneficiosContainer">
 
@@ -27,27 +32,22 @@ class Benefits extends Component {
                      </div>
                      <div className="BeneficiosContainer-Bienvenida-Texto">
                         <h2>Username, estos son tus premios</h2>
+                        <h3>Actualmente cuentas con {points} puntos</h3>
                      </div>
                   </div>
                </Row>
                <Row>
-                  <Col xs={12} md={4} >
-                     <BeneficiosCard />
-                  </Col>
-                  <Col xs={12} md={4} >
-                     <BeneficiosCard />
-                  </Col>
-                  <Col xs={12} md={4} >
-                     <BeneficiosCard />
-                  </Col>
-                  <Col xs={12} md={4} >
-                     <BeneficiosCard />
-                  </Col>
-                  <Col xs={12} md={4} >
-                     <BeneficiosCard />
-                  </Col>  <Col xs={12} md={4} >
-                     <BeneficiosCard />
-                  </Col>
+                  {
+                     shops.map(shop => {
+                        return (
+                           <Col xs={12} md={4} >
+                              <BeneficiosCard localData={shop} myPoints={points}/>
+                           </Col>
+
+                        )
+
+                     })
+                  }
                </Row>
             </Container>
          </div>

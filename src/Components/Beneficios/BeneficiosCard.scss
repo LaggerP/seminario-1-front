@@ -1,13 +1,12 @@
 .CardContainer {
    width: 320px;
-   height: 350px;
+   height: 390px;
    position: relative;
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
    margin: 20px;
-   cursor: pointer;
    border-radius: 10px;
    background-color: transparent;
    transition: box-shadow 0.2s ease-in-out;
