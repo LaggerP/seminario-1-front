@@ -31,5 +31,54 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.CalendarioContainer {
+    margin-right: 50px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-content: center;
+
+   &-Bienvenida {
+      width: 100%;
+      height: 250px;
+      background: rgba(214, 245, 255, 1);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+
+      &-Imagen {
+         position: relative;
+        //  top:0px;
+        //  right: 17px;
+      }
+      &-Texto {
+         
+      }
+   }
+   
+   &-Turno {
+    width: 100%;
+    min-height: 200px;
+    max-height: 100vh;
+    background: rgba(214, 245, 255, 1);
+    border-radius: 20px;
+    display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    margin-top: 100px;
+
+    &-Texto {
+
+    }
+   }
+}
+
+h2.alignright {
+    text-align: right;
+}
+
+
+
+
 
 
