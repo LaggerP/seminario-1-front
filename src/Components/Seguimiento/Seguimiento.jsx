@@ -132,7 +132,7 @@ const Seguimiento = () => {
             <Row> 
           <div className="SeguimientoContainer-Bienvenida">
           <div className="SeguimientoContainer-Bienvenida-Texto">
-        <h1>Hisotrial del paciente:</h1>
+        <h1>Historial del paciente:</h1>
          </div>
    
 
