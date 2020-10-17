@@ -10,7 +10,7 @@ const sinHacer = <span>Sin hacer <BiJoystick size={25}/></span>
 
 const EjercicioCard = ({goToExercise, name, description, exercise, module, status}) => {
    return (
-      <div className="CardContainer" onClick={goToExercise}>
+      <div className="CardContainer" onClick={goToExercise} disabled>
          <div className={status ? 'CardContainer-StatusTrue' : "CardContainer-StatusFalse"} >
             <span>{status ? finalizado: sinHacer}</span>
          </div>
