@@ -1,112 +1,90 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import './App.css';
-import Auth from './Api/Auth/fakeAuth';
 import RouterComponents from './Router/routes'
-import styled from 'styled-components'
 import fakeAuth from './Api/Auth/fakeAuth'
 import { AiOutlineHome, AiOutlineCheckCircle } from "react-icons/ai";
 import { BsBoxArrowRight, BsCalendar } from "react-icons/bs";
 import { BiMessageRoundedError } from "react-icons/bi";
+import { FiEdit } from "react-icons/fi";
 import { GiPerspectiveDiceSixFacesOne } from "react-icons/gi";
 import { useHistory } from 'react-router-dom';
 
-
-const SideBar = styled.div`
-  padding: 20px 20px 20px 0;
-  width: 110px;
-  height: 100vh;
-  background: rgba(252, 109, 120, 0.9);
-`;
-
-const Component = styled.div`
-  margin-left: 30px;
-  padding:30px;
-  width: -webkit-fill-available;
-`
-
-const UserIcon = styled.div`
-  margin: 5px auto 75px 15px;
-  text-align: center;
-`
-
-const Exit = styled.div`
-  height: 50px;
-  width: auto;
-  padding-top: 20px;
-  text-align: center;
-  background: #F05965;
-`
-
-
 function App() {
 
-  // This variable determines if the menu should be displayed
+  // Fake Logout
   const userLogged = fakeAuth.isConnected();
 
   let history = useHistory();
 
   const fakeLogOut = () => {
-    Auth.signOut(history.push("/"))
+    fakeAuth.signOut(history.push("/"))
     window.location.reload(false);
- }
+  }
+
+  // Menu item selected
+  const [menuItem, setSelected] = useState('Inicio');
+
+
 
   return (
 
     <div style={{ display: "flex" }}>
       {
         userLogged ? <div>
-        
-        <SideBar>
+          
+          <div className="vertical-nav scroller" id="sidebar">
 
-          <UserIcon>
-            <img src="https://www.pngkit.com/png/full/115-1150342_user-avatar-icon-iconos-de-mujeres-a-color.png" alt="userPhoto" height="75px" width="auto" id="icon" />
-          </UserIcon>
+            <div className="py-4">
+              <div className="media-body">
+                <div className='userIcon'>
+                  <img src="https://www.pngkit.com/png/full/115-1150342_user-avatar-icon-iconos-de-mujeres-a-color.png" alt="userPhoto" height="75px" width="auto" id="icon" />
+                </div>
+              </div>
+            </div>
 
-          <ul style={{ listStyleType: "none", padding: 0 }}>
-            <Link to="/" style={{ textDecoration: 'none' }} >
-              <button className="button-text" data-hover="Dashboard"><div><AiOutlineHome className="iconStyle"/></div></button>
-            </Link>
-          </ul>
+            <ul style={{ listStyleType: "none", padding: 0 }} className="nav flex-column mb-0 mt-2">
 
-          <ul style={{ listStyleType: "none", padding: 0 }}>
-            <Link to="/ejercicios" style={{ textDecoration: 'none' }}>
-                <button className="button-text" data-hover="Ejercicios"><div><GiPerspectiveDiceSixFacesOne className="iconStyle" /></div></button>
-            </Link>
-          </ul>
+              <Link to="/"  className='size'>
+                <div className={menuItem === 'Inicio' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Inicio')} data-hover="Inicio"><div><AiOutlineHome className="iconStyle" /></div></div>
+              </Link>
 
-          <ul style={{ listStyleType: "none", padding: 0 }}>
-            <Link to="/seguimiento" style={{ textDecoration: 'none' }}>
-                <button className="button-text" data-hover="Seguimiento"><div><AiOutlineCheckCircle className="iconStyle"/></div></button>
-            </Link>
-          </ul>
+              <Link to="/ejercicios" className='size'>
+                <div className={menuItem === 'Ejercicios' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Ejercicios')} data-hover="Ejercicios"><div><GiPerspectiveDiceSixFacesOne className="iconStyle" /></div></div>
+              </Link>
 
-          <ul style={{ listStyleType: "none", padding: 0 }}>
-            <Link to="/calendario" style={{ textDecoration: 'none' }}>
-              <button className="button-text" data-hover="Calendario"><div><BsCalendar className="iconStyle"/></div></button>
-            </Link>
-          </ul>
+              <Link to="/seguimiento" className='size'>
+                <div className={menuItem === 'Seguimiento' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Seguimiento')} data-hover="Seguimiento"><div><AiOutlineCheckCircle className="iconStyle" /></div></div>
+              </Link>
 
-          <ul style={{ listStyleType: "none", padding: 0 }}>
-            <Link to="/consejos" style={{ textDecoration: 'none' }}>
-              <button className="button-text" data-hover="Consejos"><div><BiMessageRoundedError className="iconStyle" /></div></button>
-            </Link>
-          </ul>
+              <Link to="/calendario" className='size'>
+                <div className={menuItem === 'Calendario' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Calendario')} data-hover="Calendario"><div><BsCalendar className="iconStyle" /></div></div>
+              </Link>
 
-        </SideBar>
+              <Link to="/consejos" className='size'>
+                <div className={menuItem === 'Consejos' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Consejos')} data-hover="Consejos"><div><BiMessageRoundedError className="iconStyle" /></div></div>
+              </Link>
 
-        <Exit>
-            <ul style={{ listStyleType: "none", padding: 0 }}>
-              <button onClick={fakeLogOut}><BsBoxArrowRight className="iconStyle" id="iconExit"/></button>
+              <Link to="/administrar" className='size'>
+                <div className={menuItem === 'Administrar' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Administrar')} data-hover="Administrar"><div><FiEdit className="iconStyle" /></div></div>
+              </Link>
+              
             </ul>
-            
-        </Exit>
 
-        </div>: <Redirect to={{ pathname: '/login' }} />
+            <div className='exit'>
+              <ul style={{ listStyleType: "none", padding: 0 }}>
+                <div onClick={fakeLogOut}><BsBoxArrowRight className="iconStyle center" id="iconExit" /></div>
+              </ul>
+            </div>
+
+          </div>
+
+        </div> : <Redirect to={{ pathname: '/login' }} />
       }
-      <Component>
+
+      <div className='component p-5' id="content">
         <RouterComponents />
-      </Component>
+      </div>
 
     </div>
 

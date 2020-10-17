@@ -5,7 +5,7 @@ import "./Loading.scss";
 const Loading = () => {
   return (
     <div className="container_loading">
-      <Spinner className="spinner" animation="border" variant="info" />
+      <Spinner className="spinner" animation="border" variant="info"/>
     </div>
   );
 };
