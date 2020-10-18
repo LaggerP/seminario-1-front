@@ -6,7 +6,7 @@ import {
    Row,
 } from 'react-bootstrap';
 
-const Administrar = () => {
+const InputList = () => {
   return (
     <div>
     <Container>
@@ -82,4 +82,4 @@ const Administrar = () => {
   );
 }
 
-export default Administrar;
+export default InputList;
