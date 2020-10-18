@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import fakeAuth from '../../Api/Auth/fakeAuth';
+import { login } from '../../Api/services/authService'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Login.scss';
 import doctor from '../../assets/images/doctor.png'
