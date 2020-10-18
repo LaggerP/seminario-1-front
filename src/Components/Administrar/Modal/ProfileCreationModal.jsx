@@ -5,11 +5,12 @@ import Form from 'react-bootstrap/Form'
 
 
 const ProfileCreationModal = (props) => {
-   console.log(props)
    const [profileData, setProfileData] = useState({
       profile_name: "",
       firstname: "",
       lastname: "",
+      dni:"",
+      birthday:""
    })
 
    const handleChange = (e) => {
@@ -18,10 +19,14 @@ const ProfileCreationModal = (props) => {
          ...profileData,
          [name]: value
       });
-      console.log(profileData)
    }
 
    const addProfile = () => {
+      props.setResponsableData({
+         ...props.responsableData,
+         profiles: profileData
+      })
+      props.onHide();
    }
 
    return (
@@ -41,6 +46,14 @@ const ProfileCreationModal = (props) => {
                <Form.Group controlId="">
                   <Form.Label>Nombre del usuario del paciente</Form.Label>
                   <Form.Control type="text" placeholder="Ingrese nombre del usuario del paciente" name="profile_name" value={profileData.profile_name} onChange={handleChange} />
+               </Form.Group>
+               <Form.Group controlId="">
+                  <Form.Label>DNI</Form.Label>
+                  <Form.Control type="text" placeholder="Ingrese DNI" name="dni" value={profileData.dni} onChange={handleChange} />
+               </Form.Group>
+               <Form.Group controlId="">
+                  <Form.Label>Fecha nacimiento</Form.Label>
+                  <Form.Control type="date" placeholder="Fecha de nacimiento" name="birthday" value={profileData.birthday} onChange={handleChange} />
                </Form.Group>
                <Form.Group controlId="">
                   <Form.Label>Nombre(s)</Form.Label>

@@ -7,8 +7,8 @@ const endpoints = {
 
     
     //benefits endpoints
-    getAllBenefits: `${urlApi}/api/benefits/list`
-    
+    getAllBenefits: `${urlApi}/api/benefits/list`,
+
 }
 
 export default endpoints;

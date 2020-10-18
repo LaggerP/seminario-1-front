@@ -3,10 +3,10 @@ const axios = require('axios');
 
 export const register = async (userData) => {
    try {
-      console.log(userData)
-      const data = await axios.post(endpoints.register, userData)
+      return await axios.post(endpoints.register, userData)
+
    } catch (error) {
-       console.log(error)
+       return error.response
    }
 }
 
