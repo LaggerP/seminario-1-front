@@ -52,15 +52,17 @@ const routes = [
     private:true,
   },
   {
+    path: "/administrar",
+    component:"AsignarEjercicios",
+    private:true,
+  },
+  {
     path: "/beneficios",
     component: "Beneficios",
     private: true,
   },
-  {
-    path: "/AsignarEjercicios",
-    component: "Asignarejercicios",
-    private: true,
-  },
+ 
+
   {
     path: "404", // 404 fallback
     noExact: true, // all route "exact" by default
