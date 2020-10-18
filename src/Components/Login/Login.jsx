@@ -31,6 +31,12 @@ function Login (props) {
 
    let history = useHistory();
 
+   const loginUser = () => {
+    // la data tendria que tener la contraseña y usuario con el siguiente formato: username y password
+    // const data = 
+      login(data)
+
+   }
 
 
    const fakeLogin = () => {
