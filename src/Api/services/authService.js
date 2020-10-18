@@ -6,16 +6,15 @@ export const register = async (userData) => {
       return await axios.post(endpoints.register, userData)
 
    } catch (error) {
-       return error.response
+      return error.response
    }
 }
 
 export const login = async (userData) => {
    try {
+      return await axios.post(endpoints.login, userData)
    } catch (error) {
-       if (error.response) {
-           return error.response;
-       }
+      return error.response;
    }
 }
 
