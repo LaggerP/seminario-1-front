@@ -35,6 +35,7 @@ function App() {
     <div style={{ display: "flex" }}>
       {
         userLogged ? <div>
+
           <div className="vertical-nav scroller" id="sidebar">
 
             <div className="py-4">
