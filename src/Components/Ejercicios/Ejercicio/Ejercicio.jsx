@@ -1,67 +1,58 @@
-import React, {useState, useEffect} from 'react';
-import { Container, Row, Col, Button} from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Ejercicio.scss'
 import '../Ejercicios.scss'
 import laptopImage from '../../../assets/images/ejercicioLaptop.png'
 import checkDrawing from '../../../assets/images/checkDrawing.png'
-import Countdown, {count} from "react-countdown";
-import {GiBackwardTime} from "react-icons/gi";
-import {VscDebugStart} from "react-icons/vsc";
+import Countdown, { count } from "react-countdown";
+import { GiBackwardTime } from "react-icons/gi";
+import { VscDebugStart } from "react-icons/vsc";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { getAllByDisplayValue } from '@testing-library/react';
 
-const render = ({hours, minutes, seconds, completed}) => {
+const render = ({ hours, minutes, seconds, completed }) => {
+console.log(completed)
+   
    if (completed) {
-      return <AiFillCheckCircle style={{color: '#28981E', width:'10%', height:'10%', marginLeft:'50px', marginRight:'50px'}}/>
+      return <AiFillCheckCircle style={{ color: '#28981E', width: '10%', height: '10%', marginLeft: '50px', marginRight: '50px' }} />
    }
    else {
-      return <h2 style={{fontSize:'75px', marginLeft:'50px', marginRight:'50px'}}>{seconds}</h2>
+      return <h2 style={{ fontSize: '75px', marginLeft: '50px', marginRight: '50px' }}>{seconds}</h2>
    }
 };
 
-const Ejercicio = ({goToExercise}) => {
+const Ejercicio = ({ goToExercise }) => {
+   const [exerciseFinished, setExerciseFinished] = useState(false);
 
    return (
-      <div className="EjerciciosContainer">
+      <div className="EjercicioContainer">
          <Container>
-            <Row>
-               <div className="EjerciciosContainer-Bienvenida">
-                  <div className="EjerciciosContainer-Bienvenida-Imagen">
-                     <img src={laptopImage} alt="" />
-                  </div>
-                  <div className="EjerciciosContainer-Bienvenida-Texto">
-                     <h2>Pablo Lagger, estos son tus ejercicios</h2>
-                  </div>
-               </div>
-            </Row>
-
-            <Row style={{ paddingTop: '2.5%' }}>
+            <Row style={{ paddingTop: '2.5%' }} className="justify-content-md-center">
                <h2>Consigna: <strong>Decir la letra S por 5 segundos</strong></h2>
             </Row>
-               
-            <Row style={{ paddingTop: '2.5%', marginLeft: '30%'}}>
-               <GiBackwardTime style={{color: '#FC6D78', width:'10%', height:'10%'}}/>
-               <Countdown 
-                  date={Date.now() + 5000} 
+
+            <Row className="justify-content-md-center pt-5">
+               <GiBackwardTime style={{ color: '#FC6D78', width: '10%', height: '10%' }} />
+               <Countdown
+                  date={Date.now() + 5000}
                   autoStart={true}
                   zeroPadTime={1}
                   renderer={render}
-                  ref={ayuda}
-                  >
-               </Countdown>
-               <VscDebugStart style={{color: '#28981E', width:'10%', height:'10%'}}/>
+                  />
+               <VscDebugStart style={{ color: '#28981E', width: '10%', height: '10%' }} />
             </Row>
-            <Row style={{paddingTop: '4,5%', paddingLeft: '35%'}}>
+            <Row className="justify-content-md-center pt-5">
                <div className="ImagenCheck">
-                  <img src={checkDrawing} alt="" className="imagenCheck"/>
+                  <img src={checkDrawing} alt="" className="imagenCheck" />
                </div>
             </Row>
-            <Row>
-               <Col xs={6} style={{ paddingTop: '4%' }}>
-                  <Button className="botonEjercicio">Salir</Button>
+            <Row className="justify-content-md-center">
+               <Col xs={12} md={6} style={{ paddingTop: '4%' }}>
+                  <Button className="botonEjercicio ">Salir</Button>
                </Col>
-               <Col xs={6} style={{ paddingTop: '4%'}}>
+               <Col xs={12} md={6} style={{ paddingTop: '4%' }}>
+                 
                   <Button className="botonEjercicio" onClick={goToExercise}>Siguiente</Button>
                </Col>
             </Row>
