@@ -1,16 +1,13 @@
-<<<<<<< HEAD
-=======
+
 import React from 'react';
 import Button from 'react-bootstrap/Button'
 import UserCreationModal from './Modal/UserCreationModal'
->>>>>>> cc97e23aae79b0a43fccde9d174b657e9fe4f25f
+
 import './Administrar.scss';
 import {
-  Button,
    Container,
    Row,
    Table,
-   Form,
    FormGroup
 } from 'react-bootstrap';
 import { PacientesMock, ResponsablesMock } from './PacientesMock'
@@ -86,7 +83,7 @@ const handleShow = () => setShow(true);
                               </Card>
                              
 
-                              <br/>
+               
                               <FormGroup>
                               <Card className ='Ejercicios'>
                               <div class="custom-control custom-checkbox">
@@ -97,7 +94,7 @@ const handleShow = () => setShow(true);
                               
                               </FormGroup>
 
-                              <br/>
+            
                               <Card className ='Ejercicios'>
                               <div class="custom-control custom-checkbox">
                                   <input type="checkbox" id="defaultUnchecked3"/>
@@ -105,7 +102,7 @@ const handleShow = () => setShow(true);
                                   </div>
                               </Card>
 
-                              <br/>
+                       
                               <Card className ='Ejercicios'>
                               <div class="custom-control custom-checkbox">
                                   <input type="checkbox" id="defaultUnchecked4"/>
@@ -113,7 +110,7 @@ const handleShow = () => setShow(true);
                                   </div>
 
                               </Card>
-                              <br/>
+                         
                               <Card className ='Ejercicios'>
                               <div class="custom-control custom-checkbox">
                                   <input type="checkbox"  id="defaultUnchecked5"/>
@@ -121,7 +118,7 @@ const handleShow = () => setShow(true);
                                   </div>
                               </Card>
 
-                              <br/>
+                          
                               <Card className ='Ejercicios'>
                               <div class="custom-control custom-checkbox">
                                   <input type="checkbox"  id="defaultUnchecked6"/>
