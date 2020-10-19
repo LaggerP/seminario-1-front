@@ -4,6 +4,8 @@ import {
    Container,
    Row,
    Table,
+   Form,
+   FormGroup
 } from 'react-bootstrap';
 import { PacientesMock, ResponsablesMock } from './PacientesMock'
 import { useState } from "react";
@@ -55,7 +57,7 @@ const handleShow = () => setShow(true);
                               <td>{pacienteInfo.apellido}</td>
                               <td>{pacienteInfo.fechaNacimiento}</td>
                               <td className='table-icon-section'>
-                              <Button variant="primary" onClick={handleShow}>
+                              <Button variant='white' onClick={handleShow}>
                                  <OverlayTrigger overlay={<Tooltip>Asignar ejercicio</Tooltip>}>
                                     <GiInvertedDice5 className='icon-styles'/>
                                  </OverlayTrigger>
@@ -64,63 +66,71 @@ const handleShow = () => setShow(true);
                               <Modal.Header closeButton>
                                 <Modal.Title>Asignar ejercicios</Modal.Title>
                               </Modal.Header>
+                              <FormGroup>
                               <Modal.Body>
+                                 
                                 <div className='cardsContainer'> 
                               <Card className ='Ejercicios'>
                               <div class="custom-control custom-checkbox">
-                                  <input type="checkbox" class="custom-control-input" id="defaultUnchecked"/>
-                                  <label class="custom-control-label" for="defaultUnchecked">Ejercicio Numero 1</label>
+                                  <input type="checkbox"  id="defaultUnchecked"/>
+                                  <label  for="defaultUnchecked">Ejercicio Numero 1</label>
                                   </div>
+                                  
                                     
                               </Card>
+                             
+
+                              <br/>
+                              <FormGroup>
+                              <Card className ='Ejercicios'>
+                              <div class="custom-control custom-checkbox">
+                                  <input type="checkbox"  id="customControlAutosizing"/>
+                                  <label  for="customControlAutosizing">Ejercicio Numero 2</label>
+                                  </div>
+                              </Card>
+                              
+                              </FormGroup>
 
                               <br/>
                               <Card className ='Ejercicios'>
                               <div class="custom-control custom-checkbox">
-                                  <input type="checkbox" class="custom-control-input" id="defaultUnchecked2"/>
-                                  <label class="custom-control-label" for="defaultUnchecked2">Ejercicio Numero 2</label>
+                                  <input type="checkbox" id="defaultUnchecked3"/>
+                                  <label  for="defaultUnchecked3">Ejercicio Numero 3</label>
                                   </div>
                               </Card>
 
                               <br/>
                               <Card className ='Ejercicios'>
                               <div class="custom-control custom-checkbox">
-                                  <input type="checkbox" class="custom-control-input" id="defaultUnchecked3"/>
-                                  <label class="custom-control-label" for="defaultUnchecked3">Ejercicio Numero 3</label>
-                                  </div>
-                              </Card>
-
-                              <br/>
-                              <Card className ='Ejercicios'>
-                              <div class="custom-control custom-checkbox">
-                                  <input type="checkbox" class="custom-control-input" id="defaultUnchecked4"/>
-                                  <label class="custom-control-label" for="defaultUnchecked4">Ejercicio Numero 4</label>
+                                  <input type="checkbox" id="defaultUnchecked4"/>
+                                  <label  for="defaultUnchecked4">Ejercicio Numero 4</label>
                                   </div>
 
                               </Card>
                               <br/>
                               <Card className ='Ejercicios'>
                               <div class="custom-control custom-checkbox">
-                                  <input type="checkbox" class="custom-control-input" id="defaultUnchecked5"/>
-                                  <label class="custom-control-label" for="defaultUnchecked5">Ejercicio Numero 5</label>
+                                  <input type="checkbox"  id="defaultUnchecked5"/>
+                                  <label  for="defaultUnchecked5">Ejercicio Numero 5</label>
                                   </div>
                               </Card>
 
                               <br/>
                               <Card className ='Ejercicios'>
                               <div class="custom-control custom-checkbox">
-                                  <input type="checkbox" class="custom-control-input" id="defaultUnchecked6"/>
-                                  <label class="custom-control-label" for="defaultUnchecked6">Ejercicio Numero 6</label>
+                                  <input type="checkbox"  id="defaultUnchecked6"/>
+                                  <label  for="defaultUnchecked6">Ejercicio Numero 6</label>
                                   </div>
                               </Card>
                               </div>
                               </Modal.Body>
+                              </FormGroup>
                                   <Modal.Footer>
                                     <Button variant="secondary" onClick={handleClose}>
-                                        Close
+                                        Cerrar
                                       </Button>
                                       <Button variant="primary" onClick={handleClose}>
-                                        Save Changes
+                                        Guardar cambios
                                       </Button>
                                     </Modal.Footer>
                                   </Modal>
