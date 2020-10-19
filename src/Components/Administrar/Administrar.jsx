@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+import React from 'react';
+import Button from 'react-bootstrap/Button'
+import UserCreationModal from './Modal/UserCreationModal'
+>>>>>>> cc97e23aae79b0a43fccde9d174b657e9fe4f25f
 import './Administrar.scss';
 import {
   Button,
@@ -59,7 +65,7 @@ const handleShow = () => setShow(true);
                               <td className='table-icon-section'>
                               <Button variant='white' onClick={handleShow}>
                                  <OverlayTrigger overlay={<Tooltip>Asignar ejercicio</Tooltip>}>
-                                    <GiInvertedDice5 className='icon-styles'/>
+                                    <GiInvertedDice5 className='icon-styles' />
                                  </OverlayTrigger>
                               </Button>
                               <Modal show={show} onHide={handleClose}>
@@ -163,7 +169,7 @@ const handleShow = () => setShow(true);
 const Administrar = ({ }) => {
    // Search bar
    const [filter, setFilter] = useState(null);
-
+   const [modalShow, setModalShow] = React.useState(false);
 
    const searchSpace = (event) => {
       let keyword = event.target.value;
@@ -183,11 +189,7 @@ const Administrar = ({ }) => {
       )
    });
 
-
-
-
    return (
-
       <div>
          <Container>
             <Row>
@@ -204,19 +206,20 @@ const Administrar = ({ }) => {
             </Row>
 
             <Row>
-               <div className='add-button'><IoMdAdd className='add-Icon' />Agregar responsable</div>
+               <div className='add-button' onClick={() => setModalShow(true)}><IoMdAdd className='add-Icon' />Agregar responsable</div>
             </Row>
+
+            <UserCreationModal
+               show={modalShow}
+               onHide={() => setModalShow(false)}
+            />
 
             <div className='tables-container'>
                {responsablesItem}
             </div>
-
-
-
-
-
          </Container>
       </div>
+
    );
 };
 export default Administrar;
