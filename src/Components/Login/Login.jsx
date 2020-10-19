@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import fakeAuth from '../../Api/Auth/fakeAuth';
 import { login } from '../../Api/services/authService'
 
 import './Login.scss';
@@ -10,6 +9,7 @@ import { Container, Row, Col, Image, Form, Button, Modal } from 'react-bootstrap
 import { AiFillCheckCircle } from "react-icons/ai";
 
 const Login = (props) => {
+   let history = useHistory();
    const [isLoading, setLoading] = useState(false);
    const [responsableData, setResponsableData] = useState({
       username: "",
@@ -35,11 +35,15 @@ const handleChange = (e) => {
 }
 
 const loginUser = async () => {
-   setLoading(true)
-   await login(responsableData).then((response) => {
-      setLoading(false)
-      props.onHide()
-   }).catch((error) => console.log(error.response));
+   setLoading(true);
+   const session = await login(responsableData);
+   if (session.status === 200) {
+      setLoading(false);
+      history.push('/');
+      window.location.reload(false);
+
+   }
+   
 };
 
 return (

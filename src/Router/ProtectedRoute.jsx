@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import fakeAuth from '../Api/Auth/fakeAuth'
+import {isConnected} from '../Api/services/authService'
 
 export const ProtectedRoute = ({ component: Component, ...rest }) => {
 
@@ -9,7 +10,8 @@ export const ProtectedRoute = ({ component: Component, ...rest }) => {
       <Route
          {...rest}
          render={props => {
-            if (fakeAuth.isConnected()) {
+            if (isConnected()) {
+               console.log("hola")
                return <Component {...props} />
             } else {
                return (
