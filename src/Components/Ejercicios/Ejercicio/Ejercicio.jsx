@@ -47,9 +47,8 @@ const Ejercicio = ({ goToExercise }) => {
             </Row>
 
             <Row className="justify-content-md-center pt-5">
-               <GiBackwardTime style={{ color: '#FC6D78', width: '10%', height: '10%' }} />
                <Timer 
-                  initialTime={5002}
+                  initialTime={5010}
                   startImmediately={false}
                   direction="backward"
                   checkpoints={[
@@ -70,11 +69,18 @@ const Ejercicio = ({ goToExercise }) => {
                         callback: () => setExerciseFinished(true)
                      }
                   ]}
+                  onReset={() => setExerciseFinished(false)}
                >
                {({ start, resume, pause, stop, reset, timerState }) => (
                   <React.Fragment>
-                        <div style={{ fontSize: '75px', marginLeft: '50px', marginRight: '50px' }}>
-                           <Timer.Seconds />
+                        <div>
+                           <GiBackwardTime onClick={reset} style={{ color: '#FC6D78', cursor: 'pointer', fontSize:'114px'}} />
+                        </div>
+                        <div style={{ fontSize: '75px', marginLeft: '25px', marginRight: '75px', visibility:(exerciseFinished? 'hidden':'visible') }}>
+                           <Timer.Seconds formatValue={(value) => `${(value < 0 ? `0` : value)}`}/>
+                        </div>
+                        <div style={{ fontSize: '75px', marginLeft: '-135px', visibility:(exerciseFinished? 'visible':'hidden')}}>
+                           <AiFillCheckCircle style={{ color: '#28981E'}} />
                         </div>
                         <div>
                            <VscDebugStart  onClick={start} style={{ color: '#28981E', cursor: 'pointer', fontSize:'114px'}}/>
