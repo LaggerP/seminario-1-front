@@ -1,32 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import './ProfileExerciseAssignmentModal.scss'
 import Card from 'react-bootstrap/Card';
+import Select from 'react-select';
+import {colourOptions} from './data'
 
 
 
+const options = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' }
+]
+
+const MyComponent = () => (
+  <Select options={options} />
+)
 
 const ProfileExerciseAssignmentModal = (props) => {
    const [show, setShow] = useState(false);
-   const [profileData, setProfileData] = useState({
-      profile_name: "",
-      firstname: "",
-      lastname: "",
-      dni:"",
-      birthday:""
-   })
+   const handleClose = () => { props.onHide()} ;
+   const [selectedOption, setSelectedOption] = useState(true);
 
-const handleClose = () => setShow(true);
-const handleShow = () => setShow(true);
-
-
-
-
-
+   class SelectPage extends Component {
+    render () {
+      return(
+        <div>
+        
+          <select className="browser-default custom-select">
+            <option>Seleccione el modulo:</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+         
+          </select>
+        </div>
+      );
+    }
+  }
   
-
-
 
 
    return (
@@ -44,54 +57,22 @@ const handleShow = () => setShow(true);
      
       </Modal.Header>
       <Modal.Body>
-         
-        <div className='cardsContainer'> 
-      <Card className ='Ejercicios'>
-      <div class="custom-control custom-checkbox">
-          <input type="checkbox"  id="defaultUnchecked"/>
-          <label  for="defaultUnchecked">Ejercicio Numero 1</label>
-          </div>
-            
-      </Card>
-
-   
-      <Card className ='Ejercicios'>
-      <div class="custom-control custom-checkbox">
-          <input type="checkbox"  id="customControlAutosizing"/>
-          <label  for="customControlAutosizing">Ejercicio Numero 2</label>
-          </div>
-      </Card>
-
-      <Card className ='Ejercicios'>
-      <div class="custom-control custom-checkbox">
-          <input type="checkbox" id="defaultUnchecked3"/>
-          <label  for="defaultUnchecked3">Ejercicio Numero 3</label>
-          </div>
-      </Card>
       
+      <div className='cardsContainer'> 
       <Card className ='Ejercicios'>
-      <div class="custom-control custom-checkbox">
-          <input type="checkbox" id="defaultUnchecked4"/>
-          <label  for="defaultUnchecked4">Ejercicio Numero 4</label>
-          </div>
+        <SelectPage/>
+        <Select
+        isMulti
+        name="colors"
+        options={colourOptions}
+        className="basic-multi-select"
+        classNamePrefix="select"
+        />
 
-      </Card>
-      
-      <Card className ='Ejercicios'>
-      <div class="custom-control custom-checkbox">
-          <input type="checkbox"  id="defaultUnchecked5"/>
-          <label  for="defaultUnchecked5">Ejercicio Numero 5</label>
-          </div>
-      </Card>
+        </Card>
+        </div>
         
-      <Card className ='Ejercicios'>
-      <div class="custom-control custom-checkbox">
-          <input type="checkbox"  id="defaultUnchecked6"/>
-          <label  for="defaultUnchecked6">Ejercicio Numero 6</label>
-          </div>
-      </Card>
-
-      </div>
+        
       </Modal.Body>
 
           <Modal.Footer>      
@@ -103,10 +84,9 @@ const handleShow = () => setShow(true);
               </Button>
             </Modal.Footer>
           </Modal>
-         
+       
 
    );
 }
 
-
-export default ProfileExerciseAssignmentModal
+  export default ProfileExerciseAssignmentModal
