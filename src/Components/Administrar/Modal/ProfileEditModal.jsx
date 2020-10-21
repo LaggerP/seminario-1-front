@@ -56,23 +56,23 @@ const ProfileEditModal = (props) => {
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Form.Group controlId="">
-                        <Form.Group controlId="">
+                    <Form.Group controlId="" style={{marginTop:0}}>
+                        <Form.Group controlId="" style={{marginTop:0}}>
                             <Form.Label>Nombre</Form.Label>
-                            <Form.Control type="text" placeholder="Ingrese el nombre del paciente" name="firstname" value={profileData.firstname} onChange={handleChange} />
+                            <Form.Control type="text" placeholder="Ingrese el nombre del paciente" name="firstname" value={profileData.firstname} onChange={handleChange}/>
                         </Form.Group>
-                        <Form.Group controlId="">
+                        <Form.Group controlId="" style={{marginTop:0}}>
                             <Form.Label>Apellido</Form.Label>
                             <Form.Control type="text" placeholder="Ingrese el apellido del paciente" name="lastname" value={profileData.lastname} onChange={handleChange} />
                         </Form.Group>
                         <Form.Label>Nombre de usuario</Form.Label>
                         <Form.Control type="text" placeholder="Ingrese el usuario del paciente" name="profile_name" value={profileData.profile_name} onChange={handleChange} />
                     </Form.Group>
-                    <Form.Group controlId="">
+                    <Form.Group controlId="" style={{marginTop:0}}>
                         <Form.Label>DNI</Form.Label>
                         <Form.Control type="text" placeholder="Ingrese el DNI del paciente" name="dni" value={profileData.dni} onChange={handleChange} />
                     </Form.Group>
-                    <Form.Group controlId="">
+                    <Form.Group controlId="" style={{marginTop:0}}>
                         <Form.Label>Fecha de nacimiento</Form.Label>
                         <Form.Control type="date" placeholder="Ingrese la fecha de nacimiento" name="birthday" value={profileData.birthday} onChange={handleChange} />
                     </Form.Group>

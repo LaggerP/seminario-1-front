@@ -52,7 +52,7 @@ return (
          <p className="titulo">Elegir Tipo de Cuenta</p>
          {/* <Form noValidate validated={validated} onSubmit={handleSubmit}> */}
          <Form>
-            <Row style={{paddingTop: 15}}>
+            <Row style={{paddingTop: 10}}>
                <Col xs={6}>
                   <Form.Check
                      type="radio"
@@ -87,12 +87,12 @@ return (
             </Col>
          </Row>
 
-         <Form.Group className="justify-content-md-center" controlId="userName">
+         <Form.Group className="justify-content-md-center" controlId="userName" style={{marginTop: 10}}>
             <p className="formtexto">Usuario</p>
             <Form.Control required type="text" name="username" value={responsableData.username} onChange={handleChange} className="forms" />
          </Form.Group>
-
-         <Form.Group controlId="userPass">
+ 
+         <Form.Group controlId="userPass" style={{marginTop: 10}}>
             <p className="formtexto">Contraseña</p>
             <Form.Control required type="password" name="password" value={responsableData.password} onChange={handleChange} className="forms"/>
             <p className="link" onClick={handleShow}>¿Olvidaste la contraseña?</p>

@@ -89,7 +89,7 @@ const ConsejosCard = ({ id, title, content }) => {
 const Consejos = () => {
 
 
-   
+
 
 
    return (
@@ -109,12 +109,12 @@ const Consejos = () => {
             <Row>
                <div className='add-button'><IoMdAdd className='add-Icon' />Agregar consejo</div>
             </Row>
+            <Row>
+               <div className='cardsContainer'>
+                  {consejosMock.map((consejo) => (<ConsejosCard {...consejo}></ConsejosCard>))}
+               </div>
+            </Row>
 
-            <div className='cardsContainer'>
-
-               {consejosMock.map((consejo) => (<ConsejosCard {...consejo}></ConsejosCard>))}
-
-            </div>
          </Container>
       </div>
    );

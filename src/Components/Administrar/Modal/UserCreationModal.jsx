@@ -69,19 +69,19 @@ const UserCreationModal = (props) => {
          </Modal.Header>
          <Modal.Body>
             <Form>
-               <Form.Group controlId="">
+               <Form.Group controlId="" style={{marginTop:0}}>
                   <Form.Label>Nombre de usuario</Form.Label>
                   <Form.Control type="text" placeholder="Ingrese nombre de usuario" name="username" value={responsableData.username} onChange={handleChange} required />
                </Form.Group>
-               <Form.Group controlId="">
+               <Form.Group controlId="" style={{marginTop:0}}>
                   <Form.Label>Dirección de email</Form.Label>
                   <Form.Control type="email" placeholder="Ingrese dirección de email" name="email" value={responsableData.email} onChange={handleChange} required />
                </Form.Group>
-               <Form.Group controlId="">
+               <Form.Group controlId="" style={{marginTop:0}}>
                   <Form.Label>Nombre(s)</Form.Label>
                   <Form.Control type="text" placeholder="Ingrese nombre(s)" name="first_name" value={responsableData.first_name} onChange={handleChange} required />
                </Form.Group>
-               <Form.Group controlId="">
+               <Form.Group controlId="" style={{marginTop:0}}>
                   <Form.Label>Apellido(s)</Form.Label>
                   <Form.Control type="text" placeholder="Apellido(s)" name="last_name" value={responsableData.last_name} onChange={handleChange} required />
                </Form.Group>

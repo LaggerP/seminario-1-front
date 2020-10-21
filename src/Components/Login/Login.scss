@@ -125,7 +125,6 @@ body{
     line-height: 29px;
     text-align: left;
     color: $principal-color;
-    margin-top: 20px;
     margin-left: 25%;
     margin-right: 25%;
 }
@@ -136,11 +135,9 @@ body{
     border-radius: 30px;
     margin-left: 25%;
     margin-right: 25%;
-    margin-top: -10%;
     text-align: left;
     width: 50%;
     height: 50px;
-    
 }
 
 .link{
@@ -183,5 +180,13 @@ body{
     font-style: normal;
     font-weight: bold;
     font-size: 22px;
+
+    &:hover,
+    &:active,
+    &:focus {
+        background-color:  #0088b6;
+    }
 }
+
+
 

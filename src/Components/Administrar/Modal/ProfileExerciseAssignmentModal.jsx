@@ -2,6 +2,7 @@ import React, { useState, Component } from 'react';
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Form from 'react-bootstrap/Form'
 import Modal from 'react-bootstrap/Modal'
 import './ProfileExerciseAssignmentModal.scss'
 import Card from 'react-bootstrap/Card';
@@ -59,29 +60,30 @@ const ProfileExerciseAssignmentModal = (props) => {
 
       </Modal.Header>
       <Modal.Body>
+        <Form>
+          <Form.Group controlId="" style={{ marginTop: 0 }}>
+              <SelectPage />
+              <br />
+              <Select
+                isMulti
+                name="colors"
+                options={colourOptions}
+                className="basic-multi-select"
+                classNamePrefix="select"
+              />
 
-        <div className='cardsContainer'>
-          <Card className=''>
-            <SelectPage />
-            <br />
-            <Select
-              isMulti
-              name="colors"
-              options={colourOptions}
-              className="basic-multi-select"
-              classNamePrefix="select"
-            />
+          </Form.Group>
 
-          </Card>
-        </div>
-        <Row>
-          <Col xs={12} md={6}>
-            <Button variant="info" size="sm" block onClick={handleClose}>Cerrar</Button>{' '}
-          </Col>
-          <Col xs={12} md={6}>
-            <Button variant="success" onClick={handleClose} size="sm" block>Guardar selección</Button>{' '}
-          </Col>
-        </Row>
+
+          <Row>
+            <Col xs={12} md={6}>
+              <Button variant="info" size="sm" block onClick={handleClose}>Cerrar</Button>{' '}
+            </Col>
+            <Col xs={12} md={6}>
+              <Button variant="success" onClick={handleClose} size="sm" block>Guardar selección</Button>{' '}
+            </Col>
+          </Row>
+        </Form>
 
       </Modal.Body>
     </Modal>

@@ -50,11 +50,11 @@ const ProfileVisitAssignmentModal = (props) => {
          <Modal.Body>
             {/*onSubmit={handleSubmit} */}
             <Form>
-               <Form.Group controlId="">
+               <Form.Group controlId="" style={{marginTop:0}}>
                   <Form.Label>Fecha del Turno</Form.Label>
                   <Form.Control type="date" name="visit_date" value={profileData.visit_date} onChange={handleChange} required />
                </Form.Group>
-               <Form.Group controlId="">
+               <Form.Group controlId="" style={{marginTop:0}}>
                   <Form.Label>Hora del Turno</Form.Label>
                   <Form.Control type="time" name="visit_time" value={profileData.visit_time} onChange={handleChange} required />
                </Form.Group>
