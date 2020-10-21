@@ -1,75 +1,92 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
-import Form from 'react-bootstrap/Form'
+import './ProfileExerciseAssignmentModal.scss'
+import Card from 'react-bootstrap/Card';
+import Select from 'react-select';
+import {colourOptions} from './data'
 
+
+
+const options = [
+  { value: 'chocolate', label: 'Chocolate' },
+  { value: 'strawberry', label: 'Strawberry' },
+  { value: 'vanilla', label: 'Vanilla' }
+]
+
+const MyComponent = () => (
+  <Select options={options} />
+)
 
 const ProfileExerciseAssignmentModal = (props) => {
-   const [profileData, setProfileData] = useState({
-      profile_name: "",
-      firstname: "",
-      lastname: "",
-      dni:"",
-      birthday:""
-   })
+   const [show, setShow] = useState(false);
+   const handleClose = () => { props.onHide()} ;
+   const [selectedOption, setSelectedOption] = useState(true);
 
-   const handleChange = (e) => {
-      const { name, value } = e.target;
-      setProfileData({
-         ...profileData,
-         [name]: value
-      });
-   }
+   class SelectPage extends Component {
+    render () {
+      return(
+        <div>
+        
+          <select className="browser-default custom-select">
+            <option>Seleccione el modulo:</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+         
+          </select>
+        </div>
+      );
+    }
+  }
+  
 
-   const addProfile = () => {
-      props.setResponsableData({
-         ...props.responsableData,
-         profiles: profileData
-      })
-      props.onHide();
-   }
 
    return (
-      <Modal
-         {...props}
-         size="md"
-         aria-labelledby="contained-modal-title-vcenter"
-         centered
+      <Modal 
+      {...props}
+      size='md'
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
       >
-         <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">
-               Asignar ejercicio
-            </Modal.Title>
-         </Modal.Header>
-         <Modal.Body>
-            <Form>
-               <Form.Group controlId="">
-                  <Form.Label>Nombre del usuario del paciente</Form.Label>
-                  <Form.Control type="text" placeholder="Ingrese nombre del usuario del paciente" name="profile_name" value={profileData.profile_name} onChange={handleChange} />
-               </Form.Group>
-               <Form.Group controlId="">
-                  <Form.Label>DNI</Form.Label>
-                  <Form.Control type="text" placeholder="Ingrese DNI" name="dni" value={profileData.dni} onChange={handleChange} />
-               </Form.Group>
-               <Form.Group controlId="">
-                  <Form.Label>Fecha nacimiento</Form.Label>
-                  <Form.Control type="date" placeholder="Fecha de nacimiento" name="birthday" value={profileData.birthday} onChange={handleChange} />
-               </Form.Group>
-               <Form.Group controlId="">
-                  <Form.Label>Nombre(s)</Form.Label>
-                  <Form.Control type="text" placeholder="Ingrese nombre(s)" name="firstname" value={profileData.firstname} onChange={handleChange} />
-               </Form.Group>
-               <Form.Group controlId="">
-                  <Form.Label>Apellido(s)</Form.Label>
-                  <Form.Control type="text" placeholder="Apellido(s)" name="lastname" value={profileData.lastname} onChange={handleChange} />
-               </Form.Group>
-            </Form>
+    
+      <Modal.Header closeButton>
+        <Modal.Title id= "contained-modal-title-vcenter">
+           Asignar ejercicios
+         </Modal.Title>
+     
+      </Modal.Header>
+      <Modal.Body>
+      
+      <div className='cardsContainer'> 
+      <Card className ='Ejercicios'>
+        <SelectPage/>
+        <Select
+        isMulti
+        name="colors"
+        options={colourOptions}
+        className="basic-multi-select"
+        classNamePrefix="select"
+        />
 
-            <Button variant="info" size="sm" block onClick={() => addProfile()}>+ Agregar perfil</Button>{' '}
-         </Modal.Body>
-      </Modal>
+        </Card>
+        </div>
+        
+        
+      </Modal.Body>
+
+          <Modal.Footer>      
+            <Button variant="info" size="sm" onClick={handleClose}>
+                Cerrar
+              </Button>
+              <Button variant="info" size="sm" onClick={handleClose}>
+                Guardar cambios
+              </Button>
+            </Modal.Footer>
+          </Modal>
+       
+
    );
 }
 
-
-export default ProfileExerciseAssignmentModal
+  export default ProfileExerciseAssignmentModal
