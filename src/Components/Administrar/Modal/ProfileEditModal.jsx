@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 import Popover from 'react-bootstrap/Popover'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import { BiInfoCircle } from "react-icons/bi";
@@ -13,7 +15,7 @@ const ProfileEditModal = (props) => {
         <Popover id="popover-basic">
             <Popover.Title as="h4">Información importante</Popover.Title>
             <Popover.Content>
-                ¡Hola, doctorName <span role="img" aria-label="SmileFace">😄</span>! puede editar la información del <strong>paciente</strong> en los siguientes campos.<br/> No olvide guardar los cambios.
+                ¡Hola, doctorName <span role="img" aria-label="SmileFace">😄</span>! puede editar la información del <strong>paciente</strong> en los siguientes campos.<br /> No olvide guardar los cambios.
             </Popover.Content>
         </Popover>
     );
@@ -76,7 +78,15 @@ const ProfileEditModal = (props) => {
                     </Form.Group>
                 </Form>
 
-                <Button variant="success" size="sm" block onClick={() => updateProfile()}>Guardar cambios</Button>{' '}
+                <Row>
+                    <Col xs={12} md={6}>
+                        <Button variant="info" size="sm" block onClick={updateProfile}>Cerrar</Button>{' '}
+
+                    </Col>
+                    <Col xs={12} md={6}>
+                        <Button variant="success" onClick={updateProfile} size="sm" block>Actualizar paciente</Button>{' '}
+                    </Col>
+                </Row>
             </Modal.Body>
         </Modal>
     );

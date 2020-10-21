@@ -1,5 +1,7 @@
 import React, { useState, Component } from 'react';
 import Button from 'react-bootstrap/Button'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 import Modal from 'react-bootstrap/Modal'
 import './ProfileExerciseAssignmentModal.scss'
 import Card from 'react-bootstrap/Card';
@@ -72,18 +74,16 @@ const ProfileExerciseAssignmentModal = (props) => {
 
           </Card>
         </div>
-
+        <Row>
+          <Col xs={12} md={6}>
+            <Button variant="info" size="sm" block onClick={handleClose}>Cerrar</Button>{' '}
+          </Col>
+          <Col xs={12} md={6}>
+            <Button variant="success" onClick={handleClose} size="sm" block>Guardar selección</Button>{' '}
+          </Col>
+        </Row>
 
       </Modal.Body>
-
-      <Modal.Footer>
-        <Button variant="info" size="sm" onClick={handleClose}>
-          Cerrar
-              </Button>
-        <Button variant="success" size="sm" onClick={handleClose}>
-          Guardar cambios
-              </Button>
-      </Modal.Footer>
     </Modal>
 
 
