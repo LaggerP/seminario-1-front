@@ -94,10 +94,6 @@ input:focus {
     margin: 30px auto 20px auto;
 }
 
-.table-icon-section{
-    text-align: right;
-}
-
 .row-styles{
     background: #F7F2F2;
     border: 2px solid #FFFFFF;
@@ -124,4 +120,13 @@ input:focus {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 25px;
+}
+
+.icon-size{
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 7px 13px 0px 0px;
+    &:hover{
+        cursor: pointer;
+    }
 }

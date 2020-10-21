@@ -1,6 +1,8 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button'
 import UserCreationModal from './Modal/UserCreationModal'
+import ProfileEditModal from './Modal/ProfileEditModal'
+import ProfileExerciseAssignmentModal from './Modal/ProfileExerciseAssignmentModal'
+import ProfileVisitAssignmentModal from './Modal/ProfileVisitAssignmentModal'
 import './Administrar.scss';
 import {
    Container,
@@ -19,6 +21,9 @@ import Tooltip from 'react-bootstrap/Tooltip'
 
 const ResponsableTable = ({ id, nombre, apellido }) => {
    const idResp = id;
+   const [modalProfileEdit, setModalProfileEdit] = React.useState(false);
+   const [modalExerciseAssignment, setModalExerciseAssignment] = React.useState(false);
+   const [modalVisitAssignment, setModalVisitAssignment] = React.useState(false);
 
    return (
       <div>
@@ -46,16 +51,20 @@ const ResponsableTable = ({ id, nombre, apellido }) => {
                               <td>{pacienteInfo.nombre}</td>
                               <td>{pacienteInfo.apellido}</td>
                               <td>{pacienteInfo.fechaNacimiento}</td>
-                              <td className='table-icon-section'>
-                                 <OverlayTrigger overlay={<Tooltip>Asignar ejercicio</Tooltip>}>
-                                    <GiInvertedDice5 className='icon-styles' />
-                                 </OverlayTrigger>
-                                 <OverlayTrigger overlay={<Tooltip>Editar paciente</Tooltip>}>
-                                    <FiEdit className='icon-styles' />
-                                 </OverlayTrigger>
-                                 <OverlayTrigger overlay={<Tooltip>Asignar turno</Tooltip>}>
-                                    <BsCalendar className='icon-styles' />
-                                 </OverlayTrigger>
+                              <td>
+                                 <Row className='flex-row-reverse'>
+                                    <OverlayTrigger overlay={<Tooltip>Asignar ejercicio</Tooltip>}>
+                                       <div className='icon-size' onClick={() => setModalExerciseAssignment(true)}><GiInvertedDice5 className='icon-styles' /></div>
+                                    </OverlayTrigger>
+
+                                    <OverlayTrigger overlay={<Tooltip>Editar paciente</Tooltip>}>
+                                       <div className='icon-size' onClick={() => setModalProfileEdit(true)}><FiEdit className='icon-styles' /></div>
+                                    </OverlayTrigger>
+
+                                    <OverlayTrigger overlay={<Tooltip>Asignar turno</Tooltip>}>
+                                       <div className='icon-size' onClick={() => setModalVisitAssignment(true)}><BsCalendar className='icon-styles' /></div>
+                                    </OverlayTrigger>
+                                 </Row>
                               </td>
                            </tr>
                         </tbody>
@@ -64,6 +73,21 @@ const ResponsableTable = ({ id, nombre, apellido }) => {
                })
             }
          </Table>
+
+         <ProfileEditModal
+            show={modalProfileEdit}
+            onHide={() => setModalProfileEdit(false)}
+         />
+
+         <ProfileExerciseAssignmentModal
+            show={modalExerciseAssignment}
+            onHide={() => setModalExerciseAssignment(false)}
+         />
+
+         <ProfileVisitAssignmentModal
+            show={modalVisitAssignment}
+            onHide={() => setModalVisitAssignment(false)}
+         />
 
       </div>
    );
