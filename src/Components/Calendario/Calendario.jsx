@@ -3,8 +3,8 @@ import "./Calendario.scss";
 import { Container,Row,Card} from 'react-bootstrap';
 import calendarioImage from '../../assets/images/CalendarioImage.png'
 
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
+// import Calendar from 'react-calendar';
+// import 'react-calendar/dist/Calendar.css';
 
 
 const turnosMock = [

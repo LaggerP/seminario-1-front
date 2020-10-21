@@ -6,11 +6,8 @@ import Form from 'react-bootstrap/Form'
 
 const ProfileVisitAssignmentModal = (props) => {
    const [profileData, setProfileData] = useState({
-      profile_name: "",
-      firstname: "",
-      lastname: "",
-      dni:"",
-      birthday:""
+      visit_date:"",
+      visit_time:""
    })
 
    const handleChange = (e) => {
@@ -21,12 +18,19 @@ const ProfileVisitAssignmentModal = (props) => {
       });
    }
 
-   const addProfile = () => {
-      props.setResponsableData({
-         ...props.responsableData,
-         profiles: profileData
-      })
-      props.onHide();
+   // const handleSubmit = () => {
+   //    // addVisit();
+   //    var dateValue = document.querySelector('input[type="date"]').value;
+   //    var timeValue = document.querySelector('input[type="time"]').value;
+   //    console.log(dateValue, timeValue);
+   //    props.onHide()
+   // }
+
+   const addVisit = () => {
+      var dateValue = document.querySelector('input[type="date"]').value;
+      var timeValue = document.querySelector('input[type="time"]').value;
+      console.log(dateValue, timeValue);
+      props.onHide()
    }
 
    return (
@@ -42,30 +46,18 @@ const ProfileVisitAssignmentModal = (props) => {
             </Modal.Title>
          </Modal.Header>
          <Modal.Body>
+            {/*onSubmit={handleSubmit} */}
             <Form>
                <Form.Group controlId="">
-                  <Form.Label>Nombre del usuario del paciente</Form.Label>
-                  <Form.Control type="text" placeholder="Ingrese nombre del usuario del paciente" name="profile_name" value={profileData.profile_name} onChange={handleChange} />
+                  <Form.Label>Fecha del Turno</Form.Label>
+                  <Form.Control type="date" name="visit_date" value={profileData.visit_date} onChange={handleChange} required/>
                </Form.Group>
                <Form.Group controlId="">
-                  <Form.Label>DNI</Form.Label>
-                  <Form.Control type="text" placeholder="Ingrese DNI" name="dni" value={profileData.dni} onChange={handleChange} />
+                  <Form.Label>Hora del Turno</Form.Label>
+                  <Form.Control type="time" name="visit_time" value={profileData.visit_time} onChange={handleChange} required/>
                </Form.Group>
-               <Form.Group controlId="">
-                  <Form.Label>Fecha nacimiento</Form.Label>
-                  <Form.Control type="date" placeholder="Fecha de nacimiento" name="birthday" value={profileData.birthday} onChange={handleChange} />
-               </Form.Group>
-               <Form.Group controlId="">
-                  <Form.Label>Nombre(s)</Form.Label>
-                  <Form.Control type="text" placeholder="Ingrese nombre(s)" name="firstname" value={profileData.firstname} onChange={handleChange} />
-               </Form.Group>
-               <Form.Group controlId="">
-                  <Form.Label>Apellido(s)</Form.Label>
-                  <Form.Control type="text" placeholder="Apellido(s)" name="lastname" value={profileData.lastname} onChange={handleChange} />
-               </Form.Group>
+               <Button variant="success" /*type="submit"*/ size="sm" block onClick={() => addVisit()} >+ Agregar Turno</Button>{' '}
             </Form>
-
-            <Button variant="info" size="sm" block onClick={() => addProfile()}>+ Agregar perfil</Button>{' '}
          </Modal.Body>
       </Modal>
    );
