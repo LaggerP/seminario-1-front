@@ -76,7 +76,7 @@ const ProfileEditModal = (props) => {
                     </Form.Group>
                 </Form>
 
-                <Button variant="info" size="sm" block onClick={() => updateProfile()}>Guardar cambios</Button>{' '}
+                <Button variant="success" size="sm" block onClick={() => updateProfile()}>Guardar cambios</Button>{' '}
             </Modal.Body>
         </Modal>
     );
