@@ -15,7 +15,7 @@ class Benefits extends Component {
    }
 
    async componentDidMount() {
-      this.setState({ points: 20 })
+      this.setState({ points: 100 })
       this.setState({ shops: await getAllBenefits() })
    }
 
