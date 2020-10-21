@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import './App.css';
 import RouterComponents from './Router/routes'
-import fakeAuth from './Api/Auth/fakeAuth'
-import { Col } from 'react-bootstrap'
+import {isConnected, logOut} from './Api/services/authService'
 import { AiOutlineHome, AiOutlineCheckCircle } from "react-icons/ai";
 import { BsBoxArrowRight, BsCalendar } from "react-icons/bs";
 import { BiMessageRoundedError, BiGift } from "react-icons/bi";
@@ -15,20 +14,19 @@ import { useHistory } from 'react-router-dom';
 function App() {
 
   // Fake Logout
-  const userLogged = fakeAuth.isConnected();
+  const userLogged = isConnected();
 
   let history = useHistory();
 
-  const fakeLogOut = () => {
-    fakeAuth.signOut(history.push("/"))
+  const LogOut = () => {
+    logOut();
+    history.push('/login')
     window.location.reload(false);
   }
 
   // Menu item selected
   const [menuItem, setSelected] = useState('Inicio');
   const [benefitsPoints, setBenefitsPoints] = useState(100);
-
-
 
   return (
 
@@ -83,7 +81,7 @@ function App() {
 
             </ul>
 
-            <div className='exit' onClick={fakeLogOut}>
+            <div className='exit' onClick={LogOut}>
               <ul style={{ listStyleType: "none", padding: 0 }}>
                 <div ><BsBoxArrowRight className="iconStyle center" id="iconExit" /></div>
               </ul>

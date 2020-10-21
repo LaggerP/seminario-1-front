@@ -2,26 +2,29 @@ import endpoints from '../endpoints';
 const axios = require('axios');
 
 export const register = async (userData) => {
+   console.log(userData)
    try {
-      return await axios.post(endpoints.register, userData)
-
+      return await axios.post(endpoints.register, userData);
+     
    } catch (error) {
-       return error.response
+      return error.response
    }
 }
 
 export const login = async (userData) => {
    try {
+      const _response = await axios.post(endpoints.login, userData)
+      await setStorageData("token", userData.username)
+      return _response;
+  
    } catch (error) {
-       if (error.response) {
-           return error.response;
-       }
+      return error.response;
    }
 }
 
 // localstorage internal functionalities
-export const isConnected = () => localStorage.getItem('session')
-export const getUser = () => localStorage.getItem('sessionName')
+export const isConnected = () => localStorage.getItem('activeSession')
+export const getUser = () => localStorage.getItem('sessionUsername')
 export const logOut = (cb) => {
    removeStorageData();
    setTimeout(cb, 100);
@@ -33,8 +36,8 @@ const removeStorageData = () => {
    localStorage.removeItem('sessionName');
 }
 
-const setStorageData = (token, username) => {
+const setStorageData = async (token, username) => {
    sessionStorage.setItem('token', token)
    localStorage.setItem('activeSession', true);
-   localStorage.setItem('sessionName', username);
+   localStorage.setItem('sessionUsername', username);
 }
