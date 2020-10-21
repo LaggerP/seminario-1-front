@@ -1,18 +1,14 @@
-// *{
-//     margin: 0 !important;
-// }
+$principal-color: #FC6D78;
 
 body{
     background-color: rgba(252, 109, 120, 0.9);
+    font-family: Lato;
+
 }
 
 .login{
     height: 100vh;
     width: 100vw;
-    
-    margin: 0;
-    padding: 0rem; 
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,33 +25,27 @@ body{
     background: #ffffff;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 40px;
-
     width: 50%;
     height: calc(100% - 100px);
-    max-width: 100%;
-    min-height: 480px;
-
 }
 
 .titulo{
-    font-family: Lato;
     font-style: normal;
     font-weight: bold;
     font-size: 38px;
     line-height: 46px;
     text-align: center;
-    color: #FC6D78;
+    color: $principal-color;
     margin-top: 5%;
 }
 
 .subtitulo{
-    font-family: Lato;
     font-style: normal;
     font-weight: bold;
     font-size: 36px;
     line-height: 43px;
     text-align: center;
-    color: #FC6D78;
+    color: $principal-color;
 }
 
 .imagenes{
@@ -63,13 +53,12 @@ body{
     min-height: 10vh;
     width: 30vh;
     height: 30vh;
-    border: 3px solid #FC6D78;
+    border: 3px solid $principal-color;
     box-sizing: border-box;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: 30px;
     margin-left: 25%;
     margin-right: 25%;
-
     cursor:pointer;
     background-size:contain;
     background-repeat:no-repeat;
@@ -79,7 +68,7 @@ body{
 }
 
 .imagenes:hover{
-    border: 7px solid #FC6D78;
+    border: 7px solid $principal-color;
 }
 
 .imagenesDesp{
@@ -87,7 +76,7 @@ body{
     min-height: 10vh;
     width: 30vh;
     height: 30vh;
-    border: 7px solid #FC6D78;
+    border: 7px solid $principal-color;
     box-sizing: border-box;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: 30px;
@@ -107,12 +96,12 @@ body{
 }
 
 .check{
-    color:#FC6D78;
+    color: $principal-color;
     position: absolute;
     width: 20%;
     height: 20%;
     bottom: 4vh;
-    left: 35vh;
+    left: 34vh;
 }
 
 .checkAntes{
@@ -122,23 +111,21 @@ body{
     width: 20%;
     height: 20%;
     bottom: 4vh;
-    left: 35vh;
+    left: 34vh;
 }
-
-
 
 .checkboxImagen {
     display: none
 }
 
 .formtexto{
-    font-family: Lato;
     font-style: normal;
     font-weight: bold;
     font-size: 24px;
     line-height: 29px;
     text-align: left;
-    color: #FC6D78;
+    color: $principal-color;
+    margin-top: 20px;
     margin-left: 25%;
     margin-right: 25%;
 }
@@ -157,7 +144,6 @@ body{
 }
 
 .link{
-    font-family: Lato;
     font-style: normal;
     font-weight: bold;
     font-size: 14px;
@@ -166,12 +152,13 @@ body{
     text-decoration: none;
     margin-left: 25%;
     margin-right: 25%;
+    padding-top:10px;
+    padding-left: 10px;
     cursor: pointer;
 }
 
 .recordar{
     display: inline-block;
-    font-family: Lato;
     font-style: normal;
     font-weight: bold;
     font-size: 18px;
@@ -182,23 +169,19 @@ body{
 
 .form-check [type=checkbox] {
     background: #FFFFFF;
-    border: 1px solid #FC6D78;
+    border: 1px solid $principal-color;
     box-sizing: border-box;
     border-radius: 5px;
 }
 
 .buttonlogin{
-    display: inline-block;
     width: 50%;
     height: 60px;
     background: #0091C0;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 30px;
-    font-family: Lato;
     font-style: normal;
     font-weight: bold;
     font-size: 22px;
-    line-height: 29px;
-    margin-left: 50%;
 }
 

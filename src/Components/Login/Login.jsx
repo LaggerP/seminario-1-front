@@ -52,7 +52,7 @@ return (
          <p className="titulo">Elegir Tipo de Cuenta</p>
          {/* <Form noValidate validated={validated} onSubmit={handleSubmit}> */}
          <Form>
-            <Row>
+            <Row style={{paddingTop: 15}}>
                <Col xs={6}>
                   <Form.Check
                      type="radio"
@@ -69,7 +69,7 @@ return (
                   </Form.Label>
                   <p className="subtitulo">Doctor</p> 
                </Col>
-            <Col xs="6">
+            <Col xs={6}>
                <Form.Check
                   type="radio"
                   name="usuarios"
@@ -87,7 +87,7 @@ return (
             </Col>
          </Row>
 
-         <Form.Group controlId="userName">
+         <Form.Group className="justify-content-md-center" controlId="userName">
             <p className="formtexto">Usuario</p>
             <Form.Control required type="text" name="username" value={responsableData.username} onChange={handleChange} className="forms" />
          </Form.Group>
@@ -95,7 +95,7 @@ return (
          <Form.Group controlId="userPass">
             <p className="formtexto">Contraseña</p>
             <Form.Control required type="password" name="password" value={responsableData.password} onChange={handleChange} className="forms"/>
-            <p className="link" onClick={handleShow}>Olvidaste la contraseña?</p>
+            <p className="link" onClick={handleShow}>¿Olvidaste la contraseña?</p>
 
             <Modal show={show} onHide={handleClose}>
                <Modal.Header closeButton>
@@ -111,19 +111,14 @@ return (
                   </Button>
                </Modal.Footer>
             </Modal>
-
          </Form.Group>
 
-      <Row>
-      <Col xs={6}>
-      <Form.Group>
-            <Form.Check type="checkbox" label="Recordarme" className="recordar"/>
-         </Form.Group>
-      </Col>
-      <Col xs={6}>
-         <Button className="buttonlogin" onClick={() => loginUser()}>Ingresar</Button>
-      </Col>
-      </Row>
+         <Row>
+            <Col style={{display: 'flex', paddingTop: 25}} className="justify-content-md-center">
+               <Button className="buttonlogin" onClick={() => loginUser()}>Ingresar</Button>
+            </Col>
+         </Row>
+         
       </Form>
    </Container>
 </Container>

@@ -2,6 +2,7 @@ import endpoints from '../endpoints';
 const axios = require('axios');
 
 export const register = async (userData) => {
+   console.log(userData)
    try {
       return await axios.post(endpoints.register, userData);
      
