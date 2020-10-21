@@ -66,3 +66,29 @@
 .card-header:first-child{
     border-radius: 10px 10px 0px 0px;
 }
+
+.add-button{
+    margin:35px 0 35px auto;
+    width: 265px;
+    height: 57px;
+    background: rgba(240, 89, 101, 0.7);
+    border-radius: 15px;
+    text-align: center;
+    line-height: 50px;
+    color: #ffffff;
+    -webkit-text-stroke: 0.3px;
+    font-size: 21px;
+
+    &:hover{
+        color:  #ffffff;
+        cursor: pointer;
+    }
+}
+
+.add-Icon{
+  fill: #ffffff;
+  height: 1.5em;
+  width: 1.5em;
+  stroke-width: 15px;
+  margin-right: 10px;
+}
