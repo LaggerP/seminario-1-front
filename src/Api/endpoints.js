@@ -7,6 +7,7 @@ const endpoints = {
 
     //benefits endpoints
     getAllBenefits: `${urlApi}/api/benefits/list`,
+    redeemBenefit: `${urlApi}/api/benefits/redeem`
 
 }
 
