@@ -50,6 +50,7 @@ const routes = [
     path: "/administrar",
     component:"Administrar",
     private:true,
+    medic: 3,
   },
   {
     path: "/beneficios",
