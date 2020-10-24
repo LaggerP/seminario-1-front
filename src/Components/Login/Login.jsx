@@ -36,14 +36,24 @@ const handleChange = (e) => {
 
 const loginUser = async () => {
    setLoading(true);
-   const session = await login(responsableData);
-   if (session.status === 200) {
-      setLoading(false);
-      history.push('/');
-      window.location.reload(false);
-
-   }
    
+   // setting user rol. 2-doctor & 3-normal user
+   responsableData.rol === "doctor" ? responsableData.rol = 2 : responsableData.rol = 3
+
+   if (responsableData.rol > 0) {
+      const session = await login(responsableData);
+
+      if (session.status === 200 && responsableData.rol == 3) {
+         setLoading(false);
+         history.push('/');
+         window.location.reload(false);
+      } else {
+         setLoading(false);
+         history.push('/administrar');
+         window.location.reload(false);
+      }
+   }
+
 };
 
 return (
@@ -56,7 +66,7 @@ return (
                <Col xs={6}>
                   <Form.Check
                      type="radio"
-                     name="usuarios"
+                     name="rol"
                      id="doctor"
                      value="doctor"
                      className="checkboxImagen"
@@ -72,7 +82,7 @@ return (
             <Col xs={6}>
                <Form.Check
                   type="radio"
-                  name="usuarios"
+                  name="rol"
                   id="paciente"
                   value="paciente"
                   className="checkboxImagen"
@@ -89,12 +99,12 @@ return (
 
          <Form.Group className="justify-content-md-center" controlId="userName" style={{marginTop: 10}}>
             <p className="formtexto">Usuario</p>
-            <Form.Control required type="text" name="username" value={responsableData.username} onChange={handleChange} className="forms" />
+            <Form.Control required placeholder="Su nombre de usuario" type="text" name="username" value={responsableData.username} onChange={handleChange} className="forms" />
          </Form.Group>
  
          <Form.Group controlId="userPass" style={{marginTop: 10}}>
             <p className="formtexto">Contraseña</p>
-            <Form.Control required type="password" name="password" value={responsableData.password} onChange={handleChange} className="forms"/>
+            <Form.Control required placeholder="Su contraseña" type="password" name="password" value={responsableData.password} onChange={handleChange} className="forms"/>
             <p className="link" onClick={handleShow}>¿Olvidaste la contraseña?</p>
 
             <Modal show={show} onHide={handleClose}>

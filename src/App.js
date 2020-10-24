@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import './App.css';
 import RouterComponents from './Router/routes'
-import {isConnected, logOut, getProfiles} from './Api/services/authService'
+import { isConnected, logOut, getProfiles, getRol } from './Api/services/authService'
 import { AiOutlineHome, AiOutlineCheckCircle } from "react-icons/ai";
 import { BsBoxArrowRight, BsCalendar } from "react-icons/bs";
 import { BiMessageRoundedError, BiGift } from "react-icons/bi";
@@ -15,10 +15,11 @@ function App() {
 
   // Fake Logout
   const userLogged = isConnected();
-  
-  const profiles = getProfiles()
-  console.log(profiles)
 
+  const profiles = getProfiles();
+  
+  const rol = getRol();
+  
   let history = useHistory();
 
   const LogOut = () => {
@@ -78,9 +79,14 @@ function App() {
                 <div className={menuItem === 'Consejos' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Consejos')} data-hover="Consejos"><div><BiMessageRoundedError className="iconStyle" /></div></div>
               </Link>
 
-              <Link to="/administrar" className='size'>
-                <div className={menuItem === 'Administrar' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Administrar')} data-hover="Administrar"><div><FiEdit className="iconStyle" /></div></div>
-              </Link>
+
+              {
+                rol == 2 ?
+                <Link to="/administrar" className='size'>
+                  <div className={menuItem === 'Administrar' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Administrar')} data-hover="Administrar"><div><FiEdit className="iconStyle" /></div></div>
+                </Link> : null
+
+              }
 
             </ul>
 
