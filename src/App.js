@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import './App.css';
 import RouterComponents from './Router/routes'
-import {isConnected, logOut} from './Api/services/authService'
+import {isConnected, logOut, getProfiles} from './Api/services/authService'
 import { AiOutlineHome, AiOutlineCheckCircle } from "react-icons/ai";
 import { BsBoxArrowRight, BsCalendar } from "react-icons/bs";
 import { BiMessageRoundedError, BiGift } from "react-icons/bi";
@@ -15,6 +15,9 @@ function App() {
 
   // Fake Logout
   const userLogged = isConnected();
+  
+  const profiles = getProfiles()
+  console.log(profiles)
 
   let history = useHistory();
 

@@ -9,3 +9,13 @@ export const getAllBenefits = async () => {
        console.log(error)
    }
 }
+
+
+export const updateBenefit = async (data) => {
+   try{
+      return await axios.post(endpoints.redeemBenefit, data)
+   } catch (e) {
+      return e
+   }
+
+}

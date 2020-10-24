@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import BeneficiosCard from './BeneficiosCard'
 import './Beneficios.scss'
 import { getAllBenefits } from '../../Api/services/benefitsServices'
+import { ToastProvider } from 'react-toast-notifications'
 
 
 class Benefits extends Component {
@@ -41,7 +42,9 @@ class Benefits extends Component {
                      shops.map(shop => {
                         return (
                            <Col xs={12} md={4} >
+                           <ToastProvider>
                               <BeneficiosCard localData={shop} myPoints={points}/>
+                              </ToastProvider>
                            </Col>
 
                         )
