@@ -23,7 +23,8 @@ export const login = async (userData) => {
 
 // localstorage internal functionalities
 export const isConnected = () => localStorage.getItem('activeSession')
-export const getUser = () => localStorage.getItem('sessionUsername')
+export const getUsername = () => localStorage.getItem('sessionUsername')
+export const getUser = () => localStorage.getItem('sessionUser')
 export const getProfiles = () => JSON.parse(localStorage.getItem('userProfiles'))
 export const logOut = (cb) => {
    removeStorageData();

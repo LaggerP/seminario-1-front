@@ -15,9 +15,10 @@ const BeneficiosCard = ({ localData, myPoints }) => {
       const data = {
          id: id,
          profile_points: myPoints,
-         id_profile: 2
-
+         id_profile: 2, ///valores hardcodedados
+         id_user: 14 ///valores hardcodedados
       }
+      
       const _benefit = await updateBenefit(data)
       console.log(_benefit)
       if (_benefit.status === 201) {
