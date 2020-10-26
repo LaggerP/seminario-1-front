@@ -2,7 +2,6 @@ import endpoints from '../endpoints';
 const axios = require('axios');
 
 export const register = async (userData) => {
-   console.log(userData)
    try {
       return await axios.post(endpoints.register, userData);
      
@@ -14,7 +13,6 @@ export const register = async (userData) => {
 export const login = async (userData) => {
    try {
       const _response = await axios.post(endpoints.login, userData)
-      console.log(_response)
       if (_response.data.rol == 3) {
          await setPatientStorageData(_response.data.token, userData.username, _response.data.profiles, _response.data.rol, _response.data.id )
          return _response;
