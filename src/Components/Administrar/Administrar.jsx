@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import UserCreationModal from './Modal/UserCreationModal'
 import ProfileEditModal from './Modal/ProfileEditModal'
 import ProfileExerciseAssignmentModal from './Modal/ProfileExerciseAssignmentModal'
@@ -18,17 +18,18 @@ import { BsCalendar } from "react-icons/bs";
 import { AiOutlineSearch } from "react-icons/ai";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
+import { getAllMedicData } from '../../Api/services/administrarServices';
+import { format } from "date-fns";
 
-const ResponsableTable = ({ id, nombre, apellido }) => {
-   const idResp = id;
+const ResponsableTable = ({ id, username, email, firstname, lastname, profiles }) => {
    const [modalProfileEdit, setModalProfileEdit] = React.useState(false);
    const [modalExerciseAssignment, setModalExerciseAssignment] = React.useState(false);
    const [modalVisitAssignment, setModalVisitAssignment] = React.useState(false);
+   const [profileData, setProfileData] = React.useState()
 
    return (
       <div>
-         <h2 className='table-title table-title-text'>{nombre} {apellido}</h2>
-
+         <h2 className='table-title table-title-text'>{firstname} {lastname}</h2>
 
          <Table className='table-style'>
             <thead>
@@ -40,41 +41,41 @@ const ResponsableTable = ({ id, nombre, apellido }) => {
                   <th></th>
                </tr>
             </thead>
-
             {
-               PacientesMock.map((pacienteInfo, index) => {
-                  if (pacienteInfo.idResponsable === idResp) {
-                     return (
-                        <tbody>
-                           <tr>
-                              <td>{pacienteInfo.documento}</td>
-                              <td>{pacienteInfo.nombre}</td>
-                              <td>{pacienteInfo.apellido}</td>
-                              <td>{pacienteInfo.fechaNacimiento}</td>
-                              <td>
-                                 <Row className='flex-row-reverse'>
-                                    <OverlayTrigger overlay={<Tooltip>Asignar ejercicio</Tooltip>}>
-                                       <div className='icon-size' onClick={() => setModalExerciseAssignment(true)}><GiInvertedDice5 className='icon-styles' /></div>
-                                    </OverlayTrigger>
+               profiles.map((pacienteInfo, index) => {
+                  const { id, birthday, dni, firstname, lastname, profile_name, status, user_id } = pacienteInfo
+                  return (
+                     <tbody>
+                        <tr>
+                           <td>{dni}</td>
+                           <td>{firstname}</td>
+                           <td>{lastname}</td>
+                           <td>{birthday}</td>
+                           <td>
+                              <Row className='flex-row-reverse'>
+                                 <OverlayTrigger overlay={<Tooltip>Asignar ejercicio</Tooltip>}>
+                                    <div className='icon-size' onClick={() => {setModalExerciseAssignment(true); setProfileData(pacienteInfo)}}><GiInvertedDice5 className='icon-styles' /></div>
+                                 </OverlayTrigger>
 
-                                    <OverlayTrigger overlay={<Tooltip>Editar paciente</Tooltip>}>
-                                       <div className='icon-size' onClick={() => setModalProfileEdit(true)}><FiEdit className='icon-styles' /></div>
-                                    </OverlayTrigger>
+                                 <OverlayTrigger overlay={<Tooltip>Editar paciente</Tooltip>}>
+                                    <div className='icon-size' onClick={() => {setModalProfileEdit(true); setProfileData(pacienteInfo)}}><FiEdit className='icon-styles' /></div>
+                                 </OverlayTrigger>
 
-                                    <OverlayTrigger overlay={<Tooltip>Asignar turno</Tooltip>}>
-                                       <div className='icon-size' onClick={() => setModalVisitAssignment(true)}><BsCalendar className='icon-styles' /></div>
-                                    </OverlayTrigger>
-                                 </Row>
-                              </td>
-                           </tr>
-                        </tbody>
-                     )
-                  }
-               })
+                                 <OverlayTrigger overlay={<Tooltip>Asignar turno</Tooltip>}>
+                                    <div className='icon-size' onClick={() => {setModalVisitAssignment(true); setProfileData(pacienteInfo)}}><BsCalendar className='icon-styles' /></div>
+                                 </OverlayTrigger>
+                              </Row>
+                           </td>
+                        </tr>
+                     </tbody>
+                  )
+               }
+               )
             }
          </Table>
 
          <ProfileEditModal
+            data={profileData}
             show={modalProfileEdit}
             onHide={() => setModalProfileEdit(false)}
          />
@@ -91,6 +92,8 @@ const ResponsableTable = ({ id, nombre, apellido }) => {
 
       </div>
    );
+
+
 };
 
 
@@ -98,57 +101,76 @@ const Administrar = ({ }) => {
    // Search bar
    const [filter, setFilter] = useState(null);
    const [modalShow, setModalShow] = React.useState(false);
+   const [showData, setShowData] = React.useState(false);
+   const [medicData, setMedicData] = React.useState({});
+
+   React.useEffect(function effectFunction() {
+      async function fetchBooks() {
+         const response = await getAllMedicData();
+         setMedicData(response);
+         setShowData(true)
+      }
+      fetchBooks();
+   }, []);
 
    const searchSpace = (event) => {
       let keyword = event.target.value;
       setFilter(keyword);
    };
 
-   const responsablesItem = ResponsablesMock.filter((data) => {
-      if (filter === null) {
-         return data;
-      }
-      else if (data.nombre.toLowerCase().includes(filter.toLowerCase()) || data.apellido.toLowerCase().includes(filter.toLowerCase())) {
-         return data;
-      }
-   }).map(data => {
+   if (showData) {
       return (
-         <ResponsableTable {...data}></ResponsableTable>
-      )
-   });
-
-   return (
-      <div>
-         <Container>
-            <Row>
-               <div className="AdministrarContainer-Bienvenida">
-                  <div className="AdministrarContainer-Bienvenida-Texto">
-                     <h1>Administrar pacientes</h1>
+         <div>
+            <Container>
+               <Row>
+                  <div className="AdministrarContainer-Bienvenida">
+                     <div className="AdministrarContainer-Bienvenida-Texto">
+                        <h1>Administrar pacientes</h1>
+                     </div>
                   </div>
+               </Row>
+
+               <Row className='search-bar-container'>
+                  <AiOutlineSearch id='search-icon' />
+                  <input type="text" placeholder="Buscar responsable" className='search-bar' onChange={(e) => searchSpace(e)} />
+               </Row>
+
+               <Row>
+                  <div className='add-button' onClick={() => setModalShow(true)}><IoMdAdd className='add-Icon' />Agregar responsable</div>
+               </Row>
+
+               <UserCreationModal
+                  show={modalShow}
+                  onHide={() => setModalShow(false)}
+               />
+
+               <div className='tables-container'>
+
+                  {
+                     medicData.filter((data) => {
+                        if (filter === null) {
+                           return data;
+                        }
+                        else if (data.firstname.toLowerCase().includes(filter.toLowerCase()) || data.lastname.toLowerCase().includes(filter.toLowerCase())) {
+                           return data;
+                        }
+                     }).map(data => {
+                        return (
+                           <ResponsableTable {...data}></ResponsableTable>
+                        )
+                     })
+                  }
+
                </div>
-            </Row>
+            </Container>
+         </div>
 
-            <Row className='search-bar-container'>
-               <AiOutlineSearch id='search-icon' />
-               <input type="text" placeholder="Buscar responsable" className='search-bar' onChange={(e) => searchSpace(e)} />
-            </Row>
+      );
+   } else {
 
-            <Row>
-               <div className='add-button' onClick={() => setModalShow(true)}><IoMdAdd className='add-Icon' />Agregar responsable</div>
-            </Row>
+      return (<p>cargando</p>)
+   }
 
-            <UserCreationModal
-               show={modalShow}
-               onHide={() => setModalShow(false)}
-            />
-
-            <div className='tables-container'>
-               {responsablesItem}
-            </div>
-         </Container>
-      </div>
-
-   );
 };
 
 export default Administrar;

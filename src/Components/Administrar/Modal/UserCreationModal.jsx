@@ -9,6 +9,7 @@ import Popover from 'react-bootstrap/Popover'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import { BiInfoCircle } from "react-icons/bi";
 import { register } from '../../../Api/services/authService'
+import { getUserDBId } from '../../../Api/services/authService'
 
 
 const popover = (
@@ -43,10 +44,10 @@ const UserCreationModal = (props) => {
 
    const createUser = async () => {
       setLoading(true)
+      responsableData.medicDBId = getUserDBId();
       await register(responsableData).then((response) => {
          setLoading(false)
          props.onHide()
-
       }).catch((error) => console.log(error.response));
    };
 
