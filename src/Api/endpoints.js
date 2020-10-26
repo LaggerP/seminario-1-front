@@ -1,3 +1,5 @@
+import {getUserDBId} from './services/authService'
+
 const urlApi = process.env.REACT_APP_BACKEND_APP_URL || "http://localhost:8000";
 
 const endpoints = {
@@ -7,7 +9,12 @@ const endpoints = {
 
     //benefits endpoints
     getAllBenefits: `${urlApi}/api/benefits/list`,
-    redeemBenefit: `${urlApi}/api/benefits/redeem`
+    redeemBenefit: `${urlApi}/api/benefits/redeem`,
+
+    //administrar view
+    getAllMedicData: `${urlApi}/api/administrar/list`,
+    updatePatient: `${urlApi}/api/administrar/update`
+
 
 }
 

@@ -58,10 +58,8 @@ const Ejercicios = () => {
    }
 
    const getGameData = async (e) => {
-      console.log(e.id)
       await setDataExercise(e)
       if (dataExercise === undefined){
-         console.log("hola")
          await setDataExercise(e)
       }
 

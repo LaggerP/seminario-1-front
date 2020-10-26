@@ -9,7 +9,6 @@ export const ProtectedRoute = ({ component: Component, ...rest }) => {
       <Route
          {...rest}
          render={props => {
-            console.log(props)
             if (isConnected()) {
                if (props.location.pathname === '/administrar' && getRol() == 2) {
                   return <Component {...props} />
@@ -24,7 +23,6 @@ export const ProtectedRoute = ({ component: Component, ...rest }) => {
                         }}
                      />
                   );
-
                } else return <Component {...props} />
             } else {
                return (

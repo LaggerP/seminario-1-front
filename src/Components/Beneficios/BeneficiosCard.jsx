@@ -20,7 +20,6 @@ const BeneficiosCard = ({ localData, myPoints }) => {
       }
       
       const _benefit = await updateBenefit(data)
-      console.log(_benefit)
       if (_benefit.status === 201) {
          addToast('Beneficio canejado, mire su email', { appearance: 'success', autoDismiss: true, })
       } else {
