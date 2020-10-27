@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { login } from '../../Api/services/authService'
+import { login, getProfiles } from '../../Api/services/authService'
 
 import './Login.scss';
 import doctor from '../../assets/images/doctor.png'
 import niños from '../../assets/images/niños.png'
 import { Container, Row, Col, Image, Form, Button, Modal } from 'react-bootstrap';
 import { AiFillCheckCircle } from "react-icons/ai";
+
+import ProfilesCard from './ProfilesCard'
 
 const Login = (props) => {
    let history = useHistory();
@@ -22,9 +24,13 @@ const [menuItem, setSelected] = useState("");
 
 const [show, setShow] = useState(false);
 
+const [showProfile, setShowProfile] = useState(false);
+
 const handleClose = () => setShow(false);
 
 const handleShow = () => setShow(true);
+
+const [profile, setProfile] = useState();
    
 const handleChange = (e) => {
    const { name, value } = e.target;
@@ -43,18 +49,54 @@ const loginUser = async () => {
    if (responsableData.rol > 0) {
       const session = await login(responsableData);
 
-      if (session.status === 200 && responsableData.rol == 3) {
-         setLoading(false);
-         history.push('/');
-         window.location.reload(false);
+      if (session.status === 200 && responsableData.rol === 3) {
+         await setProfile(getProfiles());
+         setShowProfile(true);
       } else {
          setLoading(false);
          history.push('/administrar');
          window.location.reload(false);
       }
    }
-
 };
+
+const gotoProfile = async (id, user_id) => {
+   setLoading(false);
+   history.push('/');
+   window.location.reload(false);
+   console.log(id, user_id);
+};
+
+if(showProfile){
+   return (
+      <div className="login" fluid>
+         <Container>
+            <div style={{display:'flex', justifyContent:'center'}}>
+               <h2>Seleccionar el perfil para continuar</h2>
+            </div>
+            <Row className="justify-content-md-center">
+               {
+                  profile.map((profileInfo, index) => {
+                     return (
+                        <Col xs={12} md={4}>
+                           <ProfilesCard
+                              gotoProfile={gotoProfile} 
+                              firstname={profileInfo.firstname}
+                              lastname={profileInfo.lastname}
+                              id={profileInfo.id}
+                              user_id={profileInfo.user_id}
+                              />
+                        </Col>
+                     )
+                  })
+               }
+            </Row>
+         </Container>
+         
+      </div>
+   )
+}
+else{
 
 return (
    <Container className="login" fluid >
@@ -133,6 +175,7 @@ return (
    </Container>
 </Container>
 )
+}
 };
 
 export default Login;
