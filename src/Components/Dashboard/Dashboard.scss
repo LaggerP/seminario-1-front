@@ -1,0 +1,96 @@
+.dashboardContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.bienvenida{
+    width: 100%;
+    height: 150px;
+    background: #D6F5FF;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.imagenDoctor{
+    position: relative;
+    width: 50%;
+    height: 50%;
+    top: 20px;
+}
+
+.buttonDashboard{
+    width: 50vw;
+    height: 15vh;
+    background: #FC6D78;
+    border-radius: 30px;
+    border-color: #FC6D78;
+}
+
+.buttonDashboard:hover{
+    background: #F05965;
+    border-color: #F05965;
+}
+
+.buttonDashboard:after{
+    background: #F05965;
+    border-color: #F05965;
+}
+
+.buttonDashboardInf{
+    width: 24.5vw;
+    height: 15vh;
+    background: #FC6D78;
+    border-radius: 30px;
+    border-color: #FC6D78;
+}
+
+.buttonDashboardInf:hover{
+    background: #F05965;
+    border-color: #F05965;
+}
+
+.buttonDashboardInf:after{
+    background: #F05965;
+    border-color: #F05965;
+}
+
+.buttonDashboardInf:focus{
+    background: #F05965;
+    border-color: #F05965;
+}
+
+.derecha{
+    background-color: #FFF1F2;
+    min-width: 10rem;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+}
+
+.notificaciones{
+    background: #F3F3F3;
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    border-radius: 30px;
+    margin-top: 3rem;
+    width: 15vw;
+    height: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 12.5vw;
+}
+
+.calendario{
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    border-radius: 30px;
+    margin-left: 11vw;
+    position: relative;
+    top: 50vh;
+}
