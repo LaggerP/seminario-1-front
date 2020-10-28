@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './Seguimiento.scss';
 import {
    Container,
@@ -8,23 +7,25 @@ import {
 } from 'react-bootstrap';
 import { PacientesMock, ResponsablesMock } from './PacientesMock_seguimiento'
 import { useState } from "react";
-import { IoMdAdd } from "react-icons/io";
-import { GiInvertedDice5 } from "react-icons/gi";
-import { FiEdit } from "react-icons/fi";
 import { BsCalendar } from "react-icons/bs";
 import { AiOutlineSearch } from "react-icons/ai";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
+import ProfileVisitAssignmentModal from './ModalFecha';
+
+ 
+
 
 const ResponsableTable = ({ id, nombre, apellido }) => {
    const idResp = id;
+   const [modalVisitAssignment, setModalVisitAssignment] = React.useState(false);
 
 
    return (
       <div>
          <h2 className='table-title table-title-text'>{nombre} {apellido}</h2>
 
-
+         
          <Table className='table-style'>
             <thead>
                <tr>
@@ -32,10 +33,8 @@ const ResponsableTable = ({ id, nombre, apellido }) => {
                   <th>Nombre</th>
                   <th>Apellido</th>
                   <th>Fecha de Nacimiento</th>
-                  <th>Ejercicios</th>
-                  <th>Modulos</th>
                   <th>Tipo de Tratamiento</th>
-                  <th>Fecha de Realizacion</th>
+                  
                  
                </tr>
             </thead>
@@ -50,18 +49,32 @@ const ResponsableTable = ({ id, nombre, apellido }) => {
                               <td>{pacienteInfo.nombre}</td>
                               <td>{pacienteInfo.apellido}</td>
                               <td>{pacienteInfo.fechaNacimiento}</td>
-                              <td>{pacienteInfo.ejercicio}</td>
-                              <td>{pacienteInfo.Modulo}</td>
                               <td>{pacienteInfo.TipoTratamiento}</td>
-                              <td>{pacienteInfo.fecharealizada}</td>
+                             
+                              <td>
+                              <Row className='flex-row-reverse'>
+                              <OverlayTrigger overlay={<Tooltip>Asignar turno</Tooltip>}>
+                                       <div className='icon-size' onClick={() => setModalVisitAssignment(true)}><BsCalendar className='icon-styles' /></div>
+                                    </OverlayTrigger>
+                                    </Row>
+                              </td>
+                              
                            </tr>
                         </tbody>
+                        
+                        
                      )
                   }
-               })
-            }
-         </Table>
 
+                  })
+               }
+           
+         </Table>
+         <ProfileVisitAssignmentModal
+            show={modalVisitAssignment}
+            onHide={() => setModalVisitAssignment(false)}
+         />
+         
 
       </div>
    );
@@ -71,6 +84,7 @@ const ResponsableTable = ({ id, nombre, apellido }) => {
 const Seguimiento = ({ }) => {
    // Search bar
    const [filter, setFilter] = useState(null);
+   const [modalShow, setModalShow] = React.useState(false);
    
 
    const searchSpace = (event) => {
@@ -105,14 +119,26 @@ const Seguimiento = ({ }) => {
             <Row className='search-bar-container'>
                <AiOutlineSearch id='search-icon' />
                <input type="text" placeholder="Buscar responsable" className='search-bar' onChange={(e) => searchSpace(e)} />
+              
             </Row>
+
+
+         
+
+         
 
 
             <div className='tables-container'>
                {responsablesItem}
+      
+              
+           
+              
             </div>
          </Container>
+      
       </div>
+      
 
    );
 };
