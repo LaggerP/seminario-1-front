@@ -80,7 +80,7 @@ if(showProfile){
                      return (
                         <Col xs={12} md={4}>
                            <ProfilesCard
-                              gotoProfile={gotoProfile} 
+                              
                               firstname={profileInfo.firstname}
                               lastname={profileInfo.lastname}
                               id={profileInfo.id}
