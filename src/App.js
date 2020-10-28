@@ -3,12 +3,14 @@ import { Link, Redirect } from "react-router-dom";
 import './App.css';
 import RouterComponents from './Router/routes'
 import fakeAuth from './Api/Auth/fakeAuth'
+import { Col } from 'react-bootstrap'
 import { AiOutlineHome, AiOutlineCheckCircle } from "react-icons/ai";
 import { BsBoxArrowRight, BsCalendar } from "react-icons/bs";
-import { BiMessageRoundedError } from "react-icons/bi";
+import { BiMessageRoundedError, BiGift } from "react-icons/bi";
 import { FiEdit } from "react-icons/fi";
 import { GiPerspectiveDiceSixFacesOne } from "react-icons/gi";
 import { useHistory } from 'react-router-dom';
+
 
 function App() {
 
@@ -24,6 +26,7 @@ function App() {
 
   // Menu item selected
   const [menuItem, setSelected] = useState('Inicio');
+  const [benefitsPoints, setBenefitsPoints] = useState(100);
 
 
 
@@ -32,20 +35,29 @@ function App() {
     <div style={{ display: "flex" }}>
       {
         userLogged ? <div>
-          
+
           <div className="vertical-nav scroller" id="sidebar">
 
             <div className="py-4">
               <div className="media-body">
-                <div className='userIcon'>
+                <div className='userNav'>
                   <img src="https://www.pngkit.com/png/full/115-1150342_user-avatar-icon-iconos-de-mujeres-a-color.png" alt="userPhoto" height="75px" width="auto" id="icon" />
+                </div>
+                <div className='userNav' style={{ color: 'white' }}>
+                  <span>Tus puntos: {benefitsPoints}</span>
+                  <div>
+                    <Link to="/beneficios" className='size' style={{ color: 'white', textDecoration: 'none' }}>
+                      <BiGift style={{ height: '1.5em', width: '1.5em' }} />Mis premios
+                  </Link>
+                  </div>
+
                 </div>
               </div>
             </div>
 
             <ul style={{ listStyleType: "none", padding: 0 }} className="nav flex-column mb-0 mt-2">
 
-              <Link to="/"  className='size'>
+              <Link to="/" className='size'>
                 <div className={menuItem === 'Inicio' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Inicio')} data-hover="Inicio"><div><AiOutlineHome className="iconStyle" /></div></div>
               </Link>
 
@@ -68,12 +80,12 @@ function App() {
               <Link to="/administrar" className='size'>
                 <div className={menuItem === 'Administrar' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Administrar')} data-hover="Administrar"><div><FiEdit className="iconStyle" /></div></div>
               </Link>
-              
+
             </ul>
 
-            <div className='exit'>
+            <div className='exit' onClick={fakeLogOut}>
               <ul style={{ listStyleType: "none", padding: 0 }}>
-                <div onClick={fakeLogOut}><BsBoxArrowRight className="iconStyle center" id="iconExit" /></div>
+                <div ><BsBoxArrowRight className="iconStyle center" id="iconExit" /></div>
               </ul>
             </div>
 
@@ -82,7 +94,7 @@ function App() {
         </div> : <Redirect to={{ pathname: '/login' }} />
       }
 
-      <div className='component p-5' id="content">
+      <div className='component' id="content">
         <RouterComponents />
       </div>
 
