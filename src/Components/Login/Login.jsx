@@ -60,12 +60,6 @@ const loginUser = async () => {
    }
 };
 
-const gotoProfile = async (id, user_id) => {
-   setLoading(false);
-   history.push('/');
-   window.location.reload(false);
-   console.log(id, user_id);
-};
 
 if(showProfile){
    return (
@@ -77,15 +71,10 @@ if(showProfile){
             <Row className="justify-content-md-center">
                {
                   profile.map((profileInfo, index) => {
+                     console.log(profileInfo)
                      return (
                         <Col xs={12} md={4}>
-                           <ProfilesCard
-                              
-                              firstname={profileInfo.firstname}
-                              lastname={profileInfo.lastname}
-                              id={profileInfo.id}
-                              user_id={profileInfo.user_id}
-                              />
+                           <ProfilesCard profile={profileInfo}/>
                         </Col>
                      )
                   })

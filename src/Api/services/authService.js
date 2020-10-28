@@ -32,6 +32,10 @@ export const getUser = () => localStorage.getItem('sessionUser')
 export const getRol = () => sessionStorage.getItem('userRol')
 export const getUserDBId = () => sessionStorage.getItem('userId')
 export const getProfiles = () => JSON.parse(localStorage.getItem('userProfiles'))
+export const getProfileData = () => sessionStorage.getItem('profileData');
+
+
+export const setProfileData = (profileData) => sessionStorage.setItem('profileData', profileData);
 
 export const logOut = (cb) => {
    removeStorageData();
@@ -44,7 +48,7 @@ const removeStorageData = () => {
    sessionStorage.removeItem('userId');
    localStorage.removeItem('activeSession');
    localStorage.removeItem('sessionName');
-   localStorage.removeItem('sessionName');
+   localStorage.removeItem('userProfiles');
 
 }
 
