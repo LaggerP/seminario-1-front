@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import './App.css';
 import RouterComponents from './Router/routes'
-import fakeAuth from './Api/Auth/fakeAuth'
-import { Col } from 'react-bootstrap'
 import { isConnected, logOut, getProfiles, getRol } from './Api/services/authService'
 import { AiOutlineHome, AiOutlineCheckCircle } from "react-icons/ai";
 import { BsBoxArrowRight, BsCalendar } from "react-icons/bs";
@@ -11,7 +9,6 @@ import { BiMessageRoundedError, BiGift } from "react-icons/bi";
 import { FiEdit } from "react-icons/fi";
 import { GiPerspectiveDiceSixFacesOne } from "react-icons/gi";
 import { useHistory } from 'react-router-dom';
-
 
 function App() {
 
@@ -81,13 +78,18 @@ function App() {
                 <div className={menuItem === 'Consejos' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Consejos')} data-hover="Consejos"><div><BiMessageRoundedError className="iconStyle" /></div></div>
               </Link>
 
-              <Link to="/administrar" className='size'>
-                <div className={menuItem === 'Administrar' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Administrar')} data-hover="Administrar"><div><FiEdit className="iconStyle" /></div></div>
-              </Link>
+
+              {
+                rol == 2 ?
+                <Link to="/administrar" className='size'>
+                  <div className={menuItem === 'Administrar' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Administrar')} data-hover="Administrar"><div><FiEdit className="iconStyle" /></div></div>
+                </Link> : null
+
+              }
 
             </ul>
 
-            <div className='exit' onClick={fakeLogOut}>
+            <div className='exit' onClick={LogOut}>
               <ul style={{ listStyleType: "none", padding: 0 }}>
                 <div ><BsBoxArrowRight className="iconStyle center" id="iconExit" /></div>
               </ul>
