@@ -17,6 +17,7 @@ const endpoints = {
     getAllExercises: `${urlApi}/api/administrar/exercises`,
     assignExercises: `${urlApi}/api/administrar/setExercises`,
 
+    //exercises
 
 }
 
