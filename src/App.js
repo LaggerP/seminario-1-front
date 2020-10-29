@@ -2,12 +2,9 @@ import React, { useState } from 'react';
 import { Link, Redirect } from "react-router-dom";
 import './App.css';
 import RouterComponents from './Router/routes'
-<<<<<<< HEAD
 import fakeAuth from './Api/Auth/fakeAuth'
 import { Col } from 'react-bootstrap'
-=======
 import { isConnected, logOut, getProfiles, getRol } from './Api/services/authService'
->>>>>>> b085af712ca36c68561845119c4814f6d0711b6a
 import { AiOutlineHome, AiOutlineCheckCircle } from "react-icons/ai";
 import { BsBoxArrowRight, BsCalendar } from "react-icons/bs";
 import { BiMessageRoundedError, BiGift } from "react-icons/bi";
@@ -36,11 +33,6 @@ function App() {
   // Menu item selected
   const [menuItem, setSelected] = useState('Inicio');
   const [benefitsPoints, setBenefitsPoints] = useState(100);
-<<<<<<< HEAD
-
-
-=======
->>>>>>> b085af712ca36c68561845119c4814f6d0711b6a
 
   return (
 
@@ -89,7 +81,6 @@ function App() {
                 <div className={menuItem === 'Consejos' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Consejos')} data-hover="Consejos"><div><BiMessageRoundedError className="iconStyle" /></div></div>
               </Link>
 
-<<<<<<< HEAD
               <Link to="/administrar" className='size'>
                 <div className={menuItem === 'Administrar' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Administrar')} data-hover="Administrar"><div><FiEdit className="iconStyle" /></div></div>
               </Link>
@@ -97,20 +88,6 @@ function App() {
             </ul>
 
             <div className='exit' onClick={fakeLogOut}>
-=======
-
-              {
-                rol == 2 ?
-                <Link to="/administrar" className='size'>
-                  <div className={menuItem === 'Administrar' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Administrar')} data-hover="Administrar"><div><FiEdit className="iconStyle" /></div></div>
-                </Link> : null
-
-              }
-
-            </ul>
-
-            <div className='exit' onClick={LogOut}>
->>>>>>> b085af712ca36c68561845119c4814f6d0711b6a
               <ul style={{ listStyleType: "none", padding: 0 }}>
                 <div ><BsBoxArrowRight className="iconStyle center" id="iconExit" /></div>
               </ul>
