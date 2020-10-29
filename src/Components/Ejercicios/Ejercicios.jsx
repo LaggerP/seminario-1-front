@@ -14,6 +14,8 @@ import { Link, Redirect } from "react-router-dom";
 import { BiInfoCircle } from "react-icons/bi";
 
 import { fakeGames } from './fakeGames'
+import { getProfileData } from '../../Api/services/authService';
+import { getExercisesByProfile } from '../../Api/services/exerciseServices'
 
 const options = [
    { value: 'chocolate', label: 'Chocolate' },
@@ -21,13 +23,14 @@ const options = [
    { value: 'vanilla', label: 'Vanilla' },
 ];
 
+const profileData = getProfileData();
 
 
 const popover = (
    <Popover id="popover-basic">
       <Popover.Title as="h4">Información importante</Popover.Title>
       <Popover.Content>
-         ¡Hola, Pablo <span role="img" aria-label="SmileFace">😄</span>! si necesita <strong>ayuda</strong> con un ejercicio, puedes ir a la sección de <Link to="/consejos">consejos</Link> o consultarle a su médico/a.
+         ¡Hola, {profileData.firstname} <span role="img" aria-label="SmileFace">😄</span>! si necesita <strong>ayuda</strong> con un ejercicio, puedes ir a la sección de <Link to="/consejos">consejos</Link> o consultarle a su médico/a.
      </Popover.Content>
    </Popover>
 );
@@ -41,8 +44,11 @@ const Ejercicios = () => {
 
    async function getExercisesData() {
       try {
-         const data = await fakeGames
-         setExercises(data)
+         console.log(profileData)
+         const data = await getExercisesByProfile(profileData.id)
+         console.log(data.profileExercises)
+
+         setExercises(data.profileExercises)
       } catch {
 
       }
@@ -50,7 +56,7 @@ const Ejercicios = () => {
 
    useEffect(() => {
       getExercisesData();
-   }, [exercises]);
+   }, []);
 
 
    const goToExercise = () => {
@@ -79,7 +85,7 @@ const Ejercicios = () => {
                            <img src={laptopImage} alt="" />
                         </div>
                         <div className="EjerciciosContainer-Bienvenida-Texto">
-                           <h2>Pablo Lagger, estos son tus ejercicios</h2>
+                           <h2>{profileData.fistname} {profileData.lastname}, estos son tus ejercicios</h2>
                         </div>
                      </div>
                   </Row>
