@@ -18,10 +18,10 @@ import { BsCalendar } from "react-icons/bs";
 import { AiOutlineSearch } from "react-icons/ai";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
-import { getAllMedicData } from '../../Api/services/administrarServices';
+import { getAllMedicData, getAllExercises } from '../../Api/services/administrarServices';
 import { format } from "date-fns";
 
-const ResponsableTable = ({ id, username, email, firstname, lastname, profiles }) => {
+const ResponsableTable = ({ id, username, email, firstname, lastname, profiles, exercises, fetchData }) => {
    const [modalProfileEdit, setModalProfileEdit] = React.useState(false);
    const [modalExerciseAssignment, setModalExerciseAssignment] = React.useState(false);
    const [modalVisitAssignment, setModalVisitAssignment] = React.useState(false);
@@ -54,15 +54,15 @@ const ResponsableTable = ({ id, username, email, firstname, lastname, profiles }
                            <td>
                               <Row className='flex-row-reverse'>
                                  <OverlayTrigger overlay={<Tooltip>Asignar ejercicio</Tooltip>}>
-                                    <div className='icon-size' onClick={() => {setModalExerciseAssignment(true); setProfileData(pacienteInfo)}}><GiInvertedDice5 className='icon-styles' /></div>
+                                    <div className='icon-size' onClick={() => { setModalExerciseAssignment(true); setProfileData(pacienteInfo) }}><GiInvertedDice5 className='icon-styles' /></div>
                                  </OverlayTrigger>
 
                                  <OverlayTrigger overlay={<Tooltip>Editar paciente</Tooltip>}>
-                                    <div className='icon-size' onClick={() => {setModalProfileEdit(true); setProfileData(pacienteInfo)}}><FiEdit className='icon-styles' /></div>
+                                    <div className='icon-size' onClick={() => { setModalProfileEdit(true); setProfileData(pacienteInfo) }}><FiEdit className='icon-styles' /></div>
                                  </OverlayTrigger>
 
                                  <OverlayTrigger overlay={<Tooltip>Asignar turno</Tooltip>}>
-                                    <div className='icon-size' onClick={() => {setModalVisitAssignment(true); setProfileData(pacienteInfo)}}><BsCalendar className='icon-styles' /></div>
+                                    <div className='icon-size' onClick={() => { setModalVisitAssignment(true); setProfileData(pacienteInfo) }}><BsCalendar className='icon-styles' /></div>
                                  </OverlayTrigger>
                               </Row>
                            </td>
@@ -77,11 +77,15 @@ const ResponsableTable = ({ id, username, email, firstname, lastname, profiles }
          <ProfileEditModal
             data={profileData}
             show={modalProfileEdit}
+            fetchData={fetchData}
             onHide={() => setModalProfileEdit(false)}
          />
 
          <ProfileExerciseAssignmentModal
             show={modalExerciseAssignment}
+            exercises={exercises}
+            data={profileData}
+            fetchData={fetchData}
             onHide={() => setModalExerciseAssignment(false)}
          />
 
@@ -103,15 +107,28 @@ const Administrar = ({ }) => {
    const [modalShow, setModalShow] = React.useState(false);
    const [showData, setShowData] = React.useState(false);
    const [medicData, setMedicData] = React.useState({});
+   const [exercises, setExercises] = useState({});
+
 
    React.useEffect(function effectFunction() {
-      async function fetchBooks() {
-         const response = await getAllMedicData();
-         setMedicData(response);
-         setShowData(true)
-      }
-      fetchBooks();
+      fetchData();
    }, []);
+
+
+   async function fetchData() {
+      let exercisesByModule = []
+      const _medicData = await getAllMedicData();
+      const _exercises = await getAllExercises();
+      _exercises.data.modules.map(module => {
+            module.exercises.map(exercise => {
+               let data = {module:module.moduleName, value: exercise.id, label: exercise.name, color: '#00B8D9', isFixed: true };
+               exercisesByModule.push(data)
+            })
+      })
+      setMedicData(_medicData);
+      setExercises(exercisesByModule);
+      setShowData(true)
+   }
 
    const searchSpace = (event) => {
       let keyword = event.target.value;
@@ -156,7 +173,7 @@ const Administrar = ({ }) => {
                         }
                      }).map(data => {
                         return (
-                           <ResponsableTable {...data}></ResponsableTable>
+                           <ResponsableTable {...data} exercises={exercises}></ResponsableTable>
                         )
                      })
                   }

@@ -8,7 +8,7 @@ import Popover from 'react-bootstrap/Popover'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import { BiInfoCircle } from "react-icons/bi";
 import { updatePatient } from '../../../Api/services/administrarServices';
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
 
 const ProfileEditModal = (props) => {
@@ -39,9 +39,9 @@ const ProfileEditModal = (props) => {
     const updateProfile = async () => {
         profileData.id = props.data.id
         const _updatedPatient = await updatePatient(profileData)
-        if (_updatedPatient.status === 201){
+        if (_updatedPatient.status === 201) {
             props.onHide()
-    window.location.reload(false);
+            window.location.reload(false);
 
         }
     }
