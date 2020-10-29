@@ -10,7 +10,6 @@ import { FiEdit } from "react-icons/fi";
 import { GiPerspectiveDiceSixFacesOne } from "react-icons/gi";
 import { useHistory } from 'react-router-dom';
 
-
 function App() {
 
   // Fake Logout

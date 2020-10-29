@@ -13,7 +13,9 @@ const endpoints = {
 
     //administrar view
     getAllMedicData: `${urlApi}/api/administrar/list`,
-    updatePatient: `${urlApi}/api/administrar/update`
+    updatePatient: `${urlApi}/api/administrar/update`,
+    getAllExercises: `${urlApi}/api/administrar/exercises`,
+    assignExercises: `${urlApi}/api/administrar/setExercises`,
 
 
 }
