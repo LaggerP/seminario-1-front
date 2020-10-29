@@ -1,0 +1,34 @@
+.botonEjercicio{
+    width: 300px;
+    height: 60px;
+    background: #FC6D78;
+    border-radius: 30px;
+    border-color: #FC6D78;
+}
+
+.botonEjercicio:hover{
+    background: #F05965;
+    border-color: #F05965;
+}
+
+.botonEjercicio:disabled{
+    background: #909090;
+    border-color: #909090;
+    cursor: default;
+}
+
+.botonEjercicio:disabled:active{
+    background: #909090;
+    border-color: #909090;
+    cursor: default;
+}
+
+.botonEjercicio:after{
+    background: #F05965;
+    border-color: #F05965;
+}
+
+.EjercicioContainer{
+    display: flex;
+    text-align: center;
+}

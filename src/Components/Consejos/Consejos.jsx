@@ -6,6 +6,7 @@ import {
    Card,
 } from 'react-bootstrap';
 import consejosImage from '../../assets/images/ConsejosImage.png'
+import { IoMdAdd } from "react-icons/io";
 
 
 const consejosMock = [
@@ -88,6 +89,9 @@ const ConsejosCard = ({ id, title, content }) => {
 const Consejos = () => {
 
 
+
+
+
    return (
       <div>
          <Container>
@@ -102,11 +106,15 @@ const Consejos = () => {
                </div>
             </Row>
 
-            <div className='cardsContainer'>
+            <Row>
+               <div className='add-button'><IoMdAdd className='add-Icon' />Agregar consejo</div>
+            </Row>
+            <Row>
+               <div className='cardsContainer'>
+                  {consejosMock.map((consejo) => (<ConsejosCard {...consejo}></ConsejosCard>))}
+               </div>
+            </Row>
 
-               {consejosMock.map((consejo) => (<ConsejosCard {...consejo}></ConsejosCard>))}
-
-            </div>
          </Container>
       </div>
    );

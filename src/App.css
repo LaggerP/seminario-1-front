@@ -98,10 +98,11 @@
   font-family: lato, sans-serif;
   width: calc(100% - 10rem);
   margin-left: 10rem;
-  transition: all 0.4s;
+  transition: all 0s;
+  padding: 3rem;
 }
 
-.userIcon{
+.userNav{
   text-align: center;
 }
 
@@ -140,6 +141,7 @@
   width: 100%;
   position: absolute;
   padding-top: 20px;
+  cursor:pointer;
 }
 
 .size{
@@ -160,7 +162,23 @@
   border-bottom: solid 2px #ffffff !important;
 }
 
+.size{
+  width: 88px;
+}
 
+@media (max-height: 850px) {
+  .exit{
+    position: relative;
+    margin-top: 30px;
+  }
+}
+
+
+.menuItemSelected{
+  border-top: solid 2px #ffffff !important;
+  border-right: solid 2px #ffffff !important;
+  border-bottom: solid 2px #ffffff !important;
+}
 
 /* Menu Button Animation Text */
 
@@ -172,7 +190,7 @@
   margin-top: 18px;
   color: white;
   width: 88px;
-  height: 87px;
+  height: 75px;
   background: rgba(0, 94, 125, 0.48);
   border-radius: 0px 20px 20px 0px;
   text-decoration: none;
@@ -207,6 +225,9 @@
 
 /* Button Animation */
 .menu-button:hover{
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
   -webkit-transform: scale(1.2);
   -ms-transform: scale(1.2);
   transform: scale(1.2);

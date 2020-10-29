@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+.center{
+    margin-right: auto;
+    margin-left: auto;
+    
+}
+
+// Group Cards
+.cardsContainer{
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+
+.card{
+    border: none;
+    margin: 10px 50px 20px 50px;
+    border-radius: 10px;
+    min-width: 400px;
+}
+
+.card-header{
+    background: #D6F5FF;
+    border-radius: 10px;
+    border: none;
+    height: 75px;
+    padding-top: 20px;
+}
+
+.card-body{
+    background: #F7F2F2;
+    border-radius: 0px 0px 10px 10px;
+}
+
+.card-header:first-child{
+    border-radius: 10px 10px 0px 0px;
+}

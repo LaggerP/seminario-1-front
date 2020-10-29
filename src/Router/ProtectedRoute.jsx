@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import fakeAuth from '../Api/Auth/fakeAuth'
+import { getRol, isConnected } from '../Api/services/authService'
 
 export const ProtectedRoute = ({ component: Component, ...rest }) => {
 
@@ -9,8 +9,21 @@ export const ProtectedRoute = ({ component: Component, ...rest }) => {
       <Route
          {...rest}
          render={props => {
-            if (fakeAuth.isConnected()) {
-               return <Component {...props} />
+            if (isConnected()) {
+               if (props.location.pathname === '/administrar' && getRol() == 2) {
+                  return <Component {...props} />
+               } else if (props.location.pathname === '/administrar' && getRol() == 3) {
+                  return (
+                     <Redirect
+                        to={{
+                           pathname: '/',
+                           state: {
+                              from: props.location,
+                           },
+                        }}
+                     />
+                  );
+               } else return <Component {...props} />
             } else {
                return (
                   <Redirect

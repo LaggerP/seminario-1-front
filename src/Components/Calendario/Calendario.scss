@@ -1,13 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
-
 .center{
     margin-right: auto;
     margin-left: auto;
     
 }
 
-.ConsejosContainer {
+.CalendarioContainer {
     margin-right: 50px;
     display: flex;
     justify-content: center;
@@ -35,8 +34,23 @@
          width: 950%;
         }
     }
-}
+   
+    //Card con cada Turno asignado
+   &-Turno {
+    width: 100%;
+    min-height: 200px;
+    max-height: 100vh;
+    background: rgba(214, 245, 255, 1);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
 
+    &-Texto {
+
+    }
+   }
+}
 
 // Group Cards
 .cardsContainer{
@@ -56,9 +70,10 @@
     background: #D6F5FF;
     border-radius: 10px;
     border: none;
-    height: 75px;
-    padding-top: 20px;
+    height: 85px;
+    padding-top: 10px;
 }
+
 
 .card-body{
     background: #F7F2F2;
@@ -69,28 +84,11 @@
     border-radius: 10px 10px 0px 0px;
 }
 
-.add-button{
-    margin:35px 0 35px auto;
-    width: 265px;
-    height: 57px;
-    background: rgba(240, 89, 101, 0.7);
-    border-radius: 15px;
-    text-align: center;
-    line-height: 50px;
-    color: #ffffff;
-    -webkit-text-stroke: 0.3px;
-    font-size: 21px;
-
-    &:hover{
-        color:  #ffffff;
-        cursor: pointer;
-    }
+.row{
+    margin-bottom: 10px;
 }
 
-.add-Icon{
-  fill: #ffffff;
-  height: 1.5em;
-  width: 1.5em;
-  stroke-width: 15px;
-  margin-right: 10px;
-}
+
+
+
+
