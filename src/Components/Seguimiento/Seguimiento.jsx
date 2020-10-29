@@ -53,7 +53,7 @@ const ResponsableTable = ({ id, nombre, apellido }) => {
                              
                               <td>
                               <Row className='flex-row-reverse'>
-                              <OverlayTrigger overlay={<Tooltip>Asignar turno</Tooltip>}>
+                              <OverlayTrigger overlay={<Tooltip>Filtrar fecha</Tooltip>}>
                                        <div className='icon-size' onClick={() => setModalVisitAssignment(true)}><BsCalendar className='icon-styles' /></div>
                                     </OverlayTrigger>
                                     </Row>

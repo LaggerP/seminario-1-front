@@ -5,10 +5,11 @@ import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Alert from 'react-bootstrap/Alert'
+import Collapse from 'react-bootstrap/Collapse'
 
 
 const ProfileVisitAssignmentModal = (props) => {
-   const [show, setShow] = useState(false);
+   const [open, setOpen] = useState(false);
    const [profileData, setProfileData] = useState({
       visit_date: "",
    
@@ -61,20 +62,15 @@ const ProfileVisitAssignmentModal = (props) => {
                </Form.Group>
               
                <Row>
-                  <Col xs={12} md={6}>
-                     <Button variant="info" size="sm" block onClick={() =>  setShow(false)}>Cerrar</Button>{' '}
-                  </Col>
-                  <Col xs={12} md={6}>
-                     <Button variant="success" onClick={() => setShow(true)} size="sm" block >Buscar</Button>{' '}
-                     <Alert show={show} variant="success">
-                     
-                     <p>
-                        En el dia de la fecha realizo los ejercicios 5,4,2 del modulo 2
-
-                     </p>
-                     <hr />
-                
-                     </Alert>
+                  <Col xs={12} md={12}>
+                     <Button variant="success" onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open} size="sm" block >Buscar</Button>{' '}
+                     <Collapse in={open}>
+                     <div id="example-collapse-text">
+                       El dia de la fecha el paciente realizo los ejercicios: 2 - 5 - 4 del modulo: 3
+                     </div>
+                     </Collapse>
+                  
+                    
                      
                   
 
