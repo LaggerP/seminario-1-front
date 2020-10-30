@@ -8,16 +8,16 @@ const finalizado = <span>Finalizado <BiCheckDouble size={25}/></span>
 const sinHacer = <span>Sin hacer <BiJoystick size={25}/></span>
 
 
-const EjercicioCard = ({goToExercise, name, description, exercise, module, status}) => {
+const EjercicioCard = ({goToExercise, name, description, exercise, module, finished, id}) => {
    return (
       <div className="CardContainer" onClick={goToExercise} disabled>
-         <div className={status ? 'CardContainer-StatusTrue' : "CardContainer-StatusFalse"} >
-            <span>{status ? finalizado: sinHacer}</span>
+         <div className={finished ? 'CardContainer-StatusTrue' : "CardContainer-StatusFalse"} >
+            <span>{finished ? finalizado: sinHacer}</span>
          </div>
          <div className="CardContainer-Center" style={{ backgroundImage: `url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ_XDJ9l6LT0aN4yB4qU2vM0YIiHjlU7oNRMw&usqp=CAU)` }}>
          </div>
          <div className="CardContainer-Badges">
-            <Badge variant="info">Ejercicio {exercise}</Badge>{' '}
+            <Badge variant="info">Ejercicio {id}</Badge>{' '}
             <Badge variant="warning" >Módulo {module}</Badge>{' '}
 
          </div>

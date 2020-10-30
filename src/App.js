@@ -10,16 +10,15 @@ import { FiEdit } from "react-icons/fi";
 import { GiPerspectiveDiceSixFacesOne } from "react-icons/gi";
 import { useHistory } from 'react-router-dom';
 
-
 function App() {
 
   // Fake Logout
   const userLogged = isConnected();
 
   const profiles = getProfiles();
-  
+
   const rol = getRol();
-  
+
   let history = useHistory();
 
   const LogOut = () => {
@@ -62,10 +61,13 @@ function App() {
               <Link to="/" className='size'>
                 <div className={menuItem === 'Inicio' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Inicio')} data-hover="Inicio"><div><AiOutlineHome className="iconStyle" /></div></div>
               </Link>
-
-              <Link to="/ejercicios" className='size'>
-                <div className={menuItem === 'Ejercicios' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Ejercicios')} data-hover="Ejercicios"><div><GiPerspectiveDiceSixFacesOne className="iconStyle" /></div></div>
-              </Link>
+              {
+                rol == 3 ?
+                  <Link to="/ejercicios" className='size'>
+                    <div className={menuItem === 'Ejercicios' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Ejercicios')} data-hover="Ejercicios"><div><GiPerspectiveDiceSixFacesOne className="iconStyle" /></div></div>
+                  </Link>
+                  : null
+              }
 
               <Link to="/seguimiento" className='size'>
                 <div className={menuItem === 'Seguimiento' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Seguimiento')} data-hover="Seguimiento"><div><AiOutlineCheckCircle className="iconStyle" /></div></div>
@@ -82,9 +84,9 @@ function App() {
 
               {
                 rol == 2 ?
-                <Link to="/administrar" className='size'>
-                  <div className={menuItem === 'Administrar' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Administrar')} data-hover="Administrar"><div><FiEdit className="iconStyle" /></div></div>
-                </Link> : null
+                  <Link to="/administrar" className='size'>
+                    <div className={menuItem === 'Administrar' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Administrar')} data-hover="Administrar"><div><FiEdit className="iconStyle" /></div></div>
+                  </Link> : null
 
               }
 

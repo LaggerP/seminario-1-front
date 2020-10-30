@@ -14,14 +14,17 @@ const endpoints = {
     //administrar view
     getAllMedicData: `${urlApi}/api/administrar/list`,
     updatePatient: `${urlApi}/api/administrar/update`,
-
+    getAllExercises: `${urlApi}/api/administrar/exercises`,
+    assignExercises: `${urlApi}/api/administrar/setExercises`,
+  
     //consejos endpoints
     getAllConsejos: `${urlApi}/api/consejos/list`,
     createConsejo: `${urlApi}/api/consejos/create`,
     updateConsejo: `${urlApi}/api/consejos/update`,
     deleteConsejo: `${urlApi}/api/consejos/delete`,
 
-
+    //exercises
+    updateExerciseStatus : `${urlApi}/api/exercises/updateStatus/`,
 }
 
 export default endpoints;

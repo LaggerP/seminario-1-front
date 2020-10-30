@@ -8,10 +8,14 @@ import Popover from 'react-bootstrap/Popover'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import { BiInfoCircle } from "react-icons/bi";
 import { updatePatient } from '../../../Api/services/administrarServices';
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+import { useToasts } from 'react-toast-notifications'
+
 
 
 const ProfileEditModal = (props) => {
+    const { addToast } = useToasts()
+
     const popover = (
         <Popover id="popover-basic">
             <Popover.Title as="h4">Información importante</Popover.Title>
@@ -39,11 +43,14 @@ const ProfileEditModal = (props) => {
     const updateProfile = async () => {
         profileData.id = props.data.id
         const _updatedPatient = await updatePatient(profileData)
-        if (_updatedPatient.status === 201){
-            props.onHide()
-    window.location.reload(false);
-
+        if (_updatedPatient.status === 201) {
+            addToast('Se asignaron los ejercicios de forma correcta', { appearance: 'success', autoDismiss: true, })
+            window.location.reload(false);
+        } else {
+            addToast('Hubo un error. Intente nuevamente', { appearance: 'success', autoDismiss: true, })
         }
+        props.onHide()
+
     }
 
     if (props.data !== undefined) {
