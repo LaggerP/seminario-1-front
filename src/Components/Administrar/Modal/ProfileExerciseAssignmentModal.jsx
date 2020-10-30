@@ -30,7 +30,6 @@ const ProfileExerciseAssignmentModal = (props) => {
       selectedOption: selectedOption
     }
     const _response = await assignExercises(data);
-    console.log(_response)
     if (_response.status === 201) {
       addToast('Se asignaron los ejercicios de forma correcta', { appearance: 'success', autoDismiss: true, })
     } else {

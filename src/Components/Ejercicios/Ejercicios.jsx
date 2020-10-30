@@ -13,7 +13,6 @@ import Ejercicio from './Ejercicio/Ejercicio'
 import { Link, Redirect } from "react-router-dom";
 import { BiInfoCircle } from "react-icons/bi";
 
-import { fakeGames } from './fakeGames'
 import { getProfileData } from '../../Api/services/authService';
 import { getExercisesByProfile } from '../../Api/services/exerciseServices'
 
@@ -44,11 +43,9 @@ const Ejercicios = () => {
 
    async function getExercisesData() {
       try {
-         console.log(profileData)
          const data = await getExercisesByProfile(profileData.id)
-         console.log(data.profileExercises)
-
          setExercises(data.profileExercises)
+         console.log(data)
       } catch {
 
       }
@@ -65,10 +62,8 @@ const Ejercicios = () => {
 
    const getGameData = async (e) => {
       await setDataExercise(e)
-      if (dataExercise === undefined){
-         await setDataExercise(e)
-      }
-
+      setShowExercise(false)
+     
       
 
    }
@@ -85,7 +80,7 @@ const Ejercicios = () => {
                            <img src={laptopImage} alt="" />
                         </div>
                         <div className="EjerciciosContainer-Bienvenida-Texto">
-                           <h2>{profileData.fistname} {profileData.lastname}, estos son tus ejercicios</h2>
+                           <h2>{profileData.firstname}, estos son tus ejercicios</h2>
                         </div>
                      </div>
                   </Row>
@@ -111,7 +106,7 @@ const Ejercicios = () => {
 
                      {
                         exercises.map((data, index) => {
-                           const { id, name, description, exercise, module, status } = data
+                           const { id, name, description, exercise, module, finished } = data
                            return (
                               <Col xs={12} md={4} key={data.id} value={data} onClick={() => {getGameData(data)}}>
                                     <EjercicioCard
@@ -119,7 +114,7 @@ const Ejercicios = () => {
                                        description={description}
                                        exercise={exercise}
                                        module={module}
-                                       status={status}
+                                       finished={finished}
                                        id={id}
                                     />
 
@@ -137,7 +132,7 @@ const Ejercicios = () => {
             <div className="EjerciciosContainer">
                <Container>
                   <Row>
-                     <Ejercicio goToExercise={goToExercise}></Ejercicio>
+                     <Ejercicio dataExercise={dataExercise} goToExercise={goToExercise}></Ejercicio>
                   </Row>
                </Container>
 

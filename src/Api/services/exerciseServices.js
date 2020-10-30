@@ -11,3 +11,13 @@ export const getExercisesByProfile = async (id) => {
        console.log(error)
    }
 }
+
+
+export const updateStatus = async (exerciseToUpdate) => {
+    try {
+        const response = await axios.post(endpoints.updateExerciseStatus, exerciseToUpdate);
+        return response
+    } catch (error) {
+        console.log(error)
+    }
+ }
