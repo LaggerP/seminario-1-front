@@ -14,7 +14,7 @@ import { useToasts } from 'react-toast-notifications'
 
 
 const ProfileEditModal = (props) => {
-  const { addToast } = useToasts()
+    const { addToast } = useToasts()
 
     const popover = (
         <Popover id="popover-basic">
@@ -45,11 +45,11 @@ const ProfileEditModal = (props) => {
         const _updatedPatient = await updatePatient(profileData)
         if (_updatedPatient.status === 201) {
             addToast('Se asignaron los ejercicios de forma correcta', { appearance: 'success', autoDismiss: true, })
+            window.location.reload(false);
         } else {
             addToast('Hubo un error. Intente nuevamente', { appearance: 'success', autoDismiss: true, })
         }
         props.onHide()
-        window.location.reload(false);
 
     }
 
