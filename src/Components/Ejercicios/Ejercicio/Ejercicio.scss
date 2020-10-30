@@ -1,3 +1,19 @@
+.EjercicioContainer-Bienvenida{
+    width: 100vw;
+    height: 250px;
+    background: rgba(252, 109, 120, 0.1);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+
+    &-Imagen{
+        position: relative;
+        top:32px;
+        right: 17px;
+    }
+}
+
+
 .botonEjercicio{
     width: 300px;
     height: 60px;

@@ -18,7 +18,7 @@ const endpoints = {
     assignExercises: `${urlApi}/api/administrar/setExercises`,
 
     //exercises
-
+    updateExerciseStatus : `${urlApi}/api/exercises/updateStatus/`,
 }
 
 export default endpoints;

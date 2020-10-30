@@ -120,6 +120,7 @@ const Administrar = ({ }) => {
       const _medicData = await getAllMedicData();
       const _exercises = await getAllExercises();
       _exercises.data.modules.map(module => {
+         console.log(module)
             module.exercises.map(exercise => {
                let data = {module:module.moduleName, value: exercise.id, label: exercise.name, color: '#00B8D9', isFixed: true };
                exercisesByModule.push(data)

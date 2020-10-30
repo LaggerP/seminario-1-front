@@ -8,7 +8,6 @@ import { ProtectedRoute } from "./ProtectedRoute"
 // Preloading component
 import Loading from "../Components/Loading/Loading";
 
-import Ejercicio from '../Components/Ejercicios/Ejercicio/Ejercicio'
 
 // Import helper func
 const views = (path) => {
@@ -66,7 +65,6 @@ const routes = [
 const router = () => (
   <Suspense fallback={<Loading />}>
     <Switch>
-    <ProtectedRoute path="/ejercicio" component={Ejercicio} />
       {routes.map((route, index) => {
         if (route.path !== "404") {
           if (route.private) {
