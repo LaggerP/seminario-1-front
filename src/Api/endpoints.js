@@ -13,7 +13,13 @@ const endpoints = {
 
     //administrar view
     getAllMedicData: `${urlApi}/api/administrar/list`,
-    updatePatient: `${urlApi}/api/administrar/update`
+    updatePatient: `${urlApi}/api/administrar/update`,
+
+    //consejos endpoints
+    getAllConsejos: `${urlApi}/api/consejos/list`,
+    createConsejo: `${urlApi}/api/consejos/create`,
+    updateConsejo: `${urlApi}/api/consejos/update`,
+    deleteConsejo: `${urlApi}/api/consejos/delete`,
 
 
 }
