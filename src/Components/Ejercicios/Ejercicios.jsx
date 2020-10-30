@@ -106,7 +106,6 @@ const Ejercicios = () => {
 
                      {
                         exercises.map((data, index) => {
-                           console.log
                            const { id, name, description, exercise, module, finished } = data
                            return (
                               <Col xs={12} md={4} key={data.id} value={data} onClick={() => {getGameData(data)}}>
