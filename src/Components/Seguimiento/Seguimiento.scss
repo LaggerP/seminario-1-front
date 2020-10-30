@@ -1,11 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-.center{
-    margin-right: auto;
-    margin-left: auto;
-    
-}
-
-.SeguimientoContainer {
+.AdministrarContainer {
     margin-right: 50px;
     display: flex;
     justify-content: center;
@@ -20,6 +13,7 @@
        display: flex;
        align-items: center;
        min-width: 500px;
+       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
  
        &-Imagen {
           position: relative;
@@ -35,34 +29,104 @@
     }
 }
 
+.add-button{
+    margin-left: auto;
+    width: 265px;
+    height: 57px;
+    background: rgba(240, 89, 101, 0.7);
+    border-radius: 15px;
+    text-align: center;
+    line-height: 50px;
+    color: #ffffff;
+    -webkit-text-stroke: 0.3px;
+    font-size: 21px;
 
-// Group Cards
-.cardsContainer{
-    margin: 50px auto 50px auto;
-    width: 100%
+    &:hover{
+        color:  #ffffff;
+        cursor: pointer;
+    }
 }
 
+.add-Icon{
+  fill: #ffffff;
+  height: 1.5em;
+  width: 1.5em;
+  stroke-width: 15px;
+  margin-right: 10px;
+}
 
-.card{
-    border: none;
-    margin: 10px 50px 20px 50px;
+.icon-styles{
+    height: 1.5em;
+    width: 1.5em;
+    margin: 0px 15px 15px 0px;
+
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+#search-icon{
+    height: 1.5em;
+    width: 1.5em;
+    margin: 7px 13px 0px 0px;
+}
+
+.search-bar{
+    height: 2em;
+    width: 20em;
+    border: solid 2.5px #948383;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    transition: 0.1s;
+}
+
+input:focus { 
+    outline: none;
+    border-color: rgba(240, 89, 101, 0.7);;
+}
+
+.search-bar-container{
+    margin: 40px 0px 30px 0px;
+}
+
+.tables-container{
+    margin: 30px auto 20px auto;
+}
+
+.row-styles{
+    background: #F7F2F2;
+    border: 2px solid #FFFFFF;
     border-radius: 10px;
-    min-width: 400px;
+    margin-bottom: 10px;
 }
 
-.card-header{
+.table-title{
+    height: 91px;
     background: #D6F5FF;
     border-radius: 10px;
-    border: none;
-    height: 75px;
-    padding-top: 20px;
+    line-height: 80px;
+    padding-left: 25px;
+    margin-bottom: 0px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    &-text{
+        font-size: 29px;
+    }
 }
 
-.card-body{
-    background: #F7F2F2;
-    border-radius: 0px 0px 10px 10px;
+.table-style{
+    max-width: 1090px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
 }
 
-.card-header:first-child{
-    border-radius: 10px 10px 0px 0px;
+.icon-size{
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 7px 13px 0px 0px;
+    &:hover{
+        cursor: pointer;
+    }
 }
