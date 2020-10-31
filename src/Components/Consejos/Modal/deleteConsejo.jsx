@@ -4,24 +4,26 @@ import Modal from 'react-bootstrap/Modal'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import { deleteConsejo } from '../../../Api/services/consejosServices'
+import { useToasts } from 'react-toast-notifications'
 
 
 const DeleteConsejoModal = (props) => {
-
+    const { addToast } = useToasts()
     const [isLoading, setLoading] = useState(false);
-    const handleClose = () => { props.onHide() };
-
     const [consejoContent, setconsejoContent] = useState({
         title: "",
         content: "",
     })
 
+    const handleClose = () => { props.onHide() };
+
     const deleteCon = async () => {
         setLoading(true);
         await deleteConsejo(props.data).then((response) => {
             setLoading(false);
+            addToast('Se eliminó el consejo exitosamente', { appearance: 'success', autoDismiss: true, })
             props.onHide();
-            window.location.reload(false);
+            setTimeout(() => { window.location.reload(false) }, 1500);
         }).catch((error) => console.log(error.response));
     }
 

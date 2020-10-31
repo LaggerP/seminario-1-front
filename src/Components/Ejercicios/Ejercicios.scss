@@ -22,13 +22,17 @@ body{
          top:32px;
          right: 17px;
       }
-      &-Texto {
-         
-      }
    }
 }
 
 
 .form-group {
    margin-top: 50px;
+}
+
+.NonExercises {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   text-align: center;
 }

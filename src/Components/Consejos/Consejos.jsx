@@ -42,7 +42,6 @@ const Consejos = () => {
                      </div>
                   </div>
                </Row>
-
                {
                   rol == 2 ?
                      <Row>
@@ -50,7 +49,6 @@ const Consejos = () => {
                      </Row>
                      : null
                }
-
                <Row>
                   <div className='cardsContainer'>
                      {consejos.map((consejo) => (<ConsejosCard {...consejo} />))}
@@ -73,7 +71,6 @@ const Consejos = () => {
       );
 
    } else {
-
       return (<Loading />)
    }
 

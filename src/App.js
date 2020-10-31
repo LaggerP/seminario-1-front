@@ -44,15 +44,16 @@ function App() {
                 <div className='userNav'>
                   <img src="https://www.pngkit.com/png/full/115-1150342_user-avatar-icon-iconos-de-mujeres-a-color.png" alt="userPhoto" height="75px" width="auto" id="icon" />
                 </div>
-                <div className='userNav' style={{ color: 'white' }}>
-                  <span>Tus puntos: {benefitsPoints}</span>
-                  <div>
-                    <Link to="/beneficios" className='size' style={{ color: 'white', textDecoration: 'none' }}>
-                      <BiGift style={{ height: '1.5em', width: '1.5em' }} />Mis premios
-                  </Link>
-                  </div>
-
-                </div>
+                {
+                  rol == 3 ?
+                    <div className='userNav' style={{ color: 'white' }}>
+                      <div>
+                        <Link to="/beneficios" className='size' style={{ color: 'white', textDecoration: 'none', paddingTop: '5px' }}>
+                          <BiGift style={{ height: '1.5em', width: '1.5em', }} />Premios
+                        </Link>
+                      </div>
+                    </div> : null
+                }
               </div>
             </div>
 

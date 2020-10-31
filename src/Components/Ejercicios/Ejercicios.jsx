@@ -59,16 +59,15 @@ const Ejercicios = () => {
    }
 
    const getGameData = async (e) => {
-      await setDataExercise(e)
-      setShowExercise(false)
+      await setDataExercise(e);
+      setShowExercise(false);
    }
 
    const changeModule = async (e) => {
       setSelectedOption(e.value)
-      const _exercises = await allExercises.filter(exercise => (exercise.module === e.value))
-      _exercises.length === 0 ? setExercises(allExercises) : setExercises(_exercises)
+      const _exercises = await allExercises.filter(exercise => (exercise.module === e.value));
+      _exercises.length === 0 ? setExercises(allExercises) : setExercises(_exercises);
    }
-
 
    if (exercises.length > 0) {
       if (showExercise) {
@@ -91,9 +90,8 @@ const Ejercicios = () => {
                            defaultValue={selectedOption}
                            onChange={changeModule}
                            options={options}
-                           placeholder="Buscar por módulo"
+                           placeholder="Filtrar por módulo"
                         />
-
                      </Col>
                      <Col style={{ paddingTop: '4.5%', paddingLeft: 0 }}>
                         <OverlayTrigger trigger="click" rootClose placement="right" overlay={popover} >
@@ -105,15 +103,17 @@ const Ejercicios = () => {
                   <Row style={{ paddingTop: '2.5%' }}>
                      {
                         exercises.map((data, index) => {
-                           const { id, name, description, exercise, module, finished } = data
+                           const { id, name, description, consigna, image, module, finished } = data
+                           console.log(image)
                            return (
                               <Col xs={12} md={4} key={data.id} value={data} onClick={() => { getGameData(data) }}>
                                  <EjercicioCard
                                     name={name}
                                     description={description}
-                                    exercise={exercise}
+                                    consigna={consigna}
                                     module={module}
                                     finished={finished}
+                                    image={image}
                                     id={id}
                                  />
                               </Col>
@@ -137,7 +137,9 @@ const Ejercicios = () => {
       }
    } else {
       return (
-         <h1>cargando</h1>
+         <div className="NonExercises">
+                 <h1>No posee ningún ejercicio asignado</h1>
+            </div>
       )
    }
 };
