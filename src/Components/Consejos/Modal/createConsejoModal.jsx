@@ -35,17 +35,15 @@ const CreateConsejoModal = (props) => {
             ...consejoContent,
             [name]: value,
         });
-        console.log(consejoContent)
     }
 
     const createConsejo = async () => {
         setLoading(true)
-        await create (consejoContent).then((response) => {
+        await create(consejoContent).then((response) => {
             setLoading(false);
             props.onHide();
             window.location.reload(false);
         }).catch((error) => console.log(error.response));
-
     };
 
 
@@ -76,7 +74,6 @@ const CreateConsejoModal = (props) => {
                         <Form.Control as="textarea" rows={4} placeholder="Ingrese el consejo" name="content" value={consejoContent.content} onChange={handleChange} required />
                     </Form.Group>
                 </Form>
-
                 <Row>
                     <Col xs={12} md={6}>
                         <Button variant="info" size="sm" block onClick={handleClose}>Cerrar</Button>{' '}
@@ -85,13 +82,8 @@ const CreateConsejoModal = (props) => {
                         <Button variant="success" onClick={() => createConsejo()} size="sm" block>{isLoading ? 'Creando consejo....' : 'Crear'}</Button>{' '}
                     </Col>
                 </Row>
-
             </Modal.Body>
         </Modal>
-
-
-
-
     );
 }
 

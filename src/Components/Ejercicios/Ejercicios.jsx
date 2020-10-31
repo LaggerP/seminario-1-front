@@ -17,9 +17,9 @@ import { getProfileData } from '../../Api/services/authService';
 import { getExercisesByProfile } from '../../Api/services/exerciseServices'
 
 const options = [
-   { value: 'chocolate', label: 'Chocolate' },
-   { value: 'strawberry', label: 'Strawberry' },
-   { value: 'vanilla', label: 'Vanilla' },
+   { value: 'Todos', label: 'Todos los módulos' },
+   { value: 'Contador', label: 'Módulo Contador' },
+   { value: 'Lectura', label: 'Módulo Lectura' },
 ];
 
 const profileData = getProfileData();
@@ -35,20 +35,18 @@ const popover = (
 );
 
 
+
 const Ejercicios = () => {
    const [showExercise, setShowExercise] = useState(true);
    const [selectedOption, setSelectedOption] = useState(null);
    const [exercises, setExercises] = useState([]);
+   const [allExercises, setAllExercises] = useState([]);
    const [dataExercise, setDataExercise] = useState();
 
    async function getExercisesData() {
-      try {
-         const data = await getExercisesByProfile(profileData.id)
-         setExercises(data.profileExercises)
-         console.log(data)
-      } catch {
-
-      }
+      const data = await getExercisesByProfile(profileData.id)
+      setExercises(data.profileExercises);
+      setAllExercises(data.profileExercises);
    }
 
    useEffect(() => {
@@ -63,13 +61,16 @@ const Ejercicios = () => {
    const getGameData = async (e) => {
       await setDataExercise(e)
       setShowExercise(false)
-     
-      
-
    }
 
-   if (exercises.length > 0) {
+   const changeModule = async (e) => {
+      setSelectedOption(e.value)
+      const _exercises = await allExercises.filter(exercise => (exercise.module === e.value))
+      _exercises.length === 0 ? setExercises(allExercises) : setExercises(_exercises)
+   }
 
+
+   if (exercises.length > 0) {
       if (showExercise) {
          return (
             <div className="EjerciciosContainer">
@@ -84,13 +85,12 @@ const Ejercicios = () => {
                         </div>
                      </div>
                   </Row>
-
                   <Row >
                      <Col xs={4} style={{ paddingTop: '4%' }}>
                         <Select
                            defaultValue={selectedOption}
-                           onChange={setSelectedOption}
-                           options={exercises}
+                           onChange={changeModule}
+                           options={options}
                            placeholder="Buscar por módulo"
                         />
 
@@ -103,23 +103,20 @@ const Ejercicios = () => {
 
                   </Row>
                   <Row style={{ paddingTop: '2.5%' }}>
-
                      {
                         exercises.map((data, index) => {
                            const { id, name, description, exercise, module, finished } = data
                            return (
-                              <Col xs={12} md={4} key={data.id} value={data} onClick={() => {getGameData(data)}}>
-                                    <EjercicioCard
-                                       name={name}
-                                       description={description}
-                                       exercise={exercise}
-                                       module={module}
-                                       finished={finished}
-                                       id={id}
-                                    />
-
+                              <Col xs={12} md={4} key={data.id} value={data} onClick={() => { getGameData(data) }}>
+                                 <EjercicioCard
+                                    name={name}
+                                    description={description}
+                                    exercise={exercise}
+                                    module={module}
+                                    finished={finished}
+                                    id={id}
+                                 />
                               </Col>
-
                            )
                         })
                      }
@@ -135,9 +132,7 @@ const Ejercicios = () => {
                      <Ejercicio dataExercise={dataExercise} goToExercise={goToExercise}></Ejercicio>
                   </Row>
                </Container>
-
             </div>
-
          );
       }
    } else {
@@ -145,8 +140,6 @@ const Ejercicios = () => {
          <h1>cargando</h1>
       )
    }
-
-
 };
 
 export default Ejercicios;

@@ -16,7 +16,6 @@ const DeleteConsejoModal = (props) => {
         content: "",
     })
 
-
     const deleteCon = async () => {
         setLoading(true);
         await deleteConsejo(props.data).then((response) => {
@@ -25,8 +24,6 @@ const DeleteConsejoModal = (props) => {
             window.location.reload(false);
         }).catch((error) => console.log(error.response));
     }
-
-
 
     return (
         <Modal
@@ -45,7 +42,6 @@ const DeleteConsejoModal = (props) => {
                     ¿Desea eliminar el consejo?
                 </h5>
                 <br />
-
                 <Row>
                     <Col xs={12} md={6}>
                         <Button variant="info" size="sm" block onClick={handleClose}>Cerrar</Button>{' '}
@@ -54,13 +50,8 @@ const DeleteConsejoModal = (props) => {
                         <Button variant="danger" onClick={() => deleteCon()} size="sm" block>{isLoading ? 'Eliminando....' : 'Eliminar'}</Button>{' '}
                     </Col>
                 </Row>
-
             </Modal.Body>
         </Modal>
-
-
-
-
     );
 }
 

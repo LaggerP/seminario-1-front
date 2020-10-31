@@ -35,9 +35,7 @@ const ProfileVisitAssignmentModal = (props) => {
    
    const addVisit = () => {
       var dateValue = document.querySelector('input[type="date"]').value;
-      console.log(dateValue);
       props.onHide()
-      
    }
   
 
