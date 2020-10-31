@@ -71,7 +71,6 @@ if(showProfile){
             <Row className="justify-content-md-center">
                {
                   profile.map((profileInfo, index) => {
-                     console.log(profileInfo)
                      return (
                         <Col xs={12} md={4}>
                            <ProfilesCard profile={profileInfo}/>

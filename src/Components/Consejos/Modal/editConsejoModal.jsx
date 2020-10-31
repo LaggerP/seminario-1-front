@@ -20,12 +20,8 @@ const popover = (
 
 const EditConsejoModal = (props) => {
 
-    
-
-
     const [isLoading, setLoading] = useState(false);
     const handleClose = () => { props.onHide() };
-
     const [consejoContent, setconsejoContent] = React.useState({
         title: "",
         content: "",
@@ -43,7 +39,7 @@ const EditConsejoModal = (props) => {
     const updateConsejo = async () => {
         setLoading(true);
         consejoContent.id = props.data.id
-        await update (consejoContent).then((response) => {
+        await update(consejoContent).then((response) => {
             setLoading(false);
             props.onHide();
             window.location.reload(false);
@@ -52,7 +48,6 @@ const EditConsejoModal = (props) => {
 
 
     if (props.data !== undefined) {
-
         return (
             <Modal
                 {...props}
@@ -79,7 +74,6 @@ const EditConsejoModal = (props) => {
                             <Form.Control as="textarea" maxlength='1000' rows={4} placeholder={props.data.content} name="content" value={consejoContent.content} onChange={handleChange} required />
                         </Form.Group>
                     </Form>
-
                     <Row>
                         <Col xs={12} md={6}>
                             <Button variant="info" size="sm" block onClick={handleClose}>Cerrar</Button>{' '}
@@ -88,19 +82,11 @@ const EditConsejoModal = (props) => {
                             <Button variant="success" onClick={updateConsejo} size="sm" block>{isLoading ? 'Guardando cambios...' : 'Guardar cambios'}</Button>{' '}
                         </Col>
                     </Row>
-
                 </Modal.Body>
             </Modal>
-
-
-
-
         );
-
     } else {
-        return (
-            <h1></h1>
-        )
+        return null
     }
 }
 export default EditConsejoModal
