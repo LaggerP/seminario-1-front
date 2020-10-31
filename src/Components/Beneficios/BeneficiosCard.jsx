@@ -3,23 +3,24 @@ import './BeneficiosCard.scss'
 import Badge from 'react-bootstrap/Badge'
 import Button from 'react-bootstrap/Button'
 import { useToasts } from 'react-toast-notifications'
-import { updateBenefit } from '../../Api/services/benefitsServices'
+import { redeemBenefit } from '../../Api/services/benefitsServices'
 
-const BeneficiosCard = ({ localData, myPoints }) => {
-   const { id, local, description, image_shop, type_shop, necessary_points } = localData
+const BeneficiosCard = ({ localData, profile }) => {
+   const { id, description, image_shop, type_shop, necessary_points } = localData
    const { addToast } = useToasts()
 
-   const canSwap = necessary_points <= myPoints
+   const canSwap = necessary_points <= profile.benefits_points
 
-   const redeemBenefit = async () => {
+   const getBenefit = async () => {
       const data = {
          id: id,
-         profile_points: myPoints,
-         id_profile: 2, ///valores hardcodedados
-         id_user: 14 ///valores hardcodedados
+         profile_points: profile.benefits_points,
+         id_profile: profile.id, // id del perfil
+         id_user: profile.user_id // id del responsable
       }
       
-      const _benefit = await updateBenefit(data)
+      const _benefit = await redeemBenefit(data)
+      console.log(_benefit)
       if (_benefit.status === 201) {
          addToast('Beneficio canejado, mire su email', { appearance: 'success', autoDismiss: true, })
       } else {
@@ -36,10 +37,10 @@ const BeneficiosCard = ({ localData, myPoints }) => {
          </div>
          <div className="CardContainer-Bottom" >
             {description}
-            {canSwap ? <Button className="mt-4" variant="primary" size="md" onClick={redeemBenefit} block>
+            {canSwap ? <Button className="mt-4" variant="success" size="md" onClick={getBenefit} block>
                Canjear premio
-            </Button> : <Button className="mt-4" variant="primary" size="md" block disabled>
-                  Le faltan {necessary_points - myPoints} puntos para este premio
+            </Button> : <Button className="mt-4" variant="danger" size="md" block disabled>
+                  Le faltan {necessary_points - profile.benefits_points} puntos para este premio
             </Button>}
          </div>
      

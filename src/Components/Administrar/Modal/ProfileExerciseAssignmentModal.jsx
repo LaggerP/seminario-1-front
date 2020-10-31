@@ -7,23 +7,29 @@ import Modal from 'react-bootstrap/Modal'
 import './ProfileExerciseAssignmentModal.scss'
 import Card from 'react-bootstrap/Card';
 import Select from 'react-select';
-import { getAllExercises, assignExercises } from '../../../Api/services/administrarServices';
+import { assignExercises } from '../../../Api/services/administrarServices';
 import { useToasts } from 'react-toast-notifications'
 
-
+const options = [
+  { value: 'Todos', label: 'Todos los módulos' },
+  { value: 'Contador', label: 'Módulo Contador' },
+  { value: 'Lectura', label: 'Módulo Lectura' },
+];
 
 const ProfileExerciseAssignmentModal = (props) => {
   const [show, setShow] = useState(false);
   const handleClose = () => { props.onHide() };
   const [selectedOption, setSelectedOption] = useState([]);
-  const { addToast } = useToasts()
+  const { addToast } = useToasts();
+  const [exercises, setExercises] = useState(props.exercises);
+  const [allExercises, setAllExercises] = useState(props.exercises);
 
-  const selectExercises = async (exercise) => { 
-    await setSelectedOption(exercise)  
+
+  const selectExercises = async (exercise) => {
+    await setSelectedOption(exercise);
   };
 
-  const confirmSelection = async () => { 
-    
+  const confirmSelection = async () => {
     let data = {
       profile_id: props.data.id,
       selectedOption: selectedOption
@@ -35,10 +41,13 @@ const ProfileExerciseAssignmentModal = (props) => {
       addToast('Hubo un error. Intente nuevamente', { appearance: 'success', autoDismiss: true, })
     }
     props.onHide()
-
   };
 
-
+  const changeModule = async (e) => {
+    setSelectedOption(e.value)
+    const _exercises = await allExercises.filter(exercise => (exercise.module === e.value))
+    _exercises.length === 0 ? setExercises(allExercises) : setExercises(_exercises)
+ }
 
   return (
     <Modal
@@ -52,46 +61,38 @@ const ProfileExerciseAssignmentModal = (props) => {
         <Modal.Title id="contained-modal-title-vcenter">
           Asignar ejercicios
          </Modal.Title>
-
       </Modal.Header>
       <Modal.Body>
         <Form>
           <Form.Group controlId="" style={{ marginTop: 0 }}>
-            <select className="browser-default custom-select">
-              <option>Seleccione el modulo:</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-
-            </select>
-            <br />
-            <br />
+            <Select
+              defaultValue={selectedOption}
+              onChange={changeModule}
+              options={options}
+              placeholder="Filtrar por módulo"
+            />
+            <br/>
             <Select
               isMulti
               name="exercises"
-              options={props.exercises}
+              options={exercises}
               className="basic-multi-select"
               classNamePrefix="select"
               onChange={selectExercises}
+              placeholder="Seleccionar ejercicios"
             />
-
           </Form.Group>
-
-
           <Row>
             <Col xs={12} md={6}>
               <Button variant="info" size="sm" block onClick={handleClose}>Cerrar</Button>{' '}
             </Col>
             <Col xs={12} md={6}>
-              <Button variant="success" onClick={()=> confirmSelection()} size="sm" block>Guardar selección</Button>{' '}
+              <Button variant="success" onClick={() => confirmSelection()} size="sm" block>Guardar selección</Button>{' '}
             </Col>
           </Row>
         </Form>
-
       </Modal.Body>
     </Modal>
-
-
   );
 }
 

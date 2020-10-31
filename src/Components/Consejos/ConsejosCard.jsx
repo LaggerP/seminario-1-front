@@ -18,10 +18,9 @@ const ConsejosCard = ({ id, title, content, status }) => {
 
    const [modalShow, setModalShow] = React.useState(false);
    const [deleteModal, setDeleteModal] = React.useState(false);
-   const [consejoContent, setconsejoContent] = React.useState()
+   const [consejoContent, setconsejoContent] = React.useState();
 
    const rol = getRol();
-
    const consejoData = { id, title, content, status }
 
    return (
@@ -34,7 +33,7 @@ const ConsejosCard = ({ id, title, content, status }) => {
                      {title}
                   </Col>
                   {
-                     rol == 2 ?
+                     rol === 2 ?
                         <Col className='col-lg-2 text-right'>
                            <div className='d-flex flex-row-reverse'>
                               <OverlayTrigger overlay={<Tooltip>Eliminar consejo</Tooltip>}>
@@ -54,7 +53,6 @@ const ConsejosCard = ({ id, title, content, status }) => {
                   }
 
                </Row>
-
             </Card.Header>
             <Card.Body>
                <Card.Text>
@@ -62,13 +60,11 @@ const ConsejosCard = ({ id, title, content, status }) => {
                </Card.Text>
             </Card.Body>
          </Card>
-
          <EditConsejoModal
             data={consejoContent}
             show={modalShow}
             onHide={() => setModalShow(false)}
          />
-
          <DeleteConsejoModal
             data={consejoContent}
             show={deleteModal}

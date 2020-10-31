@@ -42,15 +42,13 @@ const Consejos = () => {
                      </div>
                   </div>
                </Row>
-
                {
-                  rol == 2 ?
+                  rol === 2 ?
                      <Row>
                         <div className='add-button hvr-grow' onClick={() => { setModalShow(true) }} ><IoMdAdd className='add-Icon' />Agregar consejo</div>
                      </Row>
                      : null
                }
-
                <Row>
                   <div className='cardsContainer'>
                      {consejos.map((consejo) => (<ConsejosCard {...consejo} />))}
@@ -73,7 +71,6 @@ const Consejos = () => {
       );
 
    } else {
-
       return (<Loading />)
    }
 

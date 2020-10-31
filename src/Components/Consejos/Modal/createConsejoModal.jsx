@@ -8,6 +8,7 @@ import Popover from 'react-bootstrap/Popover'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import { BiInfoCircle } from "react-icons/bi";
 import { create } from '../../../Api/services/consejosServices'
+import { useToasts } from 'react-toast-notifications'
 
 const popover = (
     <Popover id="popover-basic">
@@ -20,14 +21,14 @@ const popover = (
 
 const CreateConsejoModal = (props) => {
 
+    const { addToast } = useToasts()
     const [isLoading, setLoading] = useState(false);
-    const handleClose = () => { props.onHide() };
-
     const [consejoContent, setconsejoContent] = useState({
         title: "",
         content: "",
     })
 
+    const handleClose = () => { props.onHide() };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -41,8 +42,9 @@ const CreateConsejoModal = (props) => {
         setLoading(true)
         await create(consejoContent).then((response) => {
             setLoading(false);
+            addToast('Se creó el consejo exitosamente', { appearance: 'success', autoDismiss: true, })
             props.onHide();
-            window.location.reload(false);
+            setTimeout(() => { window.location.reload(false) }, 3000);
         }).catch((error) => console.log(error.response));
     };
 

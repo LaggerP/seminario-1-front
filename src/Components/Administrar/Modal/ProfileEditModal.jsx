@@ -11,8 +11,6 @@ import { updatePatient } from '../../../Api/services/administrarServices';
 import { useHistory } from 'react-router-dom'
 import { useToasts } from 'react-toast-notifications'
 
-
-
 const ProfileEditModal = (props) => {
     const { addToast } = useToasts()
 

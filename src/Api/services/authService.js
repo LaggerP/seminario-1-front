@@ -4,9 +4,8 @@ const axios = require('axios');
 export const register = async (userData) => {
    try {
       return await axios.post(endpoints.register, userData);
-     
    } catch (error) {
-      return error.response
+      return error.response;
    }
 }
 
@@ -14,10 +13,10 @@ export const login = async (userData) => {
    try {
       const _response = await axios.post(endpoints.login, userData)
       if (_response.data.rol == 3) {
-         await setPatientStorageData(_response.data.token, userData.username, _response.data.profiles, _response.data.rol, _response.data.id )
+         await setPatientStorageData(_response.data.token, userData.username, _response.data.profiles, _response.data.rol, _response.data.id);
          return _response;
       }
-      await setMedicStorageData(_response.data.token, userData.username, _response.data.rol, _response.data.id)
+      await setMedicStorageData(_response.data.token, userData.username, _response.data.rol, _response.data.id);
       return _response;
 
    } catch (error) {
@@ -34,7 +33,6 @@ export const getUserDBId = () => sessionStorage.getItem('userId')
 export const getProfiles = () => JSON.parse(localStorage.getItem('userProfiles'))
 export const getProfileData = () => JSON.parse(localStorage.getItem('profileData'));
 
-
 export const setProfileData = (profileData) => localStorage.setItem('profileData', JSON.stringify(profileData));
 
 export const logOut = (cb) => {
@@ -49,6 +47,7 @@ const removeStorageData = () => {
    localStorage.removeItem('activeSession');
    localStorage.removeItem('sessionName');
    localStorage.removeItem('userProfiles');
+   localStorage.removeItem('profileData')
 
 }
 

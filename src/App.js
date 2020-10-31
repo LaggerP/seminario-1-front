@@ -44,15 +44,16 @@ function App() {
                 <div className='userNav'>
                   <img src="https://www.pngkit.com/png/full/115-1150342_user-avatar-icon-iconos-de-mujeres-a-color.png" alt="userPhoto" height="75px" width="auto" id="icon" />
                 </div>
-                <div className='userNav' style={{ color: 'white' }}>
-                  <span>Tus puntos: {benefitsPoints}</span>
-                  <div>
-                    <Link to="/beneficios" className='size' style={{ color: 'white', textDecoration: 'none' }}>
-                      <BiGift style={{ height: '1.5em', width: '1.5em' }} />Mis premios
-                  </Link>
-                  </div>
-
-                </div>
+                {
+                  rol === 3 ?
+                    <div className='userNav' style={{ color: 'white' }}>
+                      <div>
+                        <Link to="/beneficios" className='size' style={{ color: 'white', textDecoration: 'none', paddingTop: '5px' }}>
+                          <BiGift style={{ height: '1.5em', width: '1.5em', }} />Premios
+                        </Link>
+                      </div>
+                    </div> : null
+                }
               </div>
             </div>
 
@@ -62,7 +63,7 @@ function App() {
                 <div className={menuItem === 'Inicio' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Inicio')} data-hover="Inicio"><div><AiOutlineHome className="iconStyle" /></div></div>
               </Link>
               {
-                rol == 3 ?
+                rol === 3 ?
                   <Link to="/ejercicios" className='size'>
                     <div className={menuItem === 'Ejercicios' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Ejercicios')} data-hover="Ejercicios"><div><GiPerspectiveDiceSixFacesOne className="iconStyle" /></div></div>
                   </Link>
@@ -83,7 +84,7 @@ function App() {
 
 
               {
-                rol == 2 ?
+                rol === 2 ?
                   <Link to="/administrar" className='size'>
                     <div className={menuItem === 'Administrar' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Administrar')} data-hover="Administrar"><div><FiEdit className="iconStyle" /></div></div>
                   </Link> : null

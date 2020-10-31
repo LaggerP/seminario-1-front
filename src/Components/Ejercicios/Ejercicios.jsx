@@ -59,14 +59,14 @@ const Ejercicios = () => {
    }
 
    const getGameData = async (e) => {
-      await setDataExercise(e)
-      setShowExercise(false)
+      await setDataExercise(e);
+      setShowExercise(false);
    }
 
    const changeModule = async (e) => {
       setSelectedOption(e.value)
-      const _exercises = await allExercises.filter(exercise => (exercise.module === e.value))
-      _exercises.length === 0 ? setExercises(allExercises) : setExercises(_exercises)
+      const _exercises = await allExercises.filter(exercise => (exercise.module === e.value));
+      _exercises.length === 0 ? setExercises(allExercises) : setExercises(_exercises);
    }
 
 
@@ -137,7 +137,9 @@ const Ejercicios = () => {
       }
    } else {
       return (
-         <h1>cargando</h1>
+         <div className="NonExercises">
+                 <h1>No posee ningún ejercicio asignado</h1>
+            </div>
       )
    }
 };

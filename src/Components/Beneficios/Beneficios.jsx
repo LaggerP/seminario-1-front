@@ -4,25 +4,27 @@ import BeneficiosCard from './BeneficiosCard'
 import './Beneficios.scss'
 import { getAllBenefits } from '../../Api/services/benefitsServices'
 import { ToastProvider } from 'react-toast-notifications'
+import { getProfileData } from '../../Api/services/authService';
 
 
 class Benefits extends Component {
    constructor(props) {
       super(props);
       this.state = {
-         points: 0,
-         shops: []
+         shops: [],
+         profile: []
       }
    }
 
    async componentDidMount() {
-      this.setState({ points: 100 })
+      this.setState({ profile: await getProfileData() })
       this.setState({ shops: await getAllBenefits() })
    }
 
    render() {
 
-      const { shops, points } = this.state
+      const { shops, profile } = this.state
+      console.log(profile)
       return (
          <div className="BeneficiosContainer">
 
@@ -32,8 +34,9 @@ class Benefits extends Component {
                      <div className="BeneficiosContainer-Bienvenida-Imagen">
                      </div>
                      <div className="BeneficiosContainer-Bienvenida-Texto">
-                        <h2>Username, estos son tus premios</h2>
-                        <h3>Actualmente cuentas con {points} puntos</h3>
+                        <h2>{profile.firstname}, estos son los premios que puedes canjear</h2>
+                        <br/>
+                        <h4>Actualmente cuentas con {profile.benefits_points} puntos</h4>
                      </div>
                   </div>
                </Row>
@@ -43,12 +46,10 @@ class Benefits extends Component {
                         return (
                            <Col xs={12} md={4} >
                            <ToastProvider>
-                              <BeneficiosCard localData={shop} myPoints={points}/>
+                              <BeneficiosCard localData={shop} profile={profile}/>
                               </ToastProvider>
                            </Col>
-
                         )
-
                      })
                   }
                </Row>
@@ -57,6 +58,5 @@ class Benefits extends Component {
       );
    }
 }
-
 
 export default Benefits

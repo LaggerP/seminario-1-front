@@ -10,6 +10,7 @@ import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import { BiInfoCircle } from "react-icons/bi";
 import { register } from '../../../Api/services/authService'
 import { getUserDBId } from '../../../Api/services/authService'
+import { useToasts } from 'react-toast-notifications'
 
 
 const popover = (
@@ -32,7 +33,8 @@ const UserCreationModal = (props) => {
       email: "",
       profiles: []
    })
-
+   
+   const { addToast } = useToasts()
 
    const handleChange = (e) => {
       const { name, value } = e.target;
@@ -46,8 +48,10 @@ const UserCreationModal = (props) => {
       setLoading(true)
       responsableData.medicDBId = getUserDBId();
       await register(responsableData).then((response) => {
-         setLoading(false)
-         props.onHide()
+         setLoading(false);
+         addToast('Se creó el usuario, el mismo debe revisar su email para tener las credencias de acceso', { appearance: 'success', autoDismiss: true, })
+         props.onHide();
+         setTimeout(()=> { window.location.reload(false)}, 3000);
       }).catch((error) => console.log(error.response));
    };
 

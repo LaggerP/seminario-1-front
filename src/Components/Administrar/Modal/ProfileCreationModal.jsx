@@ -64,12 +64,10 @@ const ProfileCreationModal = (props) => {
                   <Form.Control type="text" placeholder="Apellido(s)" name="lastname" value={profileData.lastname} onChange={handleChange} />
                </Form.Group>
             </Form>
-
             <Button variant="info" size="sm" block onClick={() => addProfile()}>+ Agregar perfil</Button>{' '}
          </Modal.Body>
       </Modal>
    );
 }
-
 
 export default ProfileCreationModal
