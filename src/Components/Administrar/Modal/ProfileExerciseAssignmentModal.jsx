@@ -13,7 +13,6 @@ import { useToasts } from 'react-toast-notifications'
 
 
 const ProfileExerciseAssignmentModal = (props) => {
-  console.log(props)
   const [show, setShow] = useState(false);
   const handleClose = () => { props.onHide() };
   const [selectedOption, setSelectedOption] = useState([]);

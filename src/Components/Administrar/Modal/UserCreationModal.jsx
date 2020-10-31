@@ -51,8 +51,6 @@ const UserCreationModal = (props) => {
       }).catch((error) => console.log(error.response));
    };
 
-
-
    return (
       <Modal
          {...props}
