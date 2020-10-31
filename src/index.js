@@ -2,12 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { BrowserRouter as Router } from 'react-router-dom'
 import * as serviceWorker from './serviceWorker';
+import { ToastProvider } from 'react-toast-notifications'
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Router>
+    <ToastProvider>
+
+      <App />
+    </ToastProvider>
+
+  </Router>,
   document.getElementById('root')
 );
 
