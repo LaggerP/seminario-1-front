@@ -1,7 +1,6 @@
 import React from 'react';
 import './Consejos.scss';
 import {
-   Container,
    Row,
    Card,
    Col,
@@ -33,7 +32,7 @@ const ConsejosCard = ({ id, title, content, status }) => {
                      {title}
                   </Col>
                   {
-                     rol === 2 ?
+                     rol == 2 ?
                         <Col className='col-lg-2 text-right'>
                            <div className='d-flex flex-row-reverse'>
                               <OverlayTrigger overlay={<Tooltip>Eliminar consejo</Tooltip>}>

@@ -24,9 +24,8 @@ const render = ({ hours, minutes, seconds, completed }) => {
 };
 
 const Ejercicio = ({ dataExercise }) => {
-   console.log(dataExercise)
    const profileData = getProfileData()
-   const { description, timer, name } = dataExercise
+   const { consigna, timer, name } = dataExercise
    const [exerciseFinished, setExerciseFinished] = useState(false);
    const [exerciseOngoing, setExerciseOngoing] = useState(false);
 
@@ -60,7 +59,7 @@ const Ejercicio = ({ dataExercise }) => {
                dataExercise.module === 'Contador' ?
                   <div>
                      <Row style={{ paddingTop: '5%' }} className="justify-content-md-center">
-                        <h2>Consigna: <strong>{description}</strong></h2>
+                        <h2>Consigna: <strong>{consigna}</strong></h2>
                      </Row>
 
                      <Row className="justify-content-md-center pt-5">
@@ -115,18 +114,18 @@ const Ejercicio = ({ dataExercise }) => {
                      </Row>
                   </div>
                   : 
-                  
                   <div>
                      <Row style={{ paddingTop: '5%' }} className="justify-content-md-center">
                            <h3>Debes completar los espacios subrayados con tus propias palabras</h3>
-                           <h4 style={{ paddingTop: '5%' }}><strong>{description}</strong></h4>
+                           <h4 style={{ paddingTop: '5%' }}><strong>{consigna}</strong></h4>
                      </Row>
                   </div>
             }
             <Row className="justify-content-md-center" style={{ paddingTop: '10%' }}>
                <Col xs={12} md={6}>
                   <Link to="/ejercicios">
-                     <Button className="botonEjercicio" disabled={exerciseOngoing}>Salir</Button>
+         
+                     <Button className="botonEjercicio" onClick={() => window.location.reload(false)} disabled={exerciseOngoing}>Salir</Button>
                   </Link>
                </Col>
                <Col xs={12} md={6}>

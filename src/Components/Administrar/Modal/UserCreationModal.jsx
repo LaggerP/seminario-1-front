@@ -51,7 +51,7 @@ const UserCreationModal = (props) => {
          setLoading(false);
          addToast('Se creó el usuario, el mismo debe revisar su email para tener las credencias de acceso', { appearance: 'success', autoDismiss: true, })
          props.onHide();
-         setTimeout(()=> { window.location.reload(false)}, 3000);
+         setTimeout(()=> { window.location.reload(false)}, 1500);
       }).catch((error) => console.log(error.response));
    };
 

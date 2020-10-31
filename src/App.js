@@ -45,7 +45,7 @@ function App() {
                   <img src="https://www.pngkit.com/png/full/115-1150342_user-avatar-icon-iconos-de-mujeres-a-color.png" alt="userPhoto" height="75px" width="auto" id="icon" />
                 </div>
                 {
-                  rol === 3 ?
+                  rol == 3 ?
                     <div className='userNav' style={{ color: 'white' }}>
                       <div>
                         <Link to="/beneficios" className='size' style={{ color: 'white', textDecoration: 'none', paddingTop: '5px' }}>
@@ -63,7 +63,7 @@ function App() {
                 <div className={menuItem === 'Inicio' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Inicio')} data-hover="Inicio"><div><AiOutlineHome className="iconStyle" /></div></div>
               </Link>
               {
-                rol === 3 ?
+                rol == 3 ?
                   <Link to="/ejercicios" className='size'>
                     <div className={menuItem === 'Ejercicios' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Ejercicios')} data-hover="Ejercicios"><div><GiPerspectiveDiceSixFacesOne className="iconStyle" /></div></div>
                   </Link>
@@ -84,7 +84,7 @@ function App() {
 
 
               {
-                rol === 2 ?
+                rol == 2 ?
                   <Link to="/administrar" className='size'>
                     <div className={menuItem === 'Administrar' ? 'menuItemSelected menu-button button-text' : 'menu-button button-text'} onClick={() => setSelected('Administrar')} data-hover="Administrar"><div><FiEdit className="iconStyle" /></div></div>
                   </Link> : null

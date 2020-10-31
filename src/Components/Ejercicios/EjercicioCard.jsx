@@ -8,13 +8,13 @@ const finalizado = <span>Finalizado <BiCheckDouble size={25}/></span>
 const sinHacer = <span>Sin hacer <BiJoystick size={25}/></span>
 
 
-const EjercicioCard = ({goToExercise, name, description, exercise, module, finished, id}) => {
+const EjercicioCard = ({goToExercise, name, description, image, module, finished, id}) => {
    return (
       <div className="CardContainer" onClick={goToExercise} disabled>
          <div className={finished ? 'CardContainer-StatusTrue' : "CardContainer-StatusFalse"} >
             <span>{finished ? finalizado: sinHacer}</span>
          </div>
-         <div className="CardContainer-Center" style={{ backgroundImage: `url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ_XDJ9l6LT0aN4yB4qU2vM0YIiHjlU7oNRMw&usqp=CAU)` }}>
+         <div className="CardContainer-Center" style={{ backgroundImage: `url(${image})` }}>
          </div>
          <div className="CardContainer-Badges">
             <Badge variant="info">Ejercicio {id}</Badge>{' '}

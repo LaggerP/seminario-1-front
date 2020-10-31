@@ -69,7 +69,6 @@ const Ejercicios = () => {
       _exercises.length === 0 ? setExercises(allExercises) : setExercises(_exercises);
    }
 
-
    if (exercises.length > 0) {
       if (showExercise) {
          return (
@@ -91,9 +90,8 @@ const Ejercicios = () => {
                            defaultValue={selectedOption}
                            onChange={changeModule}
                            options={options}
-                           placeholder="Buscar por módulo"
+                           placeholder="Filtrar por módulo"
                         />
-
                      </Col>
                      <Col style={{ paddingTop: '4.5%', paddingLeft: 0 }}>
                         <OverlayTrigger trigger="click" rootClose placement="right" overlay={popover} >
@@ -105,15 +103,17 @@ const Ejercicios = () => {
                   <Row style={{ paddingTop: '2.5%' }}>
                      {
                         exercises.map((data, index) => {
-                           const { id, name, description, exercise, module, finished } = data
+                           const { id, name, description, consigna, image, module, finished } = data
+                           console.log(image)
                            return (
                               <Col xs={12} md={4} key={data.id} value={data} onClick={() => { getGameData(data) }}>
                                  <EjercicioCard
                                     name={name}
                                     description={description}
-                                    exercise={exercise}
+                                    consigna={consigna}
                                     module={module}
                                     finished={finished}
+                                    image={image}
                                     id={id}
                                  />
                               </Col>

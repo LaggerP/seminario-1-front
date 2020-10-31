@@ -44,7 +44,7 @@ const EditConsejoModal = (props) => {
             setLoading(false);
             addToast('Se editó el consejo exitosamente', { appearance: 'success', autoDismiss: true, })
             props.onHide();
-            setTimeout(() => { window.location.reload(false) }, 3000);
+            setTimeout(() => { window.location.reload(false) }, 1500);
         }).catch((error) => console.log(error.response));
     }
 

@@ -43,7 +43,7 @@ const Consejos = () => {
                   </div>
                </Row>
                {
-                  rol === 2 ?
+                  rol == 2 ?
                      <Row>
                         <div className='add-button hvr-grow' onClick={() => { setModalShow(true) }} ><IoMdAdd className='add-Icon' />Agregar consejo</div>
                      </Row>
