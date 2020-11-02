@@ -23,6 +23,7 @@ const BeneficiosCard = ({ localData, profile }) => {
       console.log(_benefit)
       if (_benefit.status === 201) {
          addToast('Beneficio canjeado, mire su email', { appearance: 'success', autoDismiss: true, })
+         setTimeout(()=> { window.location.reload(false)}, 5000);
       } else {
          addToast("Ocurrió un error! intente dentro de un rato", { appearance: 'warning', autoDismiss: true, })
       }

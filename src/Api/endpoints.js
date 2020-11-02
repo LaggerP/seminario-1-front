@@ -6,6 +6,7 @@ const endpoints = {
    //auth endpoints
     login:`${urlApi}/api/user/login`,
     register:`${urlApi}/api/user/register`,
+    profileById: `${urlApi}/api/profile/`,
 
     //benefits endpoints
     getAllBenefits: `${urlApi}/api/benefits/list`,
