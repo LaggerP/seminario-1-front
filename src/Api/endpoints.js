@@ -17,6 +17,13 @@ const endpoints = {
     getAllExercises: `${urlApi}/api/administrar/exercises`,
     assignExercises: `${urlApi}/api/administrar/setExercises`,
   
+    //turnos endpoints
+    listTurns: `${urlApi}/api/administrar/listTurns`,
+    assignTurn: `${urlApi}/api/administrar/assignTurn`,
+    updateTurn: `${urlApi}/api/administrar/updateTurn`,
+    deleteTurn: `${urlApi}/api/administrar/deleteTurn`,
+
+
     //consejos endpoints
     getAllConsejos: `${urlApi}/api/consejos/list`,
     createConsejo: `${urlApi}/api/consejos/create`,

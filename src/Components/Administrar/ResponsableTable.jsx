@@ -83,6 +83,8 @@ const ResponsableTable = ({ id, username, email, firstname, lastname, profiles, 
 
          <ProfileVisitAssignmentModal
             show={modalVisitAssignment}
+            data={profileData}
+            fetchData={fetchData}
             onHide={() => setModalVisitAssignment(false)}
          />
       </div>

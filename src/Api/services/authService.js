@@ -29,8 +29,13 @@ export const isConnected = () => localStorage.getItem('activeSession')
 export const getUsername = () => localStorage.getItem('sessionUsername')
 export const getUser = () => localStorage.getItem('sessionUser')
 export const getRol = () => sessionStorage.getItem('userRol')
+
+//Me devuelve mi id de la tabla users.
 export const getUserDBId = () => sessionStorage.getItem('userId')
+
 export const getProfiles = () => JSON.parse(localStorage.getItem('userProfiles'))
+
+//Toda la info necesaria del perfil seleccionado.
 export const getProfileData = () => JSON.parse(localStorage.getItem('profileData'));
 
 export const setProfileData = (profileData) => localStorage.setItem('profileData', JSON.stringify(profileData));

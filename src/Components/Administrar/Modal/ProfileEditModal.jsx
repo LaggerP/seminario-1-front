@@ -48,7 +48,7 @@ const ProfileEditModal = (props) => {
             addToast('Hubo un error. Intente nuevamente', { appearance: 'success', autoDismiss: true, })
         }
         props.onHide()
-
+        
     }
 
     if (props.data !== undefined) {

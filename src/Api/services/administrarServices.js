@@ -22,6 +22,42 @@ export const updatePatient = async (data) => {
    }
 }
 
+export const listTurns = async () => {
+   try {
+      const _turnos = await axios.get(endpoints.listTurns)
+      return _turnos.data; //El list de consejos tiene el .data pero el getAllExercises no
+  } catch (error) {
+      console.log(error)
+  }
+}
+
+export const assignTurn = async (data) => {
+   try {
+      const _newTurn = await axios.post(endpoints.assignTurn, data);
+      return _newTurn
+   } catch (error) {
+       console.log(error)
+   }
+}
+
+export const updateTurn = async (newContent) => {
+   try {
+      const _updatedTurn = await axios.post(endpoints.updateTurn, newContent);
+      return _updatedTurn
+  } catch (error) {
+      console.log(error)
+  }
+}
+
+export const deleteTurn = async (turnoID) => {
+   try {
+      const _deletedTurn = await axios.post(endpoints.deleteTurn, turnoID);
+      return _deletedTurn
+  } catch (error) {
+      console.log(error)
+  }
+}
+
 
 export const getAllExercises = async (data) => {
    try {

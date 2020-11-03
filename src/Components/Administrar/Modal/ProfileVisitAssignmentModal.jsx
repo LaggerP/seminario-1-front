@@ -4,35 +4,63 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Popover from 'react-bootstrap/Popover'
+import { assignTurn } from '../../../Api/services/administrarServices'
+import { useToasts } from 'react-toast-notifications'
+import { getUserDBId } from '../../../Api/services/authService';
+import { getProfileData } from '../../../Api/services/authService';
 
+
+const popover = (
+   <Popover id="popover-basic">
+       <Popover.Title as="h4">Información importante</Popover.Title>
+       <Popover.Content>
+           ¡Hola, doctorName <span role="img" aria-label="SmileFace">😄</span>! Complete los siguientes campos para asignar un nuevo turno.
+       </Popover.Content>
+   </Popover>
+);
 
 const ProfileVisitAssignmentModal = (props) => {
-   const [profileData, setProfileData] = useState({
-      visit_date: "",
-      visit_time: ""
+
+   const { addToast } = useToasts()
+   const [isLoading, setLoading] = useState(false);
+   const [turnoData, setTurnoData] = useState({
+      turn_date: "",
+      turn_time: "",
+      // profile_id???,
+      // doctor_id????,
+      comments: "",
    })
+
+   const handleClose = () => { props.onHide() };
 
    const handleChange = (e) => {
       const { name, value } = e.target;
-      setProfileData({
-         ...profileData,
+      setTurnoData({
+         ...turnoData,
          [name]: value
       });
    }
 
-   // const handleSubmit = () => {
-   //    // addVisit();
-   //    var dateValue = document.querySelector('input[type="date"]').value;
-   //    var timeValue = document.querySelector('input[type="time"]').value;
-   //    console.log(dateValue, timeValue);
-   //    props.onHide()
-   // }
+   const assignTurno = async () => {
+      // var dateValue = document.querySelector('input[type="date"]').value;
+      // var timeValue = document.querySelector('input[type="time"]').value;
+      console.log(turnoData.turn_date);
+      console.log(turnoData.turn_time);
+      console.log(turnoData.comments);
+      let id_user = getUserDBId();
+      let info_perfil = getProfileData();
+      console.log(id_user);
+      // console.log(info_perfil.id)
 
-   const addVisit = () => {
-      var dateValue = document.querySelector('input[type="date"]').value;
-      var timeValue = document.querySelector('input[type="time"]').value;
-      props.onHide()
-   }
+      setLoading(true)
+        await assignTurn(turnoData).then((response) => {
+            setLoading(false);
+            addToast('Se creó el turno exitosamente', { appearance: 'success', autoDismiss: true, })
+            props.onHide();
+            setTimeout(() => { window.location.reload(false) }, 1500);
+        }).catch((error) => console.log(error.response));
+   };
 
    return (
       <Modal
@@ -51,18 +79,22 @@ const ProfileVisitAssignmentModal = (props) => {
             <Form>
                <Form.Group controlId="" style={{marginTop:0}}>
                   <Form.Label>Fecha del Turno</Form.Label>
-                  <Form.Control type="date" name="visit_date" value={profileData.visit_date} onChange={handleChange} required />
+                  <Form.Control type="date" name="turn_date" value={turnoData.turn_date} onChange={handleChange} required />
                </Form.Group>
                <Form.Group controlId="" style={{marginTop:0}}>
                   <Form.Label>Hora del Turno</Form.Label>
-                  <Form.Control type="time" name="visit_time" value={profileData.visit_time} onChange={handleChange} required />
+                  <Form.Control type="time" name="turn_time" value={turnoData.turn_time} onChange={handleChange} required />
+               </Form.Group>
+               <Form.Group controlId="" style={{marginTop:0}}>
+                  <Form.Label>Comentarios</Form.Label>
+                  <Form.Control as="textarea" rows={3} name="comments" value={turnoData.comments} onChange={handleChange} placeholder="Comentarios" />
                </Form.Group>
                <Row>
                   <Col xs={12} md={6}>
-                     <Button variant="info" size="sm" block onClick={() => addVisit()}>Cerrar</Button>{' '}
+                     <Button variant="info" size="sm" block onClick={() => handleClose()}>Cerrar</Button>{' '}
                   </Col>
                   <Col xs={12} md={6}>
-                     <Button variant="success" onClick={() => addVisit()} size="sm" block>Asignar turno</Button>{' '}
+                     <Button variant="success" onClick={() => assignTurno()} size="sm" block>{isLoading ? 'Asignando turno....' : 'Asignar'}</Button>{' '}
                   </Col>
                </Row>
             </Form>
