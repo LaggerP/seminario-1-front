@@ -5,86 +5,45 @@ import {
    Row,
    Table,
 } from 'react-bootstrap';
-import { PacientesMock, ResponsablesMock } from './PacientesMock_seguimiento'
 import { useState } from "react";
-import { BsCalendar } from "react-icons/bs";
 import { AiOutlineSearch } from "react-icons/ai";
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
-import Tooltip from 'react-bootstrap/Tooltip'
-import ProfileVisitAssignmentModal from './ModalFecha';
+import { getAllMedicData, getAllExercises } from '../../Api/services/administrarServices';
+import ResponsableTable from './ResponsableTable'
+import { getRol } from '../../Api/services/authService'
 
-
-
-
-const ResponsableTable = ({ id, nombre, apellido }) => {
-   const idResp = id;
-   const [modalVisitAssignment, setModalVisitAssignment] = React.useState(false);
-
-
-   return (
-      <div>
-         <h2 className='table-title table-title-text'>{nombre} {apellido}</h2>
-
-         
-         <Table className='table-style'>
-            <thead>
-               <tr>
-                  <th>DNI</th>
-                  <th>Nombre</th>
-                  <th>Apellido</th>
-                  <th>Fecha de Nacimiento</th>
-                  <th>Tipo de Tratamiento</th>
-                  
-                 
-               </tr>
-            </thead>
-
-            {
-               PacientesMock.map((pacienteInfo, index) => {
-                  if (pacienteInfo.idResponsable === idResp) {
-                     return (
-                        <tbody>
-                           <tr>
-                              <td>{pacienteInfo.documento}</td>
-                              <td>{pacienteInfo.nombre}</td>
-                              <td>{pacienteInfo.apellido}</td>
-                              <td>{pacienteInfo.fechaNacimiento}</td>
-                              <td>{pacienteInfo.TipoTratamiento}</td>
-                             
-                              <td>
-                              <Row className='flex-row-reverse'>
-                              <OverlayTrigger overlay={<Tooltip>Filtrar fecha</Tooltip>}>
-                                       <div className='icon-size' onClick={() => setModalVisitAssignment(true)}><BsCalendar className='icon-styles' /></div>
-                                    </OverlayTrigger>
-                                    </Row>
-                              </td>
-                              
-                           </tr>
-                        </tbody>
-                        
-                        
-                     )
-                  }
-
-                  })
-               }
-           
-         </Table>
-         <ProfileVisitAssignmentModal
-            show={modalVisitAssignment}
-            onHide={() => setModalVisitAssignment(false)}
-         />
-         
-
-      </div>
-   );
-};
+  
 
 
 const Seguimiento = ({ }) => {
    // Search bar
    const [filter, setFilter] = useState(null);
    const [modalShow, setModalShow] = React.useState(false);
+   const [showData, setShowData] = React.useState(false);
+   const [medicData, setMedicData] = React.useState({});
+   const [exercises, setExercises] = useState({});
+   const rol = getRol();
+
+   React.useEffect(function effectFunction() {
+      fetchData();
+   }, []);
+
+
+   async function fetchData() {
+      let exercisesByModule = []
+      const _medicData = await getAllMedicData();
+      const _exercises = await getAllExercises();
+      _exercises.data.modules.map(module => {
+            module.exercises.map(exercise => {
+               let data = {module:module.moduleName, value: exercise.id, label: exercise.name, color: '#00B8D9', isFixed: true };
+               exercisesByModule.push(data)
+            })
+      })
+      setMedicData(_medicData);
+      setExercises(exercisesByModule);
+      setShowData(true)
+   }
+
+
    
 
    const searchSpace = (event) => {
@@ -92,19 +51,7 @@ const Seguimiento = ({ }) => {
       setFilter(keyword);
    };
 
-   const responsablesItem = ResponsablesMock.filter((data) => {
-      if (filter === null) {
-         return data;
-      }
-      else if (data.nombre.toLowerCase().includes(filter.toLowerCase()) || data.apellido.toLowerCase().includes(filter.toLowerCase())) {
-         return data;
-      }
-   }).map(data => {
-      return (
-         <ResponsableTable {...data}></ResponsableTable>
-      )
-   });
-
+   if (showData) {
    return (
       <div>
          <Container>
@@ -121,26 +68,25 @@ const Seguimiento = ({ }) => {
                <input type="text" placeholder="Buscar responsable" className='search-bar' onChange={(e) => searchSpace(e)} />
               
             </Row>
-
-
-         
-
-         
-
-
             <div className='tables-container'>
-               {responsablesItem}
+            {
+                     medicData.filter((data) => {
+                        const {firstname, lastname} = data;
+                        if (filter === null) return data;
+                        else if (firstname.toLowerCase().includes(filter.toLowerCase()) || lastname.toLowerCase().includes(filter.toLowerCase())) {
+                           return data;
+                        }
+                     }).map(data => <ResponsableTable {...data} exercises={exercises} />)
+                  }
+               </div>
+            </Container>
       
-              
-           
-              
-            </div>
-         </Container>
-      
-      </div>
+         </div>
       
 
-   );
+      );
+   } else return (<p>cargando</p>)
+
 };
 
 export default Seguimiento;

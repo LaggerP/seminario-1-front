@@ -4,40 +4,32 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Alert from 'react-bootstrap/Alert'
 import Collapse from 'react-bootstrap/Collapse'
+import Badge from 'react-bootstrap/Badge'
+import EjercicioCard from './Seguimientos/Seguimientos';
+import { id } from 'date-fns/locale';
 
 
-const ProfileVisitAssignmentModal = (props) => {
-   const [open, setOpen] = useState(false);
-   const [profileData, setProfileData] = useState({
-      visit_date: "",
-   
-   })
+   const ProfileVisitAssignmentModal = (props) => {
+      const [consigna, setConsigna] = useState(false);
+      const [profileData, setProfileData] = useState({
+         visit_date: "",
+       
+      })
 
-   const handleChange = (e) => {
-      const { name, value } = e.target;
-      setProfileData({
-         ...profileData,
-         [name]: value
-      });
-   }
-
-   // const handleSubmit = () => {
-   //    // addVisit();
-   //    var dateValue = document.querySelector('input[type="date"]').value;
-   //    var timeValue = document.querySelector('input[type="time"]').value;
-   //    console.log(dateValue, timeValue);
-   //    props.onHide()
-   // }
-
-
+  
    
    const addVisit = () => {
-      var dateValue = document.querySelector('input[type="date"]').value;
+      setConsigna(!consigna)
+      const dateValue = document.querySelector('input[type="date"]').value;
+      console.log(profileData.visit_date)
+      console.log(dateValue)
       props.onHide()
+
    }
-  
+   
+
+   
 
    return (
       <Modal
@@ -52,36 +44,23 @@ const ProfileVisitAssignmentModal = (props) => {
             </Modal.Title>
          </Modal.Header>
          <Modal.Body>
-            {/*onSubmit={handleSubmit} */}
             <Form>
                <Form.Group controlId="" style={{marginTop:0}}>
-                  <Form.Label>Fecha en la que se realizo en el ejercicio</Form.Label>
-                  <Form.Control type="date" name="visit_date" value={profileData.visit_date} onChange={handleChange} required />
-               </Form.Group>
+           
+            
               
-               <Row>
-                  <Col xs={12} md={12}>
-                     <Button variant="success" onClick={() => setOpen(!open)} aria-controls="example-collapse-text" aria-expanded={open} size="sm" block >Buscar</Button>{' '}
-                     <Collapse in={open}>
-                     <div id="example-collapse-text">
-                       El dia de la fecha el paciente realizo los ejercicios: 2 - 5 - 4 del modulo: 3
-                     </div>
-                     </Collapse>
-                  
-                    
-                     
-                  
+               </Form.Group>
 
-
-                  
-         
-               </Col>
-               </Row>
+   
+             <EjercicioCard />
+            
             </Form>
          </Modal.Body>
-      </Modal>
+      </Modal> 
    );
+   
 }
+
 
 
 export default ProfileVisitAssignmentModal
