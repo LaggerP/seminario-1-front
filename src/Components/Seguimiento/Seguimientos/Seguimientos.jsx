@@ -10,7 +10,7 @@ import Form from 'react-bootstrap/Form'
 import { getExercisesByProfile } from '../../../Api/services/exerciseServices'
    
 
-const Seguimientos = ({goToExercise, name, description, image, module, finished, id, profiles}) => {
+const Seguimientos = ({goToExercise, module, id, profiles}) => {
     const [consigna, setConsigna] = useState(false);
     const [profileData, setProfileData] = useState({
      visit_date: "",
@@ -54,16 +54,17 @@ const Seguimientos = ({goToExercise, name, description, image, module, finished,
          
        <Row>
        <Col xs={12} md={12}> 
-       <Button variant="success" onClick={() => setConsigna(!consigna)} aria-controls="example-collapse-text"  aria-expanded={consigna} size="sm" block >Buscar</Button>{' '}
+       <Button variant="success" onClick={() => setConsigna(!consigna)} aria-controls="example-collapse-text"  aria-expanded={consigna} size="sm" block >Abrir calendario</Button>{' '}
        <Collapse in={consigna}>
        <div id="example-collapse-text">
        <div className="CardContainer-Badges">
        <Form>
        <Form.Control type="date" name="visit_date" value={profileData.visit_date}  onChange={handleChange} required />
-           En la fecha:  {(profileData.visit_date)} <br/> el parciente realizo los Ejercicios:  <Badge variant="info" >{id}</Badge>{' '}
+      
+           En la fecha:  {(profileData.visit_date)} <br/> el parciente realizo los Ejercicios:  <Badge variant="info" > - - - {id}</Badge>{' '}
            <br/>
-           De los Módulos: {module} <Badge variant="warning" ></Badge>{' '}
-         
+           De los Módulos: <Badge variant="warning" > - - - {module}</Badge>{' '}
+ 
      
            </Form>      
       </div>      
