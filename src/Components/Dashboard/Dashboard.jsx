@@ -9,12 +9,15 @@ import 'react-calendar/dist/Calendar.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Dashboard.scss'
 import doctoresImage from '../../assets/images/doctores.png'
-import {IoIosNotificationsOutline} from "react-icons/io"
+import {IoIosNotificationsOutline, IoIosCalendar} from "react-icons/io"
+
+import leaf1 from '../../assets/images/leaf1.png'
+import leaf2 from '../../assets/images/leaf2.png'
 
 const Dashboard = () => {
    return (
       <div>
-         <Container style={{marginLeft:0}}>
+         <Container style={{marginLeft:0, position:'fixed'}}>
             <Row>
                <Col className="justify-content-md-start" >
                   <div className="bienvenida">
@@ -41,18 +44,39 @@ const Dashboard = () => {
                            <Button className="buttonDashboardInf"><h2>Historial</h2></Button>
                         </Link>
                      </Col>
+                     <Col xs={6}>
+                     <img src={leaf2} alt='' className="leaf2"/>
+                     </Col>
+                     <Col xs={6}>
+                     <img src={leaf1} alt='' className="leaf1"/>
+                     </Col>
                   </Row>
                </Col>
 
                <Col>
                   <div className="derecha">
+                  <Row>
                      <div className="notificaciones">
                      <IoIosNotificationsOutline style={{fontSize:'30px'}}/>
                         Notificaciones
                      </div>
-                     <div>
-                        <Calendar className="calendario" locale="es-AR"/>
+                  </Row>
+                  <Row style={{paddingBottom:'15%'}}>
+                     <div className="notif">
+                        No tienes ninguna notificación pendiente
                      </div>
+                  </Row>
+                  <Row>
+                     <div className="notificaciones">
+                        <IoIosCalendar style={{fontSize:'30px'}}/>
+                        Calendario
+                     </div>
+                  </Row>
+                  <Row>
+                        <Link to= "/calendario" >
+                        <Calendar className="calendario" locale="es-AR"/>
+                        </Link>
+                  </Row>
                   </div>
                </Col>
             </Row>

@@ -23,22 +23,45 @@
     top: 20px;
 }
 
+.leaf2{
+    position: relative;
+    height: 140px;
+    width: 160px;
+    right: 13.5%;
+}
+
+.leaf1{
+    position: relative;
+    height: 140px;
+    width: 190px;
+    left: 65%;
+}
+
 .buttonDashboard{
     width: 50vw;
     height: 15vh;
     background: #FC6D78;
     border-radius: 30px;
     border-color: #FC6D78;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .buttonDashboard:hover{
     background: #F05965;
     border-color: #F05965;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .buttonDashboard:after{
     background: #F05965;
     border-color: #F05965;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.buttonDashboard:active:after{
+    background: #F05965;
+    border-color: #F05965;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .buttonDashboardInf{
@@ -47,22 +70,21 @@
     background: #FC6D78;
     border-radius: 30px;
     border-color: #FC6D78;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    &:hover,
+    &:active,
+    &:focus {
+        background: #F05965;
+        border-color: #F05965;
+    }
 }
 
 .buttonDashboardInf:hover{
     background: #F05965;
     border-color: #F05965;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.buttonDashboardInf:after{
-    background: #F05965;
-    border-color: #F05965;
-}
-
-.buttonDashboardInf:focus{
-    background: #F05965;
-    border-color: #F05965;
-}
 
 .derecha{
     background-color: #FFF1F2;
@@ -87,10 +109,28 @@
     margin-left: 12.5vw;
 }
 
+.notif{
+    width:28vw;
+    height: 10vh;
+    background: #FFFFFF;
+    border: 2px solid #E2E2E2;
+    box-sizing: border-box;
+    border-radius: 0px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 6vw;
+    margin-top: 1%;
+}
+
 .calendario{
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     border-radius: 30px;
     margin-left: 11vw;
-    position: relative;
-    top: 50vh;
+    position: absolute;
+    margin-top: 1%;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.calendario:hover{
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.5));
 }
