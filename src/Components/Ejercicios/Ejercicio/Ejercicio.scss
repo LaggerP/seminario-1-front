@@ -28,6 +28,11 @@
     border-color: #F05965;
 }
 
+.btn-primary:not(:disabled):not(.disabled):active{
+    background: #F05965;
+    border-color: #F05965;
+}
+
 .EjercicioContainer{
     display: flex;
     text-align: center;
