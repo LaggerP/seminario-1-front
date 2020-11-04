@@ -1,5 +1,6 @@
 import endpoints from '../endpoints';
 const axios = require('axios');
+const urlApi = process.env.REACT_APP_BACKEND_APP_URL || "http://localhost:8000";
 
 export const register = async (userData) => {
    try {
@@ -19,6 +20,15 @@ export const login = async (userData) => {
       await setMedicStorageData(_response.data.token, userData.username, _response.data.rol, _response.data.id);
       return _response;
 
+   } catch (error) {
+      return error;
+   }
+}
+
+export const profileById = async (id) => {
+   try {
+      const _response = await axios.get(`${urlApi}/api/profile/${id}`)
+      return _response;
    } catch (error) {
       return error;
    }
