@@ -12,6 +12,7 @@ import { FiEdit } from "react-icons/fi";
 import { BsCalendar } from "react-icons/bs";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
+import * as moment from 'moment';
 
 const ResponsableTable = ({ id, username, email, firstname, lastname, profiles, exercises, fetchData }) => {
    const [modalProfileEdit, setModalProfileEdit] = React.useState(false);
@@ -42,7 +43,7 @@ const ResponsableTable = ({ id, username, email, firstname, lastname, profiles, 
                            <td>{dni}</td>
                            <td>{firstname}</td>
                            <td>{lastname}</td>
-                           <td>{birthday}</td>
+                           <td>{moment(birthday).format('DD/MM/YYYY')}</td>
                            <td>
                               <Row className='flex-row-reverse'>
                                  <OverlayTrigger overlay={<Tooltip>Asignar ejercicio</Tooltip>}>
