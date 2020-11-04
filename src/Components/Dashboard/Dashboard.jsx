@@ -3,6 +3,7 @@ import { getProfileData } from '../../Api/services/authService';
 
 import { Container, Row, Col, Image, Form, Button, Modal } from 'react-bootstrap';
 import { Link} from "react-router-dom";
+import {getRol} from '../../Api/services/authService'
 
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -16,6 +17,9 @@ import leaf1 from '../../assets/images/leaf1.png'
 import leaf2 from '../../assets/images/leaf2.png'
 
 const Dashboard = () => {
+
+   const rol = getRol();
+
    return (
       <div>
          <Container style={{marginLeft:0, position:'fixed'}}>
@@ -29,9 +33,16 @@ const Dashboard = () => {
                   </div>
                   <Row >
                      <Col style={{display: 'flex'}} className="justify-content-md-center">
-                        <Link to= "/ejercicios">
+                        {
+                           rol == 3 ?
+                           <Link to= "/ejercicios">
                            <Button className="buttonDashboard"><h2>Ejercicios</h2></Button>
-                        </Link>
+                           </Link>
+                           : <Link to= "/administrar">
+                           <Button className="buttonDashboard"><h2>Administrar</h2></Button>
+                           </Link>
+                        }
+
                      </Col>
                   </Row>
                   <Row>
