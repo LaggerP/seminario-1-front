@@ -18,7 +18,6 @@ class Benefits extends Component {
 
    async componentDidMount() {
       const _profile = await profileById(await getProfileData().id)
-      console.log(_profile)
       await setProfileData(_profile.data)
       this.setState({ profile: await getProfileData() })
       this.setState({ shops: await getAllBenefits() })
