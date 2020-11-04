@@ -79,6 +79,13 @@ const Administrar = ({ }) => {
                         }
                      }).map(data => <ResponsableTable {...data} exercises={exercises} />)
                   }
+                  {medicData.length === 0 && (
+                     <Container className='text-center'>
+                           <div className='void-container'>
+                              <h3>¡Ups! No hay pacientes</h3>
+                           </div>
+                        </Container>
+                  )}
                </div>
             </Container>
          </div>
