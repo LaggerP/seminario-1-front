@@ -58,7 +58,7 @@ const Login = (props) => {
                setShowProfile(true);
             } else if (userData.rol === 2) {
                setLoading(false);
-               history.push('/administrar');
+               history.push('/');
                window.location.reload(false);
             }
          } else {

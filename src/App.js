@@ -42,7 +42,12 @@ function App() {
             <div className="py-4">
               <div className="media-body">
                 <div className='userNav'>
-                  <img src="https://www.pngkit.com/png/full/115-1150342_user-avatar-icon-iconos-de-mujeres-a-color.png" alt="userPhoto" height="75px" width="auto" id="icon" />
+                  {
+                    rol == 3?
+                    <img src="https://www.pngkit.com/png/full/115-1150342_user-avatar-icon-iconos-de-mujeres-a-color.png" alt="userPhoto" height="75px" width="auto" id="icon" />
+                  : <img src="https://www.news10.com/wp-content/uploads/sites/64/2020/05/medical-5047582_1280.png" alt="userPhoto" height="75px" width="auto" id="icon" />
+                  }
+                  
                 </div>
                 {
                   rol == 3 ?
