@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import ProfileEditModal from './Modal/ProfileEditModal'
 import ProfileExerciseAssignmentModal from './Modal/ProfileExerciseAssignmentModal'
 import ProfileVisitAssignmentModal from './Modal/ProfileVisitAssignmentModal'
+import DeleteProfileModal from './Modal/DeleteProfileModal'
 import './Administrar.scss';
 import {
    Row,
@@ -9,7 +10,7 @@ import {
 } from 'react-bootstrap';
 import { GiInvertedDice5 } from "react-icons/gi";
 import { FiEdit } from "react-icons/fi";
-import { BsCalendar } from "react-icons/bs";
+import { BsCalendar,BsPersonDash } from "react-icons/bs";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
 import * as moment from 'moment';
@@ -18,6 +19,8 @@ const ResponsableTable = ({ id, username, email, firstname, lastname, profiles, 
    const [modalProfileEdit, setModalProfileEdit] = React.useState(false);
    const [modalExerciseAssignment, setModalExerciseAssignment] = React.useState(false);
    const [modalVisitAssignment, setModalVisitAssignment] = React.useState(false);
+   const [modalDeleteProfile, setModalDeleteProfile] = React.useState(false);
+
    const [profileData, setProfileData] = React.useState()
 
    return (
@@ -46,6 +49,9 @@ const ResponsableTable = ({ id, username, email, firstname, lastname, profiles, 
                            <td>{moment(birthday).format('DD/MM/YYYY')}</td>
                            <td>
                               <Row className='flex-row-reverse'>
+                              <OverlayTrigger overlay={<Tooltip>Eliminar paciente</Tooltip>}>
+                                    <div className='icon-size' onClick={() => { setModalDeleteProfile(true); setProfileData(pacienteInfo) }}><BsPersonDash className='icon-styles' /></div>
+                                 </OverlayTrigger>
                                  <OverlayTrigger overlay={<Tooltip>Asignar ejercicio</Tooltip>}>
                                     <div className='icon-size' onClick={() => { setModalExerciseAssignment(true); setProfileData(pacienteInfo) }}><GiInvertedDice5 className='icon-styles' /></div>
                                  </OverlayTrigger>
@@ -57,6 +63,7 @@ const ResponsableTable = ({ id, username, email, firstname, lastname, profiles, 
                                  <OverlayTrigger overlay={<Tooltip>Asignar turno</Tooltip>}>
                                     <div className='icon-size' onClick={() => { setModalVisitAssignment(true); setProfileData(pacienteInfo) }}><BsCalendar className='icon-styles' /></div>
                                  </OverlayTrigger>
+                                 
                               </Row>
                            </td>
                         </tr>
@@ -85,6 +92,12 @@ const ResponsableTable = ({ id, username, email, firstname, lastname, profiles, 
          <ProfileVisitAssignmentModal
             show={modalVisitAssignment}
             onHide={() => setModalVisitAssignment(false)}
+         />
+
+         <DeleteProfileModal
+            show={modalDeleteProfile}
+            data={profileData}
+            onHide={() => setModalDeleteProfile(false)}
          />
       </div>
    );
