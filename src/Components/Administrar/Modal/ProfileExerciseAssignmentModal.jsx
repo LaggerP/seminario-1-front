@@ -38,7 +38,7 @@ const ProfileExerciseAssignmentModal = (props) => {
     if (_response.status === 201) {
       addToast('Se asignaron los ejercicios de forma correcta', { appearance: 'success', autoDismiss: true, })
     } else {
-      addToast('Hubo un error. Intente nuevamente', { appearance: 'success', autoDismiss: true, })
+      addToast('Hubo un error. Intente nuevamente', { appearance: 'warning', autoDismiss: true, })
     }
     props.onHide()
   };
