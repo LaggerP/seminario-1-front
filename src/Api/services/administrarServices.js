@@ -52,4 +52,12 @@ export const deleteProfile = async (id) => {
    }
 }
 
+export const deleteResponsable = async (id) => {
+   try {
+      const _response = await axios.delete(`${urlApi}/api/administrar/delete/responsable/${id}`);
+      return _response
+   } catch (error) {
+       console.log(error)
+   }
+}
 
