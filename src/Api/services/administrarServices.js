@@ -25,11 +25,20 @@ export const updatePatient = async (data) => {
 export const listTurns = async () => {
    try {
       const _turnos = await axios.get(endpoints.listTurns)
-      return _turnos.data; //El list de consejos tiene el .data pero el getAllExercises no
+      return _turnos.data; 
   } catch (error) {
       console.log(error)
   }
 }
+
+// export const listTurns = async (user_id) => {
+//    try {
+//       const _turnos = await axios.get(endpoints.listTurns, user_id)
+//       return _turnos; 
+//   } catch (error) {
+//       console.log(error)
+//   }
+// }
 
 export const assignTurn = async (data) => {
    try {

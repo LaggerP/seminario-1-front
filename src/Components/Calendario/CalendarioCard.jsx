@@ -13,14 +13,14 @@ import { getRol } from '../../Api/services/authService';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
 
-const CalendarioCard = ({ id, fecha, hora, paciente, comentarios, status }) => {
+const CalendarioCard = ({ id, fecha, hora, comentarios, status, profile_firstname, profile_lastname}) => {//Necesito escribir el nombre y apellido del paciente en la Card
 
    const [modalShow, setModalShow] = React.useState(false);
    const [deleteModal, setDeleteModal] = React.useState(false);
    const [turnoContent, setTurnoContent] = React.useState();
 
    const rol = getRol();
-   const turnoData = { id, fecha, hora, paciente, comentarios, status }
+   const turnoData = { id, fecha, hora, comentarios, status, profile_firstname, profile_lastname } //Necesito escribir el nombre y apellido del paciente en la Card
 
    return (
       <div>
@@ -39,7 +39,7 @@ const CalendarioCard = ({ id, fecha, hora, paciente, comentarios, status }) => {
                      rol == 2 ?
                         <Row>
                             <Col>
-                                {paciente}
+                                {profile_firstname} + {profile_lastname}
                             </Col>
                             <Col className='col-lg-2 text-right'>
                               <div className='d-flex flex-row-reverse'>

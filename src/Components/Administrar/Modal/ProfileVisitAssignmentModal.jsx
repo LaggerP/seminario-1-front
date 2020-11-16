@@ -8,7 +8,6 @@ import Popover from 'react-bootstrap/Popover'
 import { assignTurn } from '../../../Api/services/administrarServices'
 import { useToasts } from 'react-toast-notifications'
 import { getUserDBId } from '../../../Api/services/authService';
-import { getProfileData } from '../../../Api/services/authService';
 
 
 const popover = (
@@ -27,8 +26,8 @@ const ProfileVisitAssignmentModal = (props) => {
    const [turnoData, setTurnoData] = useState({
       turn_date: "",
       turn_time: "",
-      // profile_id???,
-      // doctor_id????,
+      profile_id: "",
+      user_id: "",
       comments: "",
    })
 
@@ -49,12 +48,20 @@ const ProfileVisitAssignmentModal = (props) => {
       console.log(turnoData.turn_time);
       console.log(turnoData.comments);
       let id_user = getUserDBId();
-      let info_perfil = getProfileData();
-      console.log(id_user);
-      // console.log(info_perfil.id)
 
+      console.log(id_user);
+      console.log(props.data.id);
+
+      let data = { //Aca guardo todos los datos que necesito, los imprimí arriba para comprobar que los tenía
+         fecha: turnoData.turn_date,
+         hora: turnoData.turn_time,
+         profile_id: props.data.id,
+         user_id: id_user,
+         comentarios: turnoData.comments
+       }
+       
       setLoading(true)
-        await assignTurn(turnoData).then((response) => {
+        await assignTurn(data).then((response) => {
             setLoading(false);
             addToast('Se creó el turno exitosamente', { appearance: 'success', autoDismiss: true, })
             props.onHide();
@@ -75,7 +82,6 @@ const ProfileVisitAssignmentModal = (props) => {
             </Modal.Title>
          </Modal.Header>
          <Modal.Body>
-            {/*onSubmit={handleSubmit} */}
             <Form>
                <Form.Group controlId="" style={{marginTop:0}}>
                   <Form.Label>Fecha del Turno</Form.Label>
