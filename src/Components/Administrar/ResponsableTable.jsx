@@ -3,14 +3,17 @@ import ProfileEditModal from './Modal/ProfileEditModal'
 import ProfileExerciseAssignmentModal from './Modal/ProfileExerciseAssignmentModal'
 import ProfileVisitAssignmentModal from './Modal/ProfileVisitAssignmentModal'
 import DeleteProfileModal from './Modal/DeleteProfileModal'
+import DeleteResponsableModal from './Modal/DeleteResponsableModal'
 import './Administrar.scss';
 import {
    Row,
+   Col,
    Table,
 } from 'react-bootstrap';
 import { GiInvertedDice5 } from "react-icons/gi";
 import { FiEdit } from "react-icons/fi";
-import { BsCalendar,BsPersonDash } from "react-icons/bs";
+import { BsCalendar, BsPersonDash } from "react-icons/bs";
+import { RiDeleteBin2Line } from "react-icons/ri";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
 import * as moment from 'moment';
@@ -20,12 +23,27 @@ const ResponsableTable = ({ id, username, email, firstname, lastname, profiles, 
    const [modalExerciseAssignment, setModalExerciseAssignment] = React.useState(false);
    const [modalVisitAssignment, setModalVisitAssignment] = React.useState(false);
    const [modalDeleteProfile, setModalDeleteProfile] = React.useState(false);
+   const [modalDeleteResponsable, setModalDeleteResponsable] = React.useState(false);
+
 
    const [profileData, setProfileData] = React.useState()
+   const [responsableData, setResponsableData] = React.useState()
+
 
    return (
       <div>
-         <h2 className='table-title table-title-text'>{firstname} {lastname}</h2>
+
+         <Row className='table-title table-title-text'>
+            <Col>
+               {firstname} {lastname}
+            </Col>
+
+            <Col>
+               <OverlayTrigger overlay={<Tooltip>Eliminar responsable</Tooltip>}>
+                  <div className='icon-size float-right mr-4' onClick={() => { setModalDeleteResponsable(true); setResponsableData(id)}}><RiDeleteBin2Line id='delete-responsable' className='icon-styles' /></div>
+               </OverlayTrigger>
+            </Col>
+         </Row>
 
          <Table className='table-style'>
             <thead>
@@ -49,9 +67,11 @@ const ResponsableTable = ({ id, username, email, firstname, lastname, profiles, 
                            <td>{moment(birthday).format('DD/MM/YYYY')}</td>
                            <td>
                               <Row className='flex-row-reverse'>
-                              <OverlayTrigger overlay={<Tooltip>Eliminar paciente</Tooltip>}>
+
+                                 <OverlayTrigger overlay={<Tooltip>Eliminar paciente</Tooltip>}>
                                     <div className='icon-size' onClick={() => { setModalDeleteProfile(true); setProfileData(pacienteInfo) }}><BsPersonDash className='icon-styles' /></div>
                                  </OverlayTrigger>
+
                                  <OverlayTrigger overlay={<Tooltip>Asignar ejercicio</Tooltip>}>
                                     <div className='icon-size' onClick={() => { setModalExerciseAssignment(true); setProfileData(pacienteInfo) }}><GiInvertedDice5 className='icon-styles' /></div>
                                  </OverlayTrigger>
@@ -63,7 +83,7 @@ const ResponsableTable = ({ id, username, email, firstname, lastname, profiles, 
                                  <OverlayTrigger overlay={<Tooltip>Asignar turno</Tooltip>}>
                                     <div className='icon-size' onClick={() => { setModalVisitAssignment(true); setProfileData(pacienteInfo) }}><BsCalendar className='icon-styles' /></div>
                                  </OverlayTrigger>
-                                 
+
                               </Row>
                            </td>
                         </tr>
@@ -98,6 +118,12 @@ const ResponsableTable = ({ id, username, email, firstname, lastname, profiles, 
             show={modalDeleteProfile}
             data={profileData}
             onHide={() => setModalDeleteProfile(false)}
+         />
+
+         <DeleteResponsableModal
+            show={modalDeleteResponsable}
+            data={responsableData}
+            onHide={() => setModalDeleteResponsable(false)}
          />
       </div>
    );
