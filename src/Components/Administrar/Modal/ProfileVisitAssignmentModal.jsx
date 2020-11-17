@@ -12,9 +12,9 @@ import { getUserDBId } from '../../../Api/services/authService';
 
 const popover = (
    <Popover id="popover-basic">
-       <Popover.Title as="h4">Información importante</Popover.Title>
-       <Popover.Content>
-           ¡Hola, doctorName <span role="img" aria-label="SmileFace">😄</span>! Complete los siguientes campos para asignar un nuevo turno.
+      <Popover.Title as="h4">Información importante</Popover.Title>
+      <Popover.Content>
+         ¡Hola, doctorName <span role="img" aria-label="SmileFace">😄</span>! Complete los siguientes campos para asignar un nuevo turno.
        </Popover.Content>
    </Popover>
 );
@@ -42,31 +42,24 @@ const ProfileVisitAssignmentModal = (props) => {
    }
 
    const assignTurno = async () => {
-      // var dateValue = document.querySelector('input[type="date"]').value;
-      // var timeValue = document.querySelector('input[type="time"]').value;
-      console.log(turnoData.turn_date);
-      console.log(turnoData.turn_time);
-      console.log(turnoData.comments);
-      let id_user = getUserDBId();
-
-      console.log(id_user);
-      console.log(props.data.id);
+      setLoading(true)
 
       let data = { //Aca guardo todos los datos que necesito, los imprimí arriba para comprobar que los tenía
          fecha: turnoData.turn_date,
          hora: turnoData.turn_time,
          profile_id: props.data.id,
-         user_id: id_user,
+         user_id: await parseInt(getUserDBId()),
          comentarios: turnoData.comments
-       }
-       
-      setLoading(true)
-        await assignTurn(data).then((response) => {
-            setLoading(false);
-            addToast('Se creó el turno exitosamente', { appearance: 'success', autoDismiss: true, })
-            props.onHide();
-            setTimeout(() => { window.location.reload(false) }, 1500);
-        }).catch((error) => console.log(error.response));
+      }
+
+      const _turn = await assignTurn(data);
+      if (_turn.status === 201) {
+         addToast('Se creó el turno exitosamente', { appearance: 'success', autoDismiss: true, })
+         setTimeout(() => { window.location.reload(false) }, 1500);
+      } else
+         addToast('Hubo un error al crear turno', { appearance: 'danger', autoDismiss: true, })
+
+      props.onHide()
    };
 
    return (
@@ -83,15 +76,15 @@ const ProfileVisitAssignmentModal = (props) => {
          </Modal.Header>
          <Modal.Body>
             <Form>
-               <Form.Group controlId="" style={{marginTop:0}}>
+               <Form.Group controlId="" style={{ marginTop: 0 }}>
                   <Form.Label>Fecha del Turno</Form.Label>
                   <Form.Control type="date" name="turn_date" value={turnoData.turn_date} onChange={handleChange} required />
                </Form.Group>
-               <Form.Group controlId="" style={{marginTop:0}}>
+               <Form.Group controlId="" style={{ marginTop: 0 }}>
                   <Form.Label>Hora del Turno</Form.Label>
                   <Form.Control type="time" name="turn_time" value={turnoData.turn_time} onChange={handleChange} required />
                </Form.Group>
-               <Form.Group controlId="" style={{marginTop:0}}>
+               <Form.Group controlId="" style={{ marginTop: 0 }}>
                   <Form.Label>Comentarios</Form.Label>
                   <Form.Control as="textarea" rows={3} name="comments" value={turnoData.comments} onChange={handleChange} placeholder="Comentarios" />
                </Form.Group>

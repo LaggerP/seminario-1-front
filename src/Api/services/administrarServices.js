@@ -22,23 +22,6 @@ export const updatePatient = async (data) => {
    }
 }
 
-export const listTurns = async () => {
-   try {
-      const _turnos = await axios.get(endpoints.listTurns)
-      return _turnos.data; 
-  } catch (error) {
-      console.log(error)
-  }
-}
-
-// export const listTurns = async (user_id) => {
-//    try {
-//       const _turnos = await axios.get(endpoints.listTurns, user_id)
-//       return _turnos; 
-//   } catch (error) {
-//       console.log(error)
-//   }
-// }
 
 export const assignTurn = async (data) => {
    try {
@@ -47,24 +30,6 @@ export const assignTurn = async (data) => {
    } catch (error) {
        console.log(error)
    }
-}
-
-export const updateTurn = async (newContent) => {
-   try {
-      const _updatedTurn = await axios.post(endpoints.updateTurn, newContent);
-      return _updatedTurn
-  } catch (error) {
-      console.log(error)
-  }
-}
-
-export const deleteTurn = async (turnoID) => {
-   try {
-      const _deletedTurn = await axios.post(endpoints.deleteTurn, turnoID);
-      return _deletedTurn
-  } catch (error) {
-      console.log(error)
-  }
 }
 
 

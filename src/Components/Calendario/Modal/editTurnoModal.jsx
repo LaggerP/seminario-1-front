@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row'
 import Popover from 'react-bootstrap/Popover'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import { BiInfoCircle } from "react-icons/bi";
-import { updateTurn } from '../../../Api/services/administrarServices'
+import { updateTurn } from '../../../Api/services/turnosServices'
 import { useToasts } from 'react-toast-notifications'
 
 const popover = (

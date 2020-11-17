@@ -17,12 +17,11 @@ const endpoints = {
     updatePatient: `${urlApi}/api/administrar/update`,
     getAllExercises: `${urlApi}/api/administrar/exercises`,
     assignExercises: `${urlApi}/api/administrar/setExercises`,
+    assignTurn: `${urlApi}/api/administrar/assignTurn`,
   
     //turnos endpoints
-    listTurns: `${urlApi}/api/administrar/listTurns`,
-    assignTurn: `${urlApi}/api/administrar/assignTurn`,
-    updateTurn: `${urlApi}/api/administrar/updateTurn`,
-    deleteTurn: `${urlApi}/api/administrar/deleteTurn`,
+    updateTurn: `${urlApi}/api/turnos/updateTurn`,
+    deleteTurn: `${urlApi}/api/turnos/deleteTurn`,
 
 
     //consejos endpoints

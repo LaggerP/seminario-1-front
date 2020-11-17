@@ -1,24 +1,39 @@
 import React from 'react';
 import "./Calendario.scss";
 import CalendarioCard from './CalendarioCard';
-import { 
+import {
    Container, Row,
 } from 'react-bootstrap';
 import calendarioImage from '../../assets/images/CalendarioImage.png';
-import { listTurns } from '../../Api/services/administrarServices';
+import { listMedicTurns, listProfileTurns } from '../../Api/services/turnosServices';
 import Loading from "../Loading/Loading";
+import { getRol } from '../../Api/services/authService';
 
 
 const Calendario = () => {
 
    const [showData, setShowData] = React.useState(false);
-   const [turnos, setTurnos] = React.useState({});
+   const [turnos, setTurnos] = React.useState();
 
    React.useEffect(function effectFunction() {
       async function fetchTurnos() {
-         const response = await listTurns(); //Debería pasarle el user_id? Debería diferenciar con 2 listTurns (médicos y pacientes)?
-         setTurnos(response);
-         setShowData(true)
+         const rol = await getRol();
+         if (rol == 2) {
+            const response = await listMedicTurns();
+            console.log(response.data.turns)
+            if (response.status === 200) {
+               setTurnos(response.data.turns);
+               setShowData(true)
+            }
+
+         } else if (rol == 3) {
+            const response = await listProfileTurns();
+            if (response.status === 200) {
+               setTurnos(response.data.turns);
+               setShowData(true)
+            }
+         }
+
       }
       fetchTurnos();
    }, []);
@@ -38,9 +53,9 @@ const Calendario = () => {
                   </div>
                </Row>
                <Row>
-                  <div className='cardsContainer'> 
-                  {/* Al CalendarioCard tengo que pasarle además del turno, el nombre y apellido del paciente */}
-                     {turnos.map((turno) => (<CalendarioCard {...turno} />))} 
+                  <div className='cardsContainer'>
+                     {/* Al CalendarioCard tengo que pasarle además del turno, el nombre y apellido del paciente */}
+                     {turnos.map((turno) => (<CalendarioCard {...turno} />))}
                      {turnos.length === 0 && (
                         <Container className='text-center'>
                            <div className='void-container'>

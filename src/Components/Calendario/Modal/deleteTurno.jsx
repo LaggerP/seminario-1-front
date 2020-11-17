@@ -3,31 +3,30 @@ import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-import { deleteTurn } from '../../../Api/services/administrarServices'
+import { deleteTurn } from '../../../Api/services/turnosServices'
 import { useToasts } from 'react-toast-notifications'
 
 
 const DeleteTurnoModal = (props) => {
+    console.log(props)
     const { addToast } = useToasts()
     const [isLoading, setLoading] = useState(false);
-    const [turnoContent, setTurnoContent] = useState({
-        fecha: "",
-        hora: "",
-        // paciente:"", No sé qué hacer con el Paciente
-        comentarios:"",
-    })
-
-    const handleClose = () => { props.onHide() };
 
     const deleteTurno = async () => {
         setLoading(true);
-        await deleteTurn(props.data).then((response) => {
-            setLoading(false);
+        console.log(props)
+        const response = await deleteTurn(props.data)
+        if (response.status === 201) {
             addToast('Se eliminó el turno exitosamente', { appearance: 'success', autoDismiss: true, })
-            props.onHide();
             setTimeout(() => { window.location.reload(false) }, 1500);
-        }).catch((error) => console.log(error.response));
+        } else {
+            addToast('Ocurrió un error durante el borrado', { appearance: 'danger', autoDismiss: true, })
+        }
+        props.onHide();
+
     }
+
+
 
     return (
         <Modal
@@ -48,7 +47,7 @@ const DeleteTurnoModal = (props) => {
                 <br />
                 <Row>
                     <Col xs={12} md={6}>
-                        <Button variant="info" size="sm" block onClick={handleClose}>Cerrar</Button>{' '}
+                        <Button variant="info" size="sm" block onClick={() => props.onHide()}>Cerrar</Button>{' '}
                     </Col>
                     <Col xs={12} md={6}>
                         <Button variant="danger" onClick={() => deleteTurno()} size="sm" block>{isLoading ? 'Eliminando....' : 'Eliminar'}</Button>{' '}
@@ -58,6 +57,7 @@ const DeleteTurnoModal = (props) => {
         </Modal>
     );
 }
+
 
 
 export default DeleteTurnoModal
