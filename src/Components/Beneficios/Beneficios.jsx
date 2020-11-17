@@ -4,7 +4,7 @@ import BeneficiosCard from './BeneficiosCard'
 import './Beneficios.scss'
 import { getAllBenefits } from '../../Api/services/benefitsServices'
 import { ToastProvider } from 'react-toast-notifications'
-import { getProfileData } from '../../Api/services/authService';
+import { getProfileData, profileById, setProfileData } from '../../Api/services/authService';
 
 
 class Benefits extends Component {
@@ -17,6 +17,8 @@ class Benefits extends Component {
    }
 
    async componentDidMount() {
+      const _profile = await profileById(await getProfileData().id)
+      await setProfileData(_profile.data)
       this.setState({ profile: await getProfileData() })
       this.setState({ shops: await getAllBenefits() })
    }
@@ -24,7 +26,6 @@ class Benefits extends Component {
    render() {
 
       const { shops, profile } = this.state
-      console.log(profile)
       return (
          <div className="BeneficiosContainer">
 

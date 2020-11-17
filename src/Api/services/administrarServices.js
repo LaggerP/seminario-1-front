@@ -88,3 +88,21 @@ export const assignExercises = async (data) => {
 }
 
 
+export const deleteProfile = async (id) => {
+   try {
+      const _response = await axios.delete(`${urlApi}/api/administrar/delete/profile/${id}`);
+      return _response
+   } catch (error) {
+       console.log(error)
+   }
+}
+
+export const deleteResponsable = async (id) => {
+   try {
+      const _response = await axios.delete(`${urlApi}/api/administrar/delete/responsable/${id}`);
+      return _response
+   } catch (error) {
+       console.log(error)
+   }
+}
+

@@ -8,7 +8,6 @@ import { redeemBenefit } from '../../Api/services/benefitsServices'
 const BeneficiosCard = ({ localData, profile }) => {
    const { id, description, image_shop, type_shop, necessary_points } = localData
    const { addToast } = useToasts()
-
    const canSwap = necessary_points <= profile.benefits_points
 
    const getBenefit = async () => {
@@ -18,11 +17,11 @@ const BeneficiosCard = ({ localData, profile }) => {
          id_profile: profile.id, // id del perfil
          id_user: profile.user_id // id del responsable
       }
-      
+
       const _benefit = await redeemBenefit(data)
-      console.log(_benefit)
       if (_benefit.status === 201) {
          addToast('Beneficio canjeado, mire su email', { appearance: 'success', autoDismiss: true, })
+         setTimeout(() => { window.location.reload(false) }, 5000);
       } else {
          addToast("Ocurrió un error! intente dentro de un rato", { appearance: 'warning', autoDismiss: true, })
       }
@@ -43,7 +42,7 @@ const BeneficiosCard = ({ localData, profile }) => {
                   Le faltan {necessary_points - profile.benefits_points} puntos para este premio
             </Button>}
          </div>
-     
+
       </div>
    )
 };
