@@ -61,7 +61,7 @@ const Administrar = ({ }) => {
                   <input type="text" placeholder="Buscar responsable" className='search-bar' onChange={(e) => searchSpace(e)} />
                </Row>
                <Row>
-                  <div className='add-button' onClick={() => setModalShow(true)}><IoMdAdd className='add-Icon' />Agregar responsable</div>
+                  <div className='add-button' onClick={() => setModalShow(true)}><IoMdAdd className='add-Icon' />Agregar</div>
                </Row>
 
                <UserCreationModal

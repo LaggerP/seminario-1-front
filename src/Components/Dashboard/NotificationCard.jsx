@@ -42,7 +42,7 @@ const NotificationCard = () => {
     else{
         return (
             <div className="notif">
-                No tienes ninguna notifación pendiente
+                No tienes ninguna notificación pendiente
             </div>
         )
     }
