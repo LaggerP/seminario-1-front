@@ -53,12 +53,16 @@ const UserCreationModal = (props) => {
       setLoading(true)
       responsableData.medicDBId = getUserDBId();
       responsableData.profiles = profiles;
-      await register(responsableData).then((response) => {
-         setLoading(false);
+
+      const newUser = await register(responsableData);
+      if (newUser.status === 201) {
          addToast('Se creó el usuario, el mismo debe revisar su email para tener las credencias de acceso', { appearance: 'success', autoDismiss: true, })
-         props.onHide();
-         setTimeout(() => { window.location.reload(false) }, 2100);
-      }).catch((error) => console.log(error.response));
+         setTimeout(() => { window.location.reload(false) }, 5000);
+      }
+      else
+         addToast('Ocurrió un error en la creación del usuario', { appearance: 'warning', autoDismiss: true, })
+      setLoading(false)
+      props.onHide();
    };
 
    const enabled =
@@ -67,14 +71,14 @@ const UserCreationModal = (props) => {
       responsableData.last_name.length > 0 &&
       responsableData.email.length > 0 &&
       profiles.length > 0
-   ;
+      ;
 
    const enabledAdd =
       responsableData.username.length > 0 &&
       responsableData.first_name.length > 0 &&
       responsableData.last_name.length > 0 &&
       responsableData.email.length > 0
-   ;
+      ;
 
 
    return (

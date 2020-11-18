@@ -36,7 +36,7 @@ const NotificationCard = () => {
         countExercises();
     return (
         <div className="notif">
-                Tienes {exercisesCount} ejercicios para realizar, <Link to= "/ejercicios">haz click aqui para ir a los ejercicios</Link>
+                Tienes {exercisesCount} ejercicios para realizar, haz click&#160;<Link to= "/ejercicios"><b>aquí</b></Link>&#160;para ir a los ejercicios
         </div>
     )}
     else{

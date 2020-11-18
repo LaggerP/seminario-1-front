@@ -104,7 +104,6 @@ const Ejercicios = () => {
                      {
                         exercises.map((data, index) => {
                            const { id, name, description, consigna, image, module, finished } = data
-                           console.log(image)
                            return (
                               <Col xs={12} md={4} key={data.id} value={data} onClick={() => { getGameData(data) }}>
                                  <EjercicioCard

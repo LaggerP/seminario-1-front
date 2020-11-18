@@ -55,9 +55,9 @@ const ProfileVisitAssignmentModal = (props) => {
       const _turn = await assignTurn(data);
       if (_turn.status === 201) {
          addToast('Se creó el turno exitosamente', { appearance: 'success', autoDismiss: true, })
-         setTimeout(() => { window.location.reload(false) }, 1500);
+         setTimeout(() => { window.location.reload(false) }, 5000);
       } else
-         addToast('Hubo un error al crear turno', { appearance: 'danger', autoDismiss: true, })
+         addToast('Hubo un error al crear turno', { appearance: 'warning', autoDismiss: true, })
 
       props.onHide()
    };

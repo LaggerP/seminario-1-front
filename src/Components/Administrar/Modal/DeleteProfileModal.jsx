@@ -17,7 +17,7 @@ const DeleteProfileModal = (props) => {
       const _deletedProfile = await deleteProfile(id);
       if (_deletedProfile.status === 201) {
          addToast('Se eliminó el perfil', { appearance: 'success', autoDismiss: true, })
-         setTimeout(() => { window.location.reload(false) }, 2000);
+         setTimeout(() => { window.location.reload(false) }, 3000);
        } else {
          addToast('Hubo un error. Intente nuevamente', { appearance: 'warning', autoDismiss: true, })
        }

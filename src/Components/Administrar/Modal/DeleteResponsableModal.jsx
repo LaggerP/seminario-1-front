@@ -17,7 +17,7 @@ const DeleteResponsableModal = (props) => {
       const _deletedResponsable = await deleteResponsable(id);
       if (_deletedResponsable.status === 201) {
          addToast('Se eliminó el responsable', { appearance: 'success', autoDismiss: true, })
-         setTimeout(() => { window.location.reload(false) }, 2000);
+         setTimeout(() => { window.location.reload(false) }, 3000);
        } else {
          addToast('Hubo un error. Intente nuevamente', { appearance: 'warning', autoDismiss: true, })
        }
