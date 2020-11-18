@@ -113,7 +113,7 @@ const Login = (props) => {
                            <Image src={doctor} className={menuItem === "Doctor" ? "imagenesDesp" : "imagenes"} onClick={() => setSelected("Doctor")} data-hover="Doctor" />
                            <AiFillCheckCircle className={menuItem === "Doctor" ? "check" : "checkAntes"} />
                         </Form.Label>
-                        <p className="subtitulo">Doctor</p>
+                        <p className="subtitulo">Profesional</p>
                      </Col>
                      <Col xs={12} md={6} className="imageDiv">
                         <Form.Check

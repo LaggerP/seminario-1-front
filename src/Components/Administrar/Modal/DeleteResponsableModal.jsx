@@ -12,8 +12,6 @@ import { useToasts } from 'react-toast-notifications'
 const DeleteResponsableModal = (props) => {
    const { addToast } = useToasts();
 
-   console.log(props.data)
-
    const DeleteResponsable = async () => {
       const id = props.data
       const _deletedResponsable = await deleteResponsable(id);

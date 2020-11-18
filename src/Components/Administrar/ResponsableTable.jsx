@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import ProfileCreationModal from './Modal/ProfileCreationModal'
 import ProfileEditModal from './Modal/ProfileEditModal'
 import ProfileExerciseAssignmentModal from './Modal/ProfileExerciseAssignmentModal'
 import ProfileVisitAssignmentModal from './Modal/ProfileVisitAssignmentModal'
@@ -14,12 +15,14 @@ import { GiInvertedDice5 } from "react-icons/gi";
 import { FiEdit } from "react-icons/fi";
 import { BsCalendar, BsPersonDash } from "react-icons/bs";
 import { RiDeleteBin2Line } from "react-icons/ri";
+import { AiOutlineUserAdd } from "react-icons/ai";
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
 import * as moment from 'moment';
 
 const ResponsableTable = ({ id, username, email, firstname, lastname, profiles, exercises, fetchData }) => {
    const [modalProfileEdit, setModalProfileEdit] = React.useState(false);
+   const [modalProfileCreation, setModalProfileCreation] = React.useState(false);
    const [modalExerciseAssignment, setModalExerciseAssignment] = React.useState(false);
    const [modalVisitAssignment, setModalVisitAssignment] = React.useState(false);
    const [modalDeleteProfile, setModalDeleteProfile] = React.useState(false);
@@ -40,7 +43,10 @@ const ResponsableTable = ({ id, username, email, firstname, lastname, profiles, 
 
             <Col>
                <OverlayTrigger overlay={<Tooltip>Eliminar responsable</Tooltip>}>
-                  <div className='icon-size float-right mr-4' onClick={() => { setModalDeleteResponsable(true); setResponsableData(id)}}><RiDeleteBin2Line id='delete-responsable' className='icon-styles' /></div>
+                  <div className='icon-size float-right mr-4' onClick={() => { setModalDeleteResponsable(true); setResponsableData(id) }}><RiDeleteBin2Line id='delete-responsable' className='icon-styles' /></div>
+               </OverlayTrigger>
+               <OverlayTrigger overlay={<Tooltip>Agregar paciente</Tooltip>}>
+                  <div className='icon-size float-right mr-5' onClick={() => { setModalProfileCreation(true); setResponsableData(id)}}><AiOutlineUserAdd id='add-profile' className='icon-styles' /></div>
                </OverlayTrigger>
             </Col>
          </Row>
@@ -93,6 +99,12 @@ const ResponsableTable = ({ id, username, email, firstname, lastname, profiles, 
                )
             }
          </Table>
+
+         <ProfileCreationModal
+               show={modalProfileCreation}
+               onHide={() => setModalProfileCreation(false)}
+               data={responsableData}
+            />
 
          <ProfileEditModal
             data={profileData}

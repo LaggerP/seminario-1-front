@@ -134,3 +134,13 @@ input:focus {
 #delete-responsable{
     fill: #d11a2a;
 }
+
+#add-profile{
+    fill: #4CAF50;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
