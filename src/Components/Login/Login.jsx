@@ -92,7 +92,7 @@ const Login = (props) => {
       )
    }
    else {
-      const { username, password } = userData
+      const { username, password, rol } = userData
       return (
          <Container className="login" fluid>
             <div className="contenedor">
@@ -106,7 +106,6 @@ const Login = (props) => {
                            id="doctor"
                            value="doctor"
                            className="checkboxImagen"
-                           // required
                            onChange={handleChange}
                         />
                         <Form.Label for="doctor">
@@ -122,7 +121,6 @@ const Login = (props) => {
                            id="paciente"
                            value="paciente"
                            className="checkboxImagen"
-                           // required
                            onChange={handleChange}
                         />
                         <Form.Label for="paciente">
@@ -178,7 +176,7 @@ const Login = (props) => {
                         {
                            isLoading ? <Spinner animation="border" variant="info" />
                               :
-                              username && password != undefined ?
+                              username && password && rol != undefined ?
                                  <Button className="buttonLogin" onClick={() => loginUser()}>Ingresar</Button>
                                  :
                                  <Button className="buttonDisabledLogin" variant="secondary" disabled>Ingresar</Button>
