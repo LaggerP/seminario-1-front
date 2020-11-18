@@ -9,7 +9,24 @@ export const getAllMedicData = async () => {
       const allMedicData = await axios.get(`${urlApi}/api/administrar/list/${getUserDBId()}`);
       return allMedicData.data;
    } catch (error) {
-       console.log(error)
+      console.log(error)
+   }
+}
+
+export const createProfile = async (data) => {
+   try {
+      return await axios.post(`${urlApi}/api/profile/create`, data)
+   } catch (error) {
+      console.log(error)
+   }
+}
+
+export const create = async (consejoContent) => {
+   try {
+      return await axios.post(endpoints.createConsejo, consejoContent);
+
+   } catch (error) {
+      console.log(error)
    }
 }
 
@@ -18,7 +35,7 @@ export const updatePatient = async (data) => {
       const _updatedPatient = await axios.post(endpoints.updatePatient, data);
       return _updatedPatient
    } catch (error) {
-       console.log(error)
+      console.log(error)
    }
 }
 
@@ -28,7 +45,7 @@ export const getAllExercises = async (data) => {
       const _exercises = await axios.get(endpoints.getAllExercises);
       return _exercises
    } catch (error) {
-       console.log(error)
+      console.log(error)
    }
 }
 
@@ -38,7 +55,7 @@ export const assignExercises = async (data) => {
       const _response = await axios.post(endpoints.assignExercises, data);
       return _response
    } catch (error) {
-       console.log(error)
+      console.log(error)
    }
 }
 
@@ -48,7 +65,7 @@ export const deleteProfile = async (id) => {
       const _response = await axios.delete(`${urlApi}/api/administrar/delete/profile/${id}`);
       return _response
    } catch (error) {
-       console.log(error)
+      console.log(error)
    }
 }
 
@@ -57,7 +74,7 @@ export const deleteResponsable = async (id) => {
       const _response = await axios.delete(`${urlApi}/api/administrar/delete/responsable/${id}`);
       return _response
    } catch (error) {
-       console.log(error)
+      console.log(error)
    }
 }
 

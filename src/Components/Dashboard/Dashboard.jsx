@@ -39,7 +39,7 @@ const Dashboard = () => {
                            <Button className="buttonDashboard"><h2>Ejercicios</h2></Button>
                            </Link>
                            : <Link to= "/administrar">
-                           <Button className="buttonDashboard"><h2>Administrar</h2></Button>
+                           <Button className="buttonDashboard"><h2>Mis pacientes</h2></Button>
                            </Link>
                         }
 

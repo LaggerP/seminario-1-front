@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
+import Select from 'react-select';
 import ProfileCreationModal from './ProfileCreationModal'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
@@ -33,8 +34,12 @@ const UserCreationModal = (props) => {
       email: "",
       profiles: []
    })
-   
+   const [profiles, setProfiles] = useState([]);
+
    const { addToast } = useToasts()
+
+   const [createdProfiles, setcreatedProfiles] = useState([]);
+
 
    const handleChange = (e) => {
       const { name, value } = e.target;
@@ -47,13 +52,30 @@ const UserCreationModal = (props) => {
    const createUser = async () => {
       setLoading(true)
       responsableData.medicDBId = getUserDBId();
+      responsableData.profiles = profiles;
       await register(responsableData).then((response) => {
          setLoading(false);
          addToast('Se creó el usuario, el mismo debe revisar su email para tener las credencias de acceso', { appearance: 'success', autoDismiss: true, })
          props.onHide();
-         setTimeout(()=> { window.location.reload(false)}, 1500);
+         setTimeout(() => { window.location.reload(false) }, 2100);
       }).catch((error) => console.log(error.response));
    };
+
+   const enabled =
+      responsableData.username.length > 0 &&
+      responsableData.first_name.length > 0 &&
+      responsableData.last_name.length > 0 &&
+      responsableData.email.length > 0 &&
+      profiles.length > 0
+   ;
+
+   const enabledAdd =
+      responsableData.username.length > 0 &&
+      responsableData.first_name.length > 0 &&
+      responsableData.last_name.length > 0 &&
+      responsableData.email.length > 0
+   ;
+
 
    return (
       <Modal
@@ -72,41 +94,54 @@ const UserCreationModal = (props) => {
          </Modal.Header>
          <Modal.Body>
             <Form>
-               <Form.Group controlId="" style={{marginTop:0}}>
+               <Form.Group controlId="" style={{ marginTop: 0 }}>
                   <Form.Label>Nombre de usuario</Form.Label>
-                  <Form.Control type="text" placeholder="Ingrese nombre de usuario" name="username" value={responsableData.username} onChange={handleChange} required />
+                  <Form.Control type="text" placeholder="Ingrese nombre de usuario del responsable" name="username" value={responsableData.username} onChange={handleChange} required />
                </Form.Group>
-               <Form.Group controlId="" style={{marginTop:0}}>
+               <Form.Group controlId="" style={{ marginTop: 0 }}>
                   <Form.Label>Dirección de email</Form.Label>
                   <Form.Control type="email" placeholder="Ingrese dirección de email" name="email" value={responsableData.email} onChange={handleChange} required />
                </Form.Group>
-               <Form.Group controlId="" style={{marginTop:0}}>
+               <Form.Group controlId="" style={{ marginTop: 0 }}>
                   <Form.Label>Nombre(s)</Form.Label>
                   <Form.Control type="text" placeholder="Ingrese nombre(s)" name="first_name" value={responsableData.first_name} onChange={handleChange} required />
                </Form.Group>
-               <Form.Group controlId="" style={{marginTop:0}}>
+               <Form.Group controlId="" style={{ marginTop: 0 }}>
                   <Form.Label>Apellido(s)</Form.Label>
                   <Form.Control type="text" placeholder="Apellido(s)" name="last_name" value={responsableData.last_name} onChange={handleChange} required />
                </Form.Group>
+
+               <Form.Group controlId="" style={{ marginTop: 0 }}>
+                  <Form.Label>Perfiles</Form.Label>
+                  <Row>
+                     <Col>
+                        <Select
+                           options={createdProfiles}
+                           placeholder="Ver perfiles"
+                        />
+                     </Col>
+                     <Col>
+                        <Button variant="info" disabled={enabledAdd == false} block onClick={() => setModalShow(true)}>+ Agregar paciente</Button>{' '}
+                     </Col>
+                  </Row>
+               </Form.Group>
+
             </Form>
 
             <Row>
-               <Col xs={12} md={6}>
-                  <Button variant="info" size="sm" block onClick={() => setModalShow(true)}>+ Agregar paciente</Button>{' '}
-
-               </Col>
-               <Col xs={12} md={6}>
-                  <Button variant="success" onClick={() => createUser()} size="sm" block>{isLoading ? 'Creando usuario....' : 'Crear'}</Button>{' '}
+               <Col>
+                  <Button variant="success" disabled={enabled == false} onClick={() => createUser()} size="sm" block>{isLoading ? 'Creando usuario....' : 'Crear'}</Button>{' '}
                </Col>
             </Row>
 
-
-
             <ProfileCreationModal
                show={modalShow}
-               responsableData={responsableData}
+               responsableData={responsableData.profiles}
                setResponsableData={setResponsableData}
+               profiles={profiles}
+               setProfiles={setProfiles}
                onHide={() => setModalShow(false)}
+               setcreatedProfiles={setcreatedProfiles}
             />
          </Modal.Body>
       </Modal>
