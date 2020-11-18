@@ -23,6 +23,16 @@ export const updatePatient = async (data) => {
 }
 
 
+export const assignTurn = async (data) => {
+   try {
+      const _newTurn = await axios.post(endpoints.assignTurn, data);
+      return _newTurn
+   } catch (error) {
+       console.log(error)
+   }
+}
+
+
 export const getAllExercises = async (data) => {
    try {
       const _exercises = await axios.get(endpoints.getAllExercises);
@@ -42,4 +52,22 @@ export const assignExercises = async (data) => {
    }
 }
 
+
+export const deleteProfile = async (id) => {
+   try {
+      const _response = await axios.delete(`${urlApi}/api/administrar/delete/profile/${id}`);
+      return _response
+   } catch (error) {
+       console.log(error)
+   }
+}
+
+export const deleteResponsable = async (id) => {
+   try {
+      const _response = await axios.delete(`${urlApi}/api/administrar/delete/responsable/${id}`);
+      return _response
+   } catch (error) {
+       console.log(error)
+   }
+}
 
