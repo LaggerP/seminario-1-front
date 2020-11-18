@@ -23,10 +23,9 @@ const EditTurnoModal = (props) => {
     const { addToast } = useToasts()
     const [isLoading, setLoading] = useState(false);
     const [turnoContent, setTurnoContent] = React.useState({
-        fecha: "",
-        hora: "",
-        // paciente:"", No puedo editar el paciente??
-        comentarios:"",
+        turn_date: "",
+        turn_time: "",
+        comments:"",
     })
 
     const handleClose = () => { props.onHide() };

@@ -7,7 +7,7 @@ import {
 import calendarioImage from '../../assets/images/CalendarioImage.png';
 import { listMedicTurns, listProfileTurns } from '../../Api/services/turnosServices';
 import Loading from "../Loading/Loading";
-import { getRol } from '../../Api/services/authService';
+import { getRol, profileById } from '../../Api/services/authService';
 
 
 const Calendario = () => {
