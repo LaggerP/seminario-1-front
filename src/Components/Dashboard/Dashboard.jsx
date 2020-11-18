@@ -13,6 +13,8 @@ import './Dashboard.scss'
 import doctoresImage from '../../assets/images/doctores.png'
 import {IoIosNotificationsOutline, IoIosCalendar} from "react-icons/io"
 
+import NotificationCard from './NotificationCard'
+
 import leaf1 from '../../assets/images/leaf1.png'
 import leaf2 from '../../assets/images/leaf2.png'
 
@@ -39,7 +41,7 @@ const Dashboard = () => {
                            <Button className="buttonDashboard"><h2>Ejercicios</h2></Button>
                            </Link>
                            : <Link to= "/administrar">
-                           <Button className="buttonDashboard"><h2>Administrar</h2></Button>
+                           <Button className="buttonDashboard"><h2>Mis pacientes</h2></Button>
                            </Link>
                         }
 
@@ -74,9 +76,7 @@ const Dashboard = () => {
                      </div>
                   </Row>
                   <Row style={{paddingBottom:'15%'}}>
-                     <div className="notif">
-                        No tienes ninguna notificación pendiente
-                     </div>
+                     <NotificationCard/>
                   </Row>
                   <Row>
                      <div className="notificaciones">

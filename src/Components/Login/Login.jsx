@@ -71,7 +71,7 @@ const Login = (props) => {
 
    if (showProfile) {
       return (
-         <div className="login" fluid>
+         <div className="login">
             <Container>
                <div style={{ display: 'flex', justifyContent: 'center' }}>
                   <h2>Seleccionar el perfil para continuar</h2>
@@ -92,37 +92,35 @@ const Login = (props) => {
       )
    }
    else {
-      const { username, password } = userData
+      const { username, password, rol } = userData
       return (
-         <Container className="login" fluid >
+         <Container className="login" fluid>
             <div className="contenedor">
                <p className="titulo">Elegir Tipo de Cuenta</p>
                <Form >
-                  <Row style={{ paddingTop: 10 }}>
-                     <Col xs={6}>
+                  <Row style={{ paddingTop: 10, display: 'flex', flexWrap: 'wrap' }}>
+                     <Col xs={12} md={6} className="imageDiv">
                         <Form.Check
                            type="radio"
                            name="rol"
                            id="doctor"
                            value="doctor"
                            className="checkboxImagen"
-                           // required
                            onChange={handleChange}
                         />
                         <Form.Label for="doctor">
                            <Image src={doctor} className={menuItem === "Doctor" ? "imagenesDesp" : "imagenes"} onClick={() => setSelected("Doctor")} data-hover="Doctor" />
                            <AiFillCheckCircle className={menuItem === "Doctor" ? "check" : "checkAntes"} />
                         </Form.Label>
-                        <p className="subtitulo">Doctor</p>
+                        <p className="subtitulo">Profesional</p>
                      </Col>
-                     <Col xs={6}>
+                     <Col xs={12} md={6} className="imageDiv">
                         <Form.Check
                            type="radio"
                            name="rol"
                            id="paciente"
                            value="paciente"
                            className="checkboxImagen"
-                           // required
                            onChange={handleChange}
                         />
                         <Form.Label for="paciente">
@@ -156,7 +154,10 @@ const Login = (props) => {
                         className="forms"
                      />
                      <p className="link" onClick={handleShow}>¿Olvidaste la contraseña?</p>
-                     <Modal show={show} onHide={handleClose}>
+                    
+                  </Form.Group>
+
+                  <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
                            <Modal.Title>Solicitud de contraseña</Modal.Title>
                         </Modal.Header>
@@ -170,13 +171,12 @@ const Login = (props) => {
                            </Button>
                         </Modal.Footer>
                      </Modal>
-                  </Form.Group>
                   <Row>
-                     <Col style={{ display: 'flex', paddingTop: 25 }} className="justify-content-md-center">
+                     <Col xs={12} style={{ display: 'flex', paddingTop: 8, marginBottom:10 }} className="justify-content-md-center">
                         {
                            isLoading ? <Spinner animation="border" variant="info" />
                               :
-                              username && password != undefined ?
+                              username && password && rol != undefined ?
                                  <Button className="buttonLogin" onClick={() => loginUser()}>Ingresar</Button>
                                  :
                                  <Button className="buttonDisabledLogin" variant="secondary" disabled>Ingresar</Button>

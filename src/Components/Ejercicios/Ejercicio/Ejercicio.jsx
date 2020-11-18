@@ -36,10 +36,8 @@ const Ejercicio = ({ dataExercise }) => {
          module: dataExercise.module
       }
       const response = await updateStatus(exerciseToUpdate)
-      if (response.status === 201) {
+      if (response.status === 201) 
          window.location.reload(false);
-      }
-
    };
 
    return (
