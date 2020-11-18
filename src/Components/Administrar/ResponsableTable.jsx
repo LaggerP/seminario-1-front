@@ -111,6 +111,8 @@ const ResponsableTable = ({ id, username, email, firstname, lastname, profiles, 
 
          <ProfileVisitAssignmentModal
             show={modalVisitAssignment}
+            data={profileData} //Le estoy mandando todo esta data: { id, birthday, dni, firstname, lastname, profile_name, status, user_id }
+            fetchData={fetchData}
             onHide={() => setModalVisitAssignment(false)}
          />
 

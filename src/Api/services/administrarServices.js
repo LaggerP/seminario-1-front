@@ -23,6 +23,16 @@ export const updatePatient = async (data) => {
 }
 
 
+export const assignTurn = async (data) => {
+   try {
+      const _newTurn = await axios.post(endpoints.assignTurn, data);
+      return _newTurn
+   } catch (error) {
+       console.log(error)
+   }
+}
+
+
 export const getAllExercises = async (data) => {
    try {
       const _exercises = await axios.get(endpoints.getAllExercises);
