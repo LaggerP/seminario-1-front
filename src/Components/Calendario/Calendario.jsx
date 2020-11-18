@@ -20,7 +20,6 @@ const Calendario = () => {
          const rol = await getRol();
          if (rol == 2) {
             const response = await listMedicTurns();
-            console.log(response.data.turns)
             if (response.status === 200) {
                setTurnos(response.data.turns);
                setShowData(true)
@@ -33,7 +32,6 @@ const Calendario = () => {
                setShowData(true)
             }
          }
-
       }
       fetchTurnos();
    }, []);

@@ -8,13 +8,11 @@ import { useToasts } from 'react-toast-notifications'
 
 
 const DeleteTurnoModal = (props) => {
-    console.log(props)
     const { addToast } = useToasts()
     const [isLoading, setLoading] = useState(false);
 
     const deleteTurno = async () => {
         setLoading(true);
-        console.log(props)
         const response = await deleteTurn(props.data)
         if (response.status === 201) {
             addToast('Se eliminó el turno exitosamente', { appearance: 'success', autoDismiss: true, })

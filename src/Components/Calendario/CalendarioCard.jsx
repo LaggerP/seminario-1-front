@@ -29,7 +29,6 @@ const CalendarioCard = ({ id, fecha, hora, comentarios, status, profile_firstnam
    React.useEffect(function effectFunction() {
       async function fetchProfile() {
          const profile = await profileById(profile_id);
-         console.log(profile);
          setProfileData(profile.data);
          setShowData(true);
       }
