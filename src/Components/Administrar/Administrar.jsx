@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import UserCreationModal from './Modal/UserCreationModal'
+import Loading from '../Loading/Loading'
 import './Administrar.scss';
 import {
    Container,
@@ -90,7 +91,7 @@ const Administrar = ({ }) => {
             </Container>
          </div>
       );
-   } else return (<p>cargando</p>)
+   } else return (<Loading />)
 
 };
 
