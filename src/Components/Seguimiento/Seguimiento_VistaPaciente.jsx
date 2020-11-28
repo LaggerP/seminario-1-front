@@ -16,7 +16,6 @@ import { getRol } from '../../Api/services/authService'
 
 
 
-
 const Seguimiento_VistaPaciente = ({ id, firstname, lastname, dni, birthday, profiles, profileData }) => {
    const [modalVisitAssignment, setModalVisitAssignment] = React.useState(false);
    const rol = getRol();
@@ -28,7 +27,6 @@ const Seguimiento_VistaPaciente = ({ id, firstname, lastname, dni, birthday, pro
    const [profileId, setProfileId] = React.useState(false);
 
 
-   console.log('Aca',profileData)
    return (
       <div>
          <Table className='table-style'>

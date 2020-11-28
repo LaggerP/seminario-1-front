@@ -38,7 +38,7 @@ const ResponsableTable = ({ id, username, email, firstname, lastname, profiles, 
 
          <Row className='table-title table-title-text'>
             <Col>
-               {firstname} {lastname}
+                {firstname} {lastname} (Responsable)
             </Col>
 
             <Col>

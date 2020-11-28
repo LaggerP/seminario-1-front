@@ -109,7 +109,6 @@ const Seguimiento = ({ }) => {
                   </div>
                </Row>
                <div className='tables-container'>
-                  {console.log('LLego?', profileData)}
                   <Seguimiento_VistaPaciente profileData={profileData}  />
                </div>
             </Container>

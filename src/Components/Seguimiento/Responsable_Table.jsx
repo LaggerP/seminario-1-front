@@ -35,7 +35,6 @@ const ResponsableTable = ({   firstname, lastname, profiles  }) => {
                   
                 </tr>
              </thead>
-             {console.log("Este es el pacienteInfo",profiles)}
              {
                 profiles.map((pacienteInfo, index) => {
                    const { id, birthday, dni, firstname, lastname, profile_name, status, user_id } = pacienteInfo

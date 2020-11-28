@@ -11,21 +11,20 @@ import SeguimientoCard from './SeguimientoCard';
 import { getExerciseDone } from '../../Api/services/administrarServices';
 
 import { getExercisesByProfile } from '../../Api/services/exerciseServices'
-import {getAllExerciseHistory} from '../../Api/services/historyServices'
-
+import { getAllExerciseHistory } from '../../Api/services/historyServices'
+import * as moment from 'moment';
 
 const ProfileVisitAssignmentModal = (props) => {
-   console.log('props:', props)
    const [consigna, setConsigna] = useState(false);
    const [showExercise, setShowExercise] = useState(true);
    const [selectedOption, setSelectedOption] = useState(null);
    const [exercises, setExercises] = useState([]);
-   
+
    const [historia, setHistoria] = React.useState({});
 
    const getExercise = async () => {
-      const data = await getExercisesByProfile(props.profileId,props.profileFecha)
-      console.log("getExercise", data)
+      const data = await getExercisesByProfile(props.profileId)
+
       setDataExercise(data.profileExercises)
    }
 
@@ -50,8 +49,6 @@ const ProfileVisitAssignmentModal = (props) => {
    const addVisit = () => {
       setConsigna(!consigna)
       const dateValue = document.querySelector('input[type="date"]').value;
-      console.log(profileData.visit_date)
-      console.log("Fecha seleccionada:", dateValue)
       props.onHide()
 
    }
@@ -61,7 +58,6 @@ const ProfileVisitAssignmentModal = (props) => {
       await setDataExercise(e);
       setShowExercise(false);
       const exerciseDone = document.querySelector('input[type="exercise"]').value;
-      console.log(profileData.exerciseDone)
 
    }
 
@@ -77,8 +73,6 @@ const ProfileVisitAssignmentModal = (props) => {
 
 
    React.useEffect(function effectFunction() {
-      console.log("Cambiando Formulario", profileData);
-      console.log()
       if (profileData.visit_date) {
          getExercise()
 
@@ -118,20 +112,30 @@ const ProfileVisitAssignmentModal = (props) => {
                <Row>
                   <Col xs={12} md={12}>
                      <Button variant="success" onClick={() => setConsigna(!consigna)} aria-controls="example-collapse-text" aria-expanded={consigna} size="sm" block >Abrir calendario</Button>{' '}
-                     <br/>
+                     <br />
                      <Collapse in={consigna}>
                         <div id="example-collapse-text">
                            <div className="CardContainer-Badges">
                               <Form>
                                  <Form.Control type="date" name="visit_date" value={profileData.visit_date} onChange={handleChange} required />
-                                 <br/>
+                                 <br />
                                  {dataExercise.map(exercise => {
-                                    console.log(historia)
-                                    if(exercise.finished==true){
-                                       return <Badge variant="success" > En la fecha: {(profileData.visit_date)} <br />el parciente realizo los Ejercicios: <br /> {exercise.name} <br /></Badge>
-                                    } 
+                                    const lastdate = moment(exercise.lastdate).format('YYYY-MM-DD')
+                                    if (lastdate == profileData.visit_date && exercise.finished) {
+                                       <br />
+                                       return <center> <Badge style={{ margin: 5 }} variant="success" > En la fecha: {(profileData.visit_date)} <br />el parciente realizo los Ejercicios: <br /> {exercise.name} <br /> </Badge> </center>
                                     }
-                                 )}
+                         
+
+                                  /*   else if (lastdate != profileData.visit_date && !exercise.finished) {
+                                       return <center> <Badge style={{ margin: 5 }} variant="warning"> No hay ejercicios realizados en la fecha seleccionada</Badge> </center>
+                                    } */
+                                 }
+
+                                 )
+                                 }
+
+
                               </Form>
                            </div>
 
@@ -144,7 +148,6 @@ const ProfileVisitAssignmentModal = (props) => {
                   {
                      exercises.map((data, index) => {
                         const { id, name, description, consigna, image, module, finished } = data
-                        console.log(image)
                         return (
                            <Col xs={12} md={4} key={data.id} value={data} onClick={() => { getGameData(data) }}>
                               <SeguimientoCard
