@@ -10,7 +10,7 @@ import Popover from 'react-bootstrap/Popover'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import { BiInfoCircle } from "react-icons/bi";
 import { register } from '../../../Api/services/authService'
-import { getUserDBId } from '../../../Api/services/authService'
+import { getUserDBId, getUsername } from '../../../Api/services/authService'
 import { useToasts } from 'react-toast-notifications'
 
 
@@ -18,8 +18,8 @@ const popover = (
    <Popover id="popover-basic">
       <Popover.Title as="h4">Información importante</Popover.Title>
       <Popover.Content>
-         ¡Hola, doctorName <span role="img" aria-label="SmileFace">😄</span>! en los siguientes campos debe completar los datos correspondientes a la persona <strong>a cargo del paciente</strong>. <br />
-            Puede crear nuevos pacientes presionando el botón de <strong>"Agregar paciente"</strong>
+         ¡Hola, {getUsername()} <span role="img" aria-label="SmileFace">😄</span>! en los siguientes campos debe completar los datos correspondientes a la persona <strong>a cargo del paciente</strong>. <br />
+            Puede crear nuevos pacientes presionando el botón de <strong>"+ Agregar paciente"</strong>
       </Popover.Content>
    </Popover>
 );
@@ -57,7 +57,7 @@ const UserCreationModal = (props) => {
       const newUser = await register(responsableData);
       if (newUser.status === 201) {
          addToast('Se creó el usuario, el mismo debe revisar su email para tener las credencias de acceso', { appearance: 'success', autoDismiss: true, })
-         setTimeout(() => { window.location.reload(false) }, 5000);
+         setTimeout(() => { window.location.reload(false) }, 7000);
       }
       else
          addToast('Ocurrió un error en la creación del usuario', { appearance: 'warning', autoDismiss: true, })
@@ -116,12 +116,12 @@ const UserCreationModal = (props) => {
                </Form.Group>
 
                <Form.Group controlId="" style={{ marginTop: 0 }}>
-                  <Form.Label>Perfiles</Form.Label>
+                  <Form.Label>Pacientes</Form.Label>
                   <Row>
                      <Col>
                         <Select
                            options={createdProfiles}
-                           placeholder="Ver perfiles"
+                           placeholder="Ver pacientes"
                         />
                      </Col>
                      <Col>

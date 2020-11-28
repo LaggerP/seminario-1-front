@@ -34,7 +34,7 @@ const NotificationCard = () => {
 
     if (exercises.length > 0 && rol== 3) {
         countExercises();
-    return (
+    return ( 
         <div className="notif">
                 Tienes {exercisesCount} ejercicios para realizar, haz click&#160;<Link to= "/ejercicios"><b>aquí</b></Link>&#160;para ir a los ejercicios
         </div>
@@ -42,10 +42,10 @@ const NotificationCard = () => {
     else{
         return (
             <div className="notif">
-                No tienes ninguna notifación pendiente
+                No tienes ninguna notificación pendiente
             </div>
         )
     }
  };
  
- export default NotificationCard;
+ export default NotificationCard; 
