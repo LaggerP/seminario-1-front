@@ -8,7 +8,6 @@ import Collapse from 'react-bootstrap/Collapse'
 import Badge from 'react-bootstrap/Badge'
 
 import SeguimientoCard from './SeguimientoCard';
-import { getExerciseDone } from '../../Api/services/administrarServices';
 
 import { getExercisesByProfile } from '../../Api/services/exerciseServices'
 import { getAllExerciseHistory } from '../../Api/services/historyServices'
@@ -40,17 +39,13 @@ const ProfileVisitAssignmentModal = (props) => {
    const [profileData, setProfileData] = useState({
       visit_date: "",
       exercises: [],
-
-
    })
-
 
 
    const addVisit = () => {
       setConsigna(!consigna)
       const dateValue = document.querySelector('input[type="date"]').value;
       props.onHide()
-
    }
 
 
@@ -58,7 +53,6 @@ const ProfileVisitAssignmentModal = (props) => {
       await setDataExercise(e);
       setShowExercise(false);
       const exerciseDone = document.querySelector('input[type="exercise"]').value;
-
    }
 
 
@@ -68,26 +62,13 @@ const ProfileVisitAssignmentModal = (props) => {
          ...profileData,
          [name]: value
       });
-
    }
-
 
    React.useEffect(function effectFunction() {
       if (profileData.visit_date) {
          getExercise()
-
-         //const data = await getExercisesByProfile(props.profileId)
-
-
-         //setExercises(data.profileExercises);
-         //setAllExercises(data.profileExercises);
       }
    }, [profileData]);
-
-
-
-
-
 
    return (
       <Modal
@@ -104,11 +85,8 @@ const ProfileVisitAssignmentModal = (props) => {
          <Modal.Body>
             <Form>
                <Form.Group controlId="" style={{ marginTop: 0 }}>
-
                   <h1>Seleccionar fecha</h1>
-
                </Form.Group>
-
                <Row>
                   <Col xs={12} md={12}>
                      <Button variant="success" onClick={() => setConsigna(!consigna)} aria-controls="example-collapse-text" aria-expanded={consigna} size="sm" block >Abrir calendario</Button>{' '}
@@ -125,25 +103,21 @@ const ProfileVisitAssignmentModal = (props) => {
                                        <br />
                                        return <center> <Badge style={{ margin: 5 }} variant="success" > En la fecha: {(profileData.visit_date)} <br />el parciente realizo los Ejercicios: <br /> {exercise.name} <br /> </Badge> </center>
                                     }
-                         
 
-                                  /*   else if (lastdate != profileData.visit_date && !exercise.finished) {
-                                       return <center> <Badge style={{ margin: 5 }} variant="warning"> No hay ejercicios realizados en la fecha seleccionada</Badge> </center>
-                                    } */
+
+                                    /*   else if (lastdate != profileData.visit_date && !exercise.finished) {
+                                         return <center> <Badge style={{ margin: 5 }} variant="warning"> No hay ejercicios realizados en la fecha seleccionada</Badge> </center>
+                                      } */
                                  }
 
                                  )
                                  }
-
-
                               </Form>
                            </div>
-
                         </div>
                      </Collapse>
                   </Col>
                </Row>
-
                <Row style={{ paddingTop: '2.5%' }}>
                   {
                      exercises.map((data, index) => {
@@ -164,7 +138,6 @@ const ProfileVisitAssignmentModal = (props) => {
                      })
                   }
                </Row>
-
             </Form>
          </Modal.Body>
       </Modal>
