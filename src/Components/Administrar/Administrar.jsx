@@ -12,7 +12,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { getAllMedicData, getAllExercises } from '../../Api/services/administrarServices';
 import ResponsableTable from './ResponsableTable'
 
-const Administrar = ({ }) => {
+const Administrar = ({ }) => { 
    // Search bar
    const [filter, setFilter] = useState(null);
    const [modalShow, setModalShow] = React.useState(false);
@@ -62,6 +62,7 @@ const Administrar = ({ }) => {
                   <input type="text" placeholder="Buscar responsable" className='search-bar' onChange={(e) => searchSpace(e)} />
                </Row>
                <Row>
+                  <div className='add-button' onClick={() => setModalShow(true)}><IoMdAdd className='add-Icon' />Agregar paciente</div>
                   <div className='add-button' onClick={() => setModalShow(true)}><IoMdAdd className='add-Icon' />Agregar</div>
                </Row>
 
