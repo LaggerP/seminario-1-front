@@ -30,6 +30,10 @@ const endpoints = {
     updateConsejo: `${urlApi}/api/consejos/update`,
     deleteConsejo: `${urlApi}/api/consejos/delete`,
 
+     //History
+     createExerciseHistory: `${urlApi}/api/history/new`,
+     getExerciseHistory: `${urlApi}/api/history/list`,
+
     //exercises
     updateExerciseStatus : `${urlApi}/api/exercises/updateStatus/`,
 }

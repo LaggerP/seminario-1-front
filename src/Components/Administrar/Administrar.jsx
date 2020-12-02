@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import UserCreationModal from './Modal/UserCreationModal'
+import Loading from '../Loading/Loading'
 import './Administrar.scss';
 import {
    Container,
@@ -11,7 +12,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { getAllMedicData, getAllExercises } from '../../Api/services/administrarServices';
 import ResponsableTable from './ResponsableTable'
 
-const Administrar = ({ }) => {
+const Administrar = ({ }) => { 
    // Search bar
    const [filter, setFilter] = useState(null);
    const [modalShow, setModalShow] = React.useState(false);
@@ -90,7 +91,7 @@ const Administrar = ({ }) => {
             </Container>
          </div>
       );
-   } else return (<p>cargando</p>)
+   } else return (<Loading />)
 
 };
 

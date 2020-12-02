@@ -18,6 +18,8 @@ import NotificationCard from './NotificationCard'
 import leaf1 from '../../assets/images/leaf1.png'
 import leaf2 from '../../assets/images/leaf2.png'
 
+import {getUsername} from '../../Api/services/authService'
+
 const Dashboard = () => {
 
    const rol = getRol();
@@ -28,7 +30,7 @@ const Dashboard = () => {
             <Row>
                <Col className="justify-content-md-start" >
                   <div className="bienvenida">
-                     <h2>¡Bienvenido, Usuario!</h2>
+                     <h2>¡Bienvenido {getUsername()}!</h2>
                   </div>
                   <div className="dashboardContainer">
                      <img src={doctoresImage} alt="" className="imagenDoctor"/>
